@@ -1,0 +1,64 @@
+/*@media screen print{*/
+body{
+	    color: #525252;
+	    font-family: "Nunito", sans-serif;
+}
+
+.p-0{
+	padding: 0;
+}
+.m-0{
+	margin: 0;
+}
+
+.sol{
+	min-height: 100vh;
+	background-color: #162831!important;
+	padding: 20px 40px;
+	color: var(--mc)!important;
+	-webkit-print-color-adjust: exact;
+}
+.sol h3{
+	color: var(--mc)!important;
+	margin-top: 10px;
+	margin-bottom: 0;
+	letter-spacing: 3px;
+	-webkit-print-color-adjust: exact;
+}
+
+.white{
+	color: #fff!important;
+	-webkit-print-color-adjust: exact;
+}
+
+.sol h4{
+	color: #fff!important;
+	-webkit-print-color-adjust: exact;
+}
+
+.sol p{
+	/*color: #fff!important;*/
+}
+
+.titles h4{
+	color: var(--mc)!important;
+	font-weight: bold;
+	-webkit-print-color-adjust: exact;
+}
+
+.badge.danger{
+	background: #ad2424!important;
+	-webkit-print-color-adjust: exact;
+	color: #fff!important;
+}
+
+/*}*/
+:root{
+	--mc: #8c9269;
+	--main-bg-color: #fee500;
+	--green-color: #53a318;
+	--line-color: #e2e2e2;
+	--second-bg-color: #000;
+	--error-color: #ff0000;
+	-webkit-print-color-adjust: exact;
+}
