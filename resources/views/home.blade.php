@@ -15,7 +15,7 @@
         </div>
         
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-6 col-sm-6 mb-3">
             <div class="box">
                 <img src="{{asset('img/note9.jpg')}}" alt="">
                 <div class="box-footer">
@@ -29,7 +29,7 @@
         </div>
 
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-6 col-sm-6 mb-3">
             <div class="box">
                 <img src="{{asset('img/reklam1.jpg')}}" alt="">
                 <div class="box-footer">
@@ -43,7 +43,7 @@
         </div>
 
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-6 col-sm-6 mb-3">
             <div class="box">
                 <img src="{{asset('img/reklam1.jpg')}}" alt="">
                 <div class="box-footer">
@@ -57,7 +57,7 @@
         </div>
 
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-6 col-sm-6 mb-3">
             <div class="box">
                 <img src="{{asset('img/reklam1.jpg')}}" alt="">
                 <div class="box-footer">
