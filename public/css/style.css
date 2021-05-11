@@ -831,6 +831,14 @@ label.image:hover {
 background: #ffebdd;
 }
 
+.navbar-toggle-black{
+	background-color: #fff;
+}
+
+.navbar-toggle-black .icon-bar{
+	background-color: #000;
+}
+
 
 
 :root{

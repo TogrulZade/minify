@@ -3,35 +3,23 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
-
     <!-- Scripts -->
-
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="{{asset('css/all.css')}}" rel="stylesheet">
     <link href="{{asset('css/fontawesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/brands.css')}}" rel="stylesheet">
     <link href="{{asset('css/solid.css')}}" rel="stylesheet">
-    
-
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,500,600&display=swap" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
-
-
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
-
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -83,19 +71,30 @@
         </div>
     </nav>
 
-    <div class="header navbar-fixed-top">
-        <div class="container">
-            <ul class="nav navbar-nav">
-                <li><a href="/c/elektronika">Elektronika</a></li>
-                <li><a href="/c/geyim">Geyim</a></li>
-                <li><a href="/c/shexsi-esyalar">Şəxsi əşyalar</a></li>
-                <li><a href="/c/xidmetler">Xidmətlər</a></li>
-                <li><a href="/c/usaq">Uşaq</a></li>
-                <li><a href="/c/hobbi-ve-asude">Hobbi və asudə</a></li>
-                <li><a href="/c/usaq-alemi">Uşaq aləmi</a></li>
-                <li><a href="/c/heyvanlar">Heyvanlar</a></li>
-                <li><a href="neqliyyat">Nəqliyyat</a></li>
-            </ul>
+    <div class="header navbar navbar-fixed-top">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle navbar-toggle-black collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li><a href="/c/elektronika">Elektronika</a></li>
+                    <li><a href="/c/geyim">Geyim</a></li>
+                    <li><a href="/c/shexsi-esyalar">Şəxsi əşyalar</a></li>
+                    <li><a href="/c/xidmetler">Xidmətlər</a></li>
+                    <li><a href="/c/usaq">Uşaq</a></li>
+                    <li><a href="/c/hobbi-ve-asude">Hobbi və asudə</a></li>
+                    <li><a href="/c/usaq-alemi">Uşaq aləmi</a></li>
+                    <li><a href="/c/heyvanlar">Heyvanlar</a></li>
+                    <li><a href="neqliyyat">Nəqliyyat</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
