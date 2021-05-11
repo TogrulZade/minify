@@ -665,7 +665,6 @@ margin-bottom: 3px;
 margin-bottom: 10px;
 }
 
-.shop-company {}
 
 span.company-name {
 font-size: 1.3em;
@@ -865,7 +864,6 @@ background: #ffebdd;
 
 .sign a{
 	display: inline-block;
-	float: left;
 }
 
 .p-1{padding: .25rem!important}
