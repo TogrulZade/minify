@@ -102,7 +102,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <p><?php echo date("d-m-Y H:i"); ?></p>
+                    <p>{{$pr->created_at}}</p>
                 </div>
             </a>
         </div>

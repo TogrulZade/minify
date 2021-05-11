@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('butunElanlar', 'ApiHomeController@all');
+Route::get('product/{pid}', 'ApiProductController@show');
