@@ -803,10 +803,13 @@ color: #fff;
 margin: 10px 0;
 }
 
-a.sell-share:hover{
+.sell-share:hover, .sell-share:active{
 text-decoration: none;
 background: #489212;
+color: #fff;
 }
+
+
 
 .form-control:focus{
 border: 1px solid var(--green-color);

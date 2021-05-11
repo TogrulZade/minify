@@ -84,7 +84,7 @@
 							</div>
 
 							<div class="form-group">
-								<button type="submit" class="sell-share pull-right">Yerləşdir</a>
+								<button type="submit" class="btn btn-sm sell-share pull-right">Yerləşdir</a>
 							</div>
 						</form>
 
