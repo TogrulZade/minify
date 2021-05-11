@@ -10,7 +10,7 @@ class ApiHomeController extends Controller
 {
     public function all()
     {
-        $all = Product::with('pictures')->get();
+        $all = Product::with('pictures')->orderBy('created_at',"DESC")->get();
         return $all;
     }
 }

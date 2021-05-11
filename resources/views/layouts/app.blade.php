@@ -64,8 +64,8 @@
                     </li>
                     @else
                     <li class="sign">
-                        <a href="/login">Daxil ol</a>
-                        <a href="/register">Qeydiyyat</a>
+                        <li><a href="/login">Daxil ol</a></li>
+                        <li><a href="/register">Qeydiyyat</a></li>
                     </li>
                     @endauth
                 </ul>
