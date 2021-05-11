@@ -403,19 +403,7 @@ font-size: 1.5em;
 color: #000;
 }
 
-.box .price {
-width: 100px;
-height: 40px;
-line-height: 40px;
-background: #000;
-text-align: center;
-float: right;
-cursor: pointer;
-color: #fff;
-border-radius: 20px;
-margin-top: 10px;
-margin-right: 10px;
-}
+.box .price {width: 80px;height: 40px;line-height: 40px;background: #000;text-align: center;float: right;cursor: pointer;color: #fff;border-radius: 20px;margin-top: 10px;margin-right: 10px;font-size: 14px;}
 
 .banner{
 width: 100%;
@@ -839,13 +827,16 @@ background: #ffebdd;
 	background-color: #000;
 }
 
+@media (min-width: 768px) { 
+	
+}
 
 
 :root{
---main-color: #fee500;
---main-bg-color: #fee500;
---green-color: #53a318;
---line-color: #e2e2e2;
---second-bg-color: #000;
---error-color: #ff0000;
+	--main-color: #fee500;
+	--main-bg-color: #fee500;
+	--green-color: #53a318;
+	--line-color: #e2e2e2;
+	--second-bg-color: #000;
+	--error-color: #ff0000;
 }

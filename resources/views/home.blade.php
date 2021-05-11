@@ -19,9 +19,11 @@
             <div class="box">
                 <img src="{{asset('img/note9.jpg')}}" alt="">
                 <div class="box-footer">
+                    <div class="wrap-footer">
                     <h4>Jackets</h4>
                     <div class="price">
                         2350 AZN
+                    </div>
                     </div>
                 </div>
 
