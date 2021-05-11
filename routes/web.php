@@ -25,5 +25,5 @@ Route::post("/sell", "ProductController@sellAction");
 Route::get("/c/{cat}", "ProductController@getByCategory");
 
 Auth::routes();
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('/logout', '\minify\Http\Controllers\Auth\LoginController@logout');
 Route::get('/home', 'HomeController@index')->name('home');
