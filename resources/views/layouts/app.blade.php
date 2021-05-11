@@ -47,7 +47,7 @@
                     </div>
                     <button type="submit" class="btn btn-search">Axtarış et</button>
                 </form>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right xs-p-3">
                     <li><a class="btn-sel" href="/sell"><i class="fas fa-paper-plane"></i> Elan yerləşdir</a></li>
                     @auth
                     <li class="dropdown">
@@ -63,8 +63,10 @@
                         </ul>
                     </li>
                     @else
-                        <li><a href="/login">Daxil ol</a></li>
-                        <li><a href="/register">Qeydiyyat</a></li>
+                    <li class="sign">
+                        <a href="/login">Daxil ol</a>
+                        <a href="/register">Qeydiyyat</a>
+                    </li>
                     @endauth
                 </ul>
             </div><!-- /.navbar-collapse -->
