@@ -84,7 +84,7 @@
         
 
         {{-- Card --}}
-        <div class="col-md-3 col-sm-6" style="padding: 20px;">
+        <div class="col-md-3 col-xs-6" style="padding: 20px;">
             <a href="/product/{{$pr->slug}}" class="card">
 
                 <div class="card-img">
