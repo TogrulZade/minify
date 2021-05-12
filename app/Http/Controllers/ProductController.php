@@ -113,6 +113,7 @@ class ProductController extends Controller
                 $up = Product::find($prNumber);
                 $up->product_cover = $coverCut;
                 $up->save();
+				Picture::create(["product_id"=>$prNumber, "url"=>$coverCut,"cover"=>$cover]);
             }else{$cover = 0;}
             
             Picture::create(["product_id"=>$prNumber, "url"=>$imgurl,"cover"=>$cover]);
