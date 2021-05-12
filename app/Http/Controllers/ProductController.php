@@ -105,7 +105,7 @@ class ProductController extends Controller
             $imgurl = substr($url, 7);
             if($k == 1){
 				$coverUrl = "storage/products/cover/".uniqid($prNumber."_", true).".".$ex;
-				$coverCut = substr($coverUrl, 7);
+				$coverCut = substr($coverUrl, 8);
 				$image_resize = Image::make($file->getRealPath());          
 				$image_resize->resize(220, 163);	
 				$image_resize->save(public_path($coverUrl));
@@ -113,7 +113,6 @@ class ProductController extends Controller
                 $up = Product::find($prNumber);
                 $up->product_cover = $coverCut;
                 $up->save();
-				Picture::create(["product_id"=>$prNumber, "url"=>$coverCut,"cover"=>$cover]);
             }else{$cover = 0;}
             
             Picture::create(["product_id"=>$prNumber, "url"=>$imgurl,"cover"=>$cover]);

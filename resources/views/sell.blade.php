@@ -41,7 +41,7 @@
 									<p class="error">{{ $errors->first('image.*') }}</p>
 								@endif
 
-								<input type="file" multiple accept="image/*" name="image[]" id="imgfile" style="display: none;"/>
+								<input type="file" multiple accept="image/*" name="image[]" id="imgfile" class="my-pond" style="display: none;"/>
 								<label for="imgfile" class="image"><i class="fas fa-camera"></i> Şəkil əlavə et</label>
 
 								<div class="izle col-md-12">
