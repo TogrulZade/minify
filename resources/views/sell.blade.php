@@ -59,6 +59,42 @@
 							</div>
 
 							<div class="form-group">
+								<label for="">Şəhər</label>
+								@if($errors->has("city"))
+									<p class="error">{{ $errors->first('city') }}</p>
+								@endif
+								<select name="city" id="">
+									@foreach ($cities as $city)
+										<option value="{{$city->id}}" {{$city->id == 9 ? 'selected' : ''}}>{{$city->name}}</option>
+									@endforeach
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="">Yeni?</label>
+								@if($errors->has("new"))
+									<p class="error">{{ $errors->first('new') }}</p>
+								@endif
+								<select name="new" id="">
+									<option value="0">Xeyr</option>
+									<option value="1" selected>Bəli</option>
+								</select>
+							</div>
+
+
+
+							<div class="form-group">
+								<label for="">Çatdırılma</label>
+								@if($errors->has("delivery"))
+									<p class="error">{{ $errors->first('delivery') }}</p>
+								@endif
+								<select name="delivery" id="">
+									<option value="0">Xeyr</option>
+									<option value="1" selected>Bəli</option>
+								</select>
+							</div>
+
+							<div class="form-group">
 								@if($errors->has("product_description"))
 									<p class="error">{{ $errors->first('product_description') }}</p>
 								@endif

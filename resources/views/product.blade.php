@@ -47,10 +47,10 @@
     				<div class="bg-white shop-desc">
 						<div class="col-md-12 p-0 desc-text">
 							<div class="shop-icon">
-								@if($product->name !='')
+								@if($product->market !='')
 								<div class="col-md-12 p-0 mb-2">
 									<div class="shop-company">
-										<i class="fas fa-store company-icon"></i> <span>{{$product->name}}</span>
+										<i class="fas fa-store company-icon"></i> <span>{{$product->market}}</span>
 										{{-- <div class="badge badge-primary">5.0 <div class="glyphicon glyphicon-star"></div></div> --}}
 										<div class="stars pull-right">
 											<i class="fas yellow fa-star"></i>
@@ -116,9 +116,10 @@
 	    						</div> --}}
 
 							<div class="line-bottom mt-0"></div>
+
 							<div class="col-md-12 p-0 mt-2 mb-2" style="font-weight: 600">
 								<div class="col-md-6 p-0 mb-2">Şəhər</div>
-								<div class="col-md-6 p-0 mb-2"><span class="pull-right"><strong>Bakı</strong></span></div>
+								<div class="col-md-6 p-0 mb-2"><span class="pull-right"><strong>{{$product->city}}</strong></span></div>
 
 								<div class="col-md-6 p-0 mb-2">Malın növü</div>
 								<div class="col-md-6 p-0 mb-2"><span class="pull-right"><strong>Smartfon</strong></span></div>
@@ -127,16 +128,19 @@
 								<div class="col-md-6 p-0 mb-2"><span class="pull-right"><strong>Digər</strong></span></div>
 
 								<div class="col-md-6 p-0 mb-2">Yeni</div>
-								<div class="col-md-6 p-0 mb-2"><span class="pull-right"><strong>Bəli</strong></span></div>
+								<div class="col-md-6 p-0 mb-2"><span class="pull-right"><strong>{{$product->new == 0 ? 'Xeyr' : 'Bəli'}}</strong></span></div>
 
 								<div class="col-md-6 p-0 mb-2">Çatdırılma</div>
-								<div class="col-md-6 p-0 mb-2"><span class="pull-right"><strong>Bəli</strong></span></div>
+								<div class="col-md-6 p-0 mb-2"><span class="pull-right"><strong>{{$product->delivery == 0 ? 'Xeyr' : 'Bəli'}}</strong></span></div>
 							</div>
+
 							<div class="col-md-12 p-0 contact">
 								<p class="text-center satici">Satıcı | <span>Toğrul Sadıqzadə</span></p>
-								<p class="text-center call-number"> <i class="fas fa-phone-volume"></i> +994 70 882 7974</p>
+								<p class="text-center call-number"> <i class="fas fa-phone-volume"></i> 
+									{{$product->merchant_number}}
+								</p>
 							</div>
-    						{{-- <a href="#" class="btn-lg btn-block btn-danger text-center">Sifariş et</a> --}}
+
     					</div>
     				</div>
     			</div>

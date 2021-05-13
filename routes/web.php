@@ -23,6 +23,7 @@ Route::get("/sell", "ProductController@sell");
 Route::get("/cv", "HomeController@cv");
 Route::post("/sell", "ProductController@sellAction");
 Route::get("/c/{cat}", "ProductController@getByCategory");
+Route::get("update", "ProductController@update");
 
 Auth::routes();
 Route::get('/logout', '\minify\Http\Controllers\Auth\LoginController@logout');

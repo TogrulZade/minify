@@ -22,15 +22,26 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Auth;
 
 use minify\Category;
+use minify\City;
 
 
 
 
 class ProductController extends Controller
 {
+	public function update()
+	{
+		$cities = ['Ağcabədi','Ağdam','Ağdaş','Ağdərə','Ağstafa','Ağsu','Astara','Bakı','Balakən','Beyləqan','Bərdə','Biləsuvar','Cəbrayıl','Cəlilabad','Culfa','Daşkəsən','Fizuli','Gədəbəy','Gəncə','Goranboy','Göyçay','Göygöl','Göytəpə','Hacıqabul','Horadiz','İmişli','İsmayıllı','Kəlbəcər','Kürdəmir','Laçın','Lerik','Lənkəran','Masallı','Mingəçevir','Nabran','Naftalan','Naxçıvan','Nefçala','Oğuz','Ordubad','Qax','Qazax','Qəbələ','Qobustan','Quba','Qubadlı','Qusar','Saatlı','Sabirabad','Şabran','Şahbuz','Salyan','Şamaxı','Samux','Şəki','Şəmkir','Şərur','Şirvan','Siyəzən','Sumqayıt','Şuşa','Tərtər','Tovuz','Ucar','Xaçmaz','Xankəndi','Xırdalan','Xızı','Xocalı','Xocavənd','Xudat','Yardımlı','Yevlax','Zaqatala','Zəngilan', 'Zərdab'];
+
+		// foreach($cities as $city){
+		// 	$p = new City();
+		// 	$p->name = $city;
+		// 	$p->save();
+		// }
+	}
     public function index(Request $request)
     {
-    	$product = DB::table("products")->join("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("slug", "=", $request->slug)->first();
+    	$product = DB::table("products")->join("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->select("products.*","markets.*","markets.name as market","pictures.*","cities.name as city")->first();
         $pictures = Picture::where("product_id","=",$product->product_id)->get();
         // echo $product->product_id;
     	
@@ -40,8 +51,9 @@ class ProductController extends Controller
 
     public function sell(Request $request)
     {
+		$cities = City::all();
 		$category = Category::where('status',">",0)->get();
-    	return view("sell",['category'=>$category]);
+    	return view("sell",['category'=>$category,'cities'=>$cities]);
     }
 
     public function sellAction(Request $request)
@@ -53,6 +65,9 @@ class ProductController extends Controller
     		'product_description' 	=> "required",
     		'merchant_number' 	=> "required",
     		'product_merchant' 	=> "required",
+    		'city' 	=> "required",
+    		'delivery' 	=> "required",
+    		'new' 	=> "required",
             "image.*"           => 'mimes:jpeg,jpg,png',
     	];
 
@@ -63,6 +78,9 @@ class ProductController extends Controller
     		'product_description.required' => 'Məhsul haqqında yazmadınız',
     		'merchant_number.required' => 'Əlaqə nömrəsi qeyd etmədiniz',
     		'product_merchant.required' => 'Adınızı qeyd etmədiniz',
+    		'city.required' => 'Şəhər qeyd etmədiniz',
+    		'delivery.required' => 'Çatdırılma qeyd etmədiniz',
+    		'new.required' => 'Yeni və ya köhnə olduğunu qeyd etmədiniz',
             'image.*.mimes'=> "Yalnız jpeg,jpg,png formatlı şəkil yükləyə bilərsiniz",
     	];
 
@@ -88,6 +106,7 @@ class ProductController extends Controller
 		$product->product_description = $request->product_description;
 		$product->merchant_number = $request->merchant_number;
 		$product->product_merchant = $request->product_merchant;
+		$product->city = $request->city;
 		$product->slug = Str::slug($addId."-".$request->product_name, '-');
 
 		$prNumber = Product::create(["product_name"=>$request->product_name,"product_category"=>$request->product_category,"product_price"=>$request->product_price,"product_description"=>$request->product_description,"merchant_number"=>$request->merchant_number,"product_merchant"=>$request->product_merchant,"slug"=>Str::slug($addId."-".$request->product_name, '-')])->id;

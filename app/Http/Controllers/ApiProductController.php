@@ -10,7 +10,7 @@ class ApiProductController extends Controller
     public function show(Request $request)
     {
         $pid = $request->pid;
-        $data = Product::with('pictures')->orderBy('created_at',"DESC")->where('id',"=",$pid)->get();
+        $data = Product::with('pictures')->with('city')->with('market')->orderBy('created_at',"DESC")->where('id',"=",$pid)->get();
         return $data;
     }
 }
