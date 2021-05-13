@@ -3,6 +3,7 @@
 namespace minify\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use minify\Product;
 
 class ApiProductController extends Controller
