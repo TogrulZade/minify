@@ -18,7 +18,7 @@ class ApiProductController extends Controller
     public function axtar(Request $request)
     {
         $q = $request->q;
-        $data = Product::where("product_name","=",$q)->get();
+        $data = Product::where("product_name","like","%".$q."%")->get();
         return $data;
     }
 }
