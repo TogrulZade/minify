@@ -14,4 +14,11 @@ class ApiProductController extends Controller
         $data = Product::with('pictures')->with('city')->with('market')->orderBy('created_at',"DESC")->where('id',"=",$pid)->get();
         return $data;
     }
+
+    public function axtar(Request $request)
+    {
+        $q = $request->q;
+        $data = Product::where("product_name","=",$name)->get();
+        return $data;
+    }
 }
