@@ -43,13 +43,10 @@ class ProductController extends Controller
     {
     	$product = DB::table("products")->join("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->select("products.*","markets.*","markets.name as market","pictures.*","cities.name as city")->first();
 
-		// $product = Product::with('pictures')->with('city')->with('market:id,name as market')->orderBy('created_at',"DESC")->where("slug", "=", $request->slug)->first();
-        $pictures = Picture::where("product_id","=",$product->product_id)->get();
-        // echo $product->product_id;
-    	
-		// print_r($product);
-    	return view("product", ["product"=>$product,"pictures"=>$pictures]);
-		// echo Auth::user();
+		$pictures = Picture::where("product_id","=",$product->product_id)->get();
+
+		return view("product", ["product"=>$product,"pictures"=>$pictures]);
+
     }
 
     public function sell(Request $request)
