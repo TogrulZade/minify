@@ -26,6 +26,6 @@ class Product extends Model
 
     public function vip()
     {
-        return $this->hasMany(vip::class, 'product_id',"id")->where('vip.closed_at',">",date('Y-m-d H:i:s'));
+        return $this->hasMany(Vip::class, 'product_id',"id")->where('vip.closed_at',">",date('Y-m-d H:i:s'));
     }
 }

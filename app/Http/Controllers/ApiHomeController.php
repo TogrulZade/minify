@@ -4,6 +4,7 @@ namespace minify\Http\Controllers;
 
 use Illuminate\Http\Request;
 use minify\Product;
+use minify\vip;
 // use minify\Picture;
 
 class ApiHomeController extends Controller
@@ -18,6 +19,6 @@ class ApiHomeController extends Controller
         })->with('vip')->whereHas('vip',function($q){
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
         })->get();
-        return compact($all,$vips);
+        return $all;
     }
 }

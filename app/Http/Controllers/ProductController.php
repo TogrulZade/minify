@@ -23,6 +23,7 @@ use Auth;
 
 use minify\Category;
 use minify\City;
+use minify\vip;
 
 
 
@@ -148,8 +149,15 @@ class ProductController extends Controller
 		$cat = $request->cat;
 		$getCat = Category::where('slug','=',$cat)->first();
 		if($getCat){
+			$vips = Product::with('pictures')->whereHas('pictures',function($q){
+				return $q->where('pictures.cover',"=",1);
+			})->with('vip')->whereHas('vip',function($q){
+				return $q->where('closed_at',">", date('Y-m-d H:i:s'));
+			})->get();
+
 			$products = DB::table("products")->join("pictures","products.id","=","pictures.product_id")->where("cover","=","1")->where("product_category","=",$getCat->id)->get();
-			return view('home', ['products'=>$products,'categoryName'=>$getCat->name]);
+			return view('home', ['products'=>$products, 'vips'=>$vips, 'categoryName'=>$getCat->name]);
+			print_r($vips);
 			// echo $getCat->id;
 		}else{
 			return redirect('/');

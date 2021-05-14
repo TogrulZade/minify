@@ -52,9 +52,9 @@
                 </div>
                 
                 <div class="card-title">
-                    @if(count($pr->vip)>0)
+                    {{-- @if(count($pr->vip)>0)
                         <span>VIP</span>
-                    @endif
+                    @endif --}}
                     {{$pr->product_price}} AZN
                 </div>
                 
