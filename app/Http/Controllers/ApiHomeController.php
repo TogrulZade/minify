@@ -19,6 +19,6 @@ class ApiHomeController extends Controller
         })->with('vip')->whereHas('vip',function($q){
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
         })->get();
-        return ['all'=>$all, "vip"=>$vips];
+        return ['all'=>$all, "vips"=>$vips];
     }
 }
