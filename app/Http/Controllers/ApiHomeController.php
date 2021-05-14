@@ -10,7 +10,14 @@ class ApiHomeController extends Controller
 {
     public function all()
     {
+
         $all = Product::with('pictures')->orderBy('created_at',"DESC")->get();
-        return $all;
+
+        $vips = Product::with('pictures')->whereHas('pictures',function($q){
+            return $q->where('pictures.cover',"=",1);
+        })->with('vip')->whereHas('vip',function($q){
+            return $q->where('closed_at',">", date('Y-m-d H:i:s'));
+        })->get();
+        return compact($all,$vips);
     }
 }

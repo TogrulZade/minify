@@ -13,66 +13,24 @@
         <div class="col-md-12 text-center">
             <h3 class="black mb-5">VIP Elanlar</h3>
         </div>
-        
-
-        <div class="col-md-3 col-xs-6 col-sm-6 mb-3">
-            <div class="box">
-                <img src="{{asset('img/note9.jpg')}}" alt="">
-                <div class="box-footer">
-                    <div class="wrap-footer">
-                    <h4>Jackets</h4>
-                    <div class="price">
-                        2350 AZN
+        <div class="col-md-12">
+        @foreach ($vips as $vip)
+            <div class="col-md-3 col-xs-6 col-sm-6 mb-3">
+                <a href="product/{{$vip->slug}}" class="box">
+                    <img src="{{asset('storage/'.$vip->product_cover)}}" alt="">
+                    <div class="box-footer">
+                        <div class="wrap-footer">
+                        <h4>{{$vip->product_name}}</h4>
+                        <div class="price">
+                            {{$vip->product_price}} AZN
+                        </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
-
+                </a>
             </div>
+        @endforeach
         </div>
 
-
-        <div class="col-md-3 col-xs-6 col-sm-6 mb-3">
-            <div class="box">
-                <img src="{{asset('img/reklam1.jpg')}}" alt="">
-                <div class="box-footer">
-                    <h4>Jackets</h4>
-                    <div class="price">
-                        50 AZN
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <div class="col-md-3 col-xs-6 col-sm-6 mb-3">
-            <div class="box">
-                <img src="{{asset('img/reklam1.jpg')}}" alt="">
-                <div class="box-footer">
-                    <h4>Jackets</h4>
-                    <div class="price">
-                        50 AZN
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <div class="col-md-3 col-xs-6 col-sm-6 mb-3">
-            <div class="box">
-                <img src="{{asset('img/reklam1.jpg')}}" alt="">
-                <div class="box-footer">
-                    <h4>Jackets</h4>
-                    <div class="price">
-                        50 AZN
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        
 
         <div class="col-md-12">
             @if($categoryName == '')
@@ -94,6 +52,9 @@
                 </div>
                 
                 <div class="card-title">
+                    @if(count($pr->vip)>0)
+                        <span>VIP</span>
+                    @endif
                     {{$pr->product_price}} AZN
                 </div>
                 

@@ -10,7 +10,8 @@
 </head>
 <body style="padding: 0; margin: 0">
     <div style="width: 100%; height: 100vh;background-color: #fee500; display: flex; justify-content: center; align-items: center">
-        <h1 style="font-size: 76px; font-family: Poppins; font-weight: 600">minify.<span style="margin-left: 5px;padding: 5px 15px; background: #222; color: #fff; border-radius: 6px">az</span></h1>
+        {{-- <h1 style="font-size: 76px; font-family: Poppins; font-weight: 600">minify.<span style="margin-left: 5px;padding: 5px 15px; background: #222; color: #fff; border-radius: 6px">az</span></h1> --}}
+        <img src={{asset('storage/images/logo.png')}}
     </div>
 </body>
 </html>

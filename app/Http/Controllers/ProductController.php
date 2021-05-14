@@ -45,6 +45,7 @@ class ProductController extends Controller
 
 		$pictures = Picture::where("product_id","=",$product->product_id)->get();
 
+		// print_r($product);
 		return view("product", ["product"=>$product,"pictures"=>$pictures]);
 
     }
