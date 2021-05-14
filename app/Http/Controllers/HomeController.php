@@ -41,7 +41,6 @@ class HomeController extends Controller
         $products = Product::with('pictures')->whereHas('pictures',function($q){
             return $q->where('pictures.cover',"=",1);
         })->get();
-        // print_r($products);
         return view('home', ["products"=> $products, 'vips'=>$vips, 'categoryName'=>'']);
     }
 
