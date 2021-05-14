@@ -3,7 +3,78 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+
+        <div class="col-md-4 col-md-offset-4 p-0">
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
+                <div class="card" style="margin-bottom: 92px;margin-top: 40px;border: 1px solid #e2e2e2; box-shadow: 0 0 7px 1px rgba(0,0,0,.2); border-radius: 10px;padding: 20px">
+                    <div class="text-center">
+                        <h4>Yeni hesab aç</h4>
+                        <hr>
+                    </div>
+                    <div class="form-group">
+                        <input id="name" placeholder="Adınız" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <input id="surname" placeholder="Soyadınız" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus>
+
+                        @error('surname')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+
+                    <div class="form-group">
+                        <input id="email" placeholder="E-mail ünvanınız" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="Şifrənin">
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" name="password_confirmation" class="form-control" placeholder="Şifrənin təsdiqi">
+                        @error('password_confirmation')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <div>
+                            <a class="mb-2 pull-right" href="/login">Hesabınız var?</a>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-md btn-block btn-success">Daxil ol</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+        {{-- <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 
@@ -71,7 +142,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 @endsection

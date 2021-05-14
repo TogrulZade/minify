@@ -52,7 +52,7 @@
                     <li><a class="btn-sel" href="/sell"><i class="fas fa-paper-plane"></i> Elan yerləşdir</a></li>
                     @auth
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">TogrulZade <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}} {{Auth::user()->surname}}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Şəxsi kabinet</a></li>
                             <li><a href="#">Balans</a></li>
