@@ -44,6 +44,9 @@ class ProductController extends Controller
     {
     	$product = DB::table("products")->join("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->select("products.*","markets.*","markets.name as market","pictures.*","cities.name as city")->first();
 
+		if ($product === null)
+        	abort(404);
+
 		$pictures = Picture::where("product_id","=",$product->product_id)->get();
 
 		// print_r($product);
