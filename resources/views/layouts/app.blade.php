@@ -95,7 +95,7 @@
                     <li><a href="/c/hobbi-ve-asude">Hobbi və asudə</a></li>
                     <li><a href="/c/usaq-alemi">Uşaq aləmi</a></li>
                     <li><a href="/c/heyvanlar">Heyvanlar</a></li>
-                    <li><a href="neqliyyat">Nəqliyyat</a></li>
+                    <li><a href="/c/neqliyyat">Nəqliyyat</a></li>
                 </ul>
             </div>
         </div>

@@ -16,7 +16,7 @@
         <div class="col-md-12">
         @foreach ($vips as $vip)
             <div class="col-md-3 col-xs-6 col-sm-6 mb-3">
-                <a href="product/{{$vip->slug}}" class="box">
+                <a href="/product/{{$vip->slug}}" class="box">
                     <img src="{{asset('storage/'.$vip->product_cover)}}" alt="">
                     <div class="box-footer">
                         <div class="wrap-footer">
@@ -41,33 +41,31 @@
         </div>
 
         @foreach($products as $pr)
-        
+            {{-- Card --}}
+            <div class="col-md-3 col-xs-6">
+                <a href="/product/{{$pr->slug}}" class="card">
 
-        {{-- Card --}}
-        <div class="col-md-3 col-xs-6">
-            <a href="/product/{{$pr->slug}}" class="card">
+                    <div class="card-img">
+                        <img src="{{asset('storage/'.$pr->product_cover)}}" alt="">
+                    </div>
+                    
+                    <div class="card-title">
+                        {{-- @if(count($pr->vip)>0)
+                            <span>VIP</span>
+                        @endif --}}
+                        {{$pr->product_price}} AZN
+                    </div>
+                    
+                    <div class="card-body">
+                        <h4 class="mb-0">{{$pr->product_name}}</h4>
+                    </div>
 
-                <div class="card-img">
-                    <img src="{{asset('storage/'.$pr->product_cover)}}" alt="">
-                </div>
-                
-                <div class="card-title">
-                    {{-- @if(count($pr->vip)>0)
-                        <span>VIP</span>
-                    @endif --}}
-                    {{$pr->product_price}} AZN
-                </div>
-                
-                <div class="card-body">
-                    <h4 class="mb-0">{{$pr->product_name}}</h4>
-                </div>
-
-                <div class="card-footer">
-                    <p>{{$pr->created_at}}</p>
-                </div>
-            </a>
-        </div>
-
+                    <div class="card-footer">
+                        <p>{{$pr->created_at}}</p>
+                    </div>
+                </a>
+            </div>
+            {{-- End card --}}
         
         @endforeach
 

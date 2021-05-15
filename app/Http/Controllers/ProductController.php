@@ -153,12 +153,13 @@ class ProductController extends Controller
 				return $q->where('pictures.cover',"=",1);
 			})->with('vip')->whereHas('vip',function($q){
 				return $q->where('closed_at',">", date('Y-m-d H:i:s'));
-			})->get();
+			})->where("product_category","=",$getCat->id)->get();
 
-			$products = DB::table("products")->join("pictures","products.id","=","pictures.product_id")->where("cover","=","1")->where("product_category","=",$getCat->id)->get();
+			$products = Product::with('pictures')->whereHas('pictures', function($q){
+				return $q->where('pictures.cover',"=",1);
+			})->where('products.product_category',"=",$getCat->id)->doesntHave('vip')->get();
+
 			return view('home', ['products'=>$products, 'vips'=>$vips, 'categoryName'=>$getCat->name]);
-			print_r($vips);
-			// echo $getCat->id;
 		}else{
 			return redirect('/');
 		}

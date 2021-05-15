@@ -68,7 +68,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button class="btn btn-md btn-block btn-success">Daxil ol</button>
+                        <button class="btn btn-md btn-block btn-success">Qeydiyyat</button>
                     </div>
 
                 </div>
