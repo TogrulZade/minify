@@ -57,11 +57,9 @@ $(document).ready(function(){
 		if (e.key == "Escape") {
 			mini_close();
 		}
-
 		if (e.key == "ArrowRight") {
 			right();
 		}
-
 		if (e.key == "ArrowLeft") {
 			left();
 		}
