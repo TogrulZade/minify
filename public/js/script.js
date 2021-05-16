@@ -65,8 +65,6 @@ $(document).ready(function(){
 		}
 	  });
 
-	  
-
 	const width = $(window).width();
 	const height = $(window).height();
 	$("#mini-gallery img").each(function(x){
