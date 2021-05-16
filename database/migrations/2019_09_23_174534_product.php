@@ -21,6 +21,7 @@ class Product extends Migration
                 $table->string("product_description");
                 $table->string("product_price");
                 $table->string("merchant_name");
+                $table->string("merchant_number");
                 $table->string("product_category");
                 $table->string("slug");
                 $table->timestamps();

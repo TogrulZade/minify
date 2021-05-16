@@ -9,13 +9,19 @@
     <!-- Scripts -->
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link type="text/css" rel="stylesheet" href="{{asset('css/lightgallery.min.css')}}" /> 
+    <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
     <link href="{{asset('css/all.css')}}" rel="stylesheet">
     <link href="{{asset('css/fontawesome.min.css')}}" rel="stylesheet">
-    <link href="{{asset('css/brands.css')}}" rel="stylesheet">
-    <link href="{{asset('css/solid.css')}}" rel="stylesheet">
+    {{-- <link href="{{asset('css/brands.css')}}" rel="stylesheet"> --}}
+    {{-- <link href="{{asset('css/solid.css')}}" rel="stylesheet"> --}}
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,500,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <!-- Styles -->
+    <link href="{{ asset('css/feather.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
@@ -42,9 +48,10 @@
                     <li><a href="#">Mağazalar</a></li>
                     <li class="active"><a href="#">Kateqoriyalar</a></li>
                 </ul>
-                <form class="navbar-form navbar-left" role="search">
+                <form class="navbar-form navbar-left" action="/axtar" role="search">
                     <div class="form-group form-search">
-                        <input type="text" class="form-control col-md-6" placeholder="Search">
+                        <input id="axtar" type="text" name="axtar" class="form-control col-md-6" value="{{old('axtar')}}" placeholder="Əşya və ya xidmət axtarın...">
+                        <div class="icon"><i class="feather-search" style="font-size: 15px"></i></div>
                     </div>
                     <button type="submit" class="btn btn-search">Axtarış et</button>
                 </form>
@@ -141,8 +148,21 @@
   src="https://code.jquery.com/jquery-2.2.4.min.js"
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   crossorigin="anonymous"></script> --}}
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- lightgallery plugins -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
+
+    {{-- <script type="text/javascript">
+        lightGallery(document.getElementById('aniimated-thumbnials'),{
+            mode: 'lg-fade',
+            download: false,
+            share: false,
+            width: '100%'
+        }); 
+    </script> --}}
 
 </html>

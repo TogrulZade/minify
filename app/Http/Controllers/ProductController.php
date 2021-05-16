@@ -24,6 +24,7 @@ use Auth;
 use minify\Category;
 use minify\City;
 use minify\vip;
+use minify\SeenProduct;
 
 
 
@@ -48,8 +49,20 @@ class ProductController extends Controller
 			return redirect('/');
 
 		$pictures = Picture::where("product_id","=",$product->product_id)->get();
+		
+		// Mehsula baxildi
+		//Eger anonim userdirse user_id=0 olacaq.
+		$minutes = 60*24*30*12*100;
+		$anonim = Str::random(14);
+        if(!$request->cookie('anonim')){
+			\Cookie::queue('anonim', $anonim, $minutes);
+        }
 
-		// print_r($product);
+		SeenProduct::create([
+			'user_id'=>Auth::user() ? Auth::user()->id : null, 
+			'product_id'=>$product->product_id,
+			'anonim'=>$request->cookie('anonim') ? $request->cookie('anonim') : null
+		]);
 		return view("product", ["product"=>$product,"pictures"=>$pictures]);
 
     }

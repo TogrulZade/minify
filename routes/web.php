@@ -24,6 +24,7 @@ Route::get("/cv", "HomeController@cv");
 Route::post("/sell", "ProductController@sellAction");
 Route::get("/c/{cat}", "ProductController@getByCategory");
 Route::get("update", "ProductController@update");
+Route::get("axtar", "HomeController@axtar");
 
 Auth::routes();
 Route::get('/logout', '\minify\Http\Controllers\Auth\LoginController@logout');
