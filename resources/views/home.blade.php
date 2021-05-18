@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-xs-12">
             <div class="banner">
                 <h4 class="text-center">Sizin Reklamınız Burada</h4>
             </div>
@@ -33,7 +33,7 @@
         @endif
 
 
-        <div class="col-md-12">
+        <div class="col-xs-12">
             @if($categoryName == '')
                 <h3 class="black text-center mb-5">Bütün Elanlar</h3>
             @else

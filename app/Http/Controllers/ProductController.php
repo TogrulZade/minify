@@ -1,33 +1,20 @@
 <?php
 
 namespace minify\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Validator;
-
 use Illuminate\Support\Str;
-
 use Illuminate\Support\Facades\DB;
-
 use minify\Product;
 use minify\Picture;
-
 use Illuminate\Http\File;
-
 use Illuminate\Support\Facades\Storage;
-
 use Intervention\Image\ImageManagerStatic as Image;
-
 use Auth;
-
 use minify\Category;
 use minify\City;
 use minify\vip;
 use minify\SeenProduct;
-
-
-
 
 class ProductController extends Controller
 {
@@ -63,7 +50,10 @@ class ProductController extends Controller
 			'product_id'=>$product->product_id,
 			'anonim'=>$request->cookie('anonim') ? $request->cookie('anonim') : null
 		]);
-		return view("product", ["product"=>$product,"pictures"=>$pictures]);
+		
+		$count_seen = SeenProduct::where('product_id',"=",$product->product_id)->get();
+
+		return view("product", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen->count()]);
 
     }
 
