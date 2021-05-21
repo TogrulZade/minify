@@ -151,19 +151,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/mobile/1.5.0-rc1/jquery.mobile-1.5.0-rc1.min.js"></script>
 
-    <!-- lightgallery plugins -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
-
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
-
-    {{-- <script type="text/javascript">
-        lightGallery(document.getElementById('aniimated-thumbnials'),{
-            mode: 'lg-fade',
-            download: false,
-            share: false,
-            width: '100%'
-        }); 
-    </script> --}}
 
 </html>
