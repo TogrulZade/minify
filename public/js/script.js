@@ -103,9 +103,9 @@ $(document).ready(function(){
 		left();
 	});
 
-	$('.mini-slide').on('swiperight', function(event){
-		right();
-	});
+	// $('.mini-slide').on('swiperight', function(event){
+	// 	right();
+	// });
 
 });
 
