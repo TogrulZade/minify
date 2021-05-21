@@ -915,7 +915,8 @@ form.navbar-form.navbar-left {
 .mini-slide{
 	position: relative;
 	margin: 0 auto;
-	width: 940px;
+	width: 90%;
+	/* width: 940px; */
 	height: 100vh;
 	background-color: #000;
 }
@@ -985,9 +986,16 @@ form.navbar-form.navbar-left {
 	justify-content: space-between;
 }
 
-.h-cover{
-	/* height: 300px; */
-}
+/* @media screen and (max-width: 940px){
+	.mini-slide {
+		position: relative;
+		margin: 0 auto;
+		width: 90%;
+		height: 100vh;
+		background-color: #000;
+	}
+} */
+
 
 :root{
 	--main-color: #fee500;
