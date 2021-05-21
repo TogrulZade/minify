@@ -32,8 +32,19 @@ class ProductController extends Controller
     {
     	$product = DB::table("products")->join("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->select("products.*","markets.*","markets.name as market","pictures.*","cities.name as city")->first();
 
-		if ($product === null)
-			return redirect('/');
+		// if ($product === null)
+			// return redirect('/');
+		
+		// $more_products = Product::where('product_category',"=",$product->product_category)->orWhere('product_name',"=",$product->product_name)->where('active',"=",0)->where('cover',"=",1)->get();
+
+		// $more_products = Product::where('product_category',"=",$product->product_category)->orWhere('product_name',"=",$product->product_name)->where('active',"=",0)->with('pictures')->whereHas('pictures', function($q){
+		// 	return $q->where('cover',"=",1);
+		// })->get();
+
+		$more_products = Product::with('pictures')->whereHas('pictures',function($q){
+			return $q->where('pictures.cover',"=",1);
+		})->leftJoin('vip', 'vip.product_id','products.id')->where("products.product_category","=",$product->product_category)->orderBy('vip.created_at',"DESC")->get();
+		// print_r($more_products);
 
 		$pictures = Picture::where("product_id","=",$product->product_id)->get();
 		
@@ -53,8 +64,7 @@ class ProductController extends Controller
 		
 		$count_seen = SeenProduct::where('product_id',"=",$product->product_id)->get();
 
-		return view("product", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen->count()]);
-
+		return view("product", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen->count(), "more_products"=>$more_products]);
     }
 
     public function sell(Request $request)

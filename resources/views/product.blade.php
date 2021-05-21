@@ -11,8 +11,8 @@
 		</div>		
 	</div>
 
-<div class="container p-0">
-    <div class="row p-0">
+<div class="container">
+    <div class="row">
     	<div class="col-md-10 col-md-offset-1 p-0">
 
 			<div class="col-md-12 mb-3">
@@ -22,30 +22,29 @@
     		</div>
     		<div class="col-md-12 mb-5">
     			<div class="col-md-8 line">
-    				<div class="shop-img">										
-						<ul id="mini-gallery" class="col-xs-12">
-							@foreach($pictures as $index=>$pic)
-								<div class="{{$index == 0 ? 'cover-photo col-md-12' : 'mini-photo col-md-3 col-xs-12'}}">
-									<li>
-										<img data-index="{{$index}}" src="{{asset("storage/".$pic->url)}}" />
-									</li>
-								</div>
-							@endforeach
-						</ul>
+					<div class="shop-img">	
+						<div class="col-xs-12">									
+							<ul id="mini-gallery">
+								@foreach($pictures as $index=>$pic)
+									<div class="{{$index == 0 ? 'cover-photo col-md-12' : 'mini-photo col-md-3 col-xs-12'}}">
+										<li>
+											<img data-index="{{$index}}" src="{{asset("storage/".$pic->url)}}" />
+										</li>
+									</div>
+								@endforeach
+							</ul>
+						</div>
+					</div>
 
-						
-	    			</div>
 
-	    			<div class="col-md-12 p-0">
+	    			<div class="col-xs-12 p-0">
 			    		<div class="shop-extra mt-5">
 			    			<h2>Haqqında</h2>
 							<p>{!! nl2br(e($product->product_description))!!}</p>
 			    			<div class="line-bottom"></div>
 
-			    			<i>Alış sonrası problem yaşayarsınızsa xahiş edirik <a class="weight-6" href="#">Bizimlə Əlaqə</a> saxlayın.</i>
+			    			{{-- <i>Alış sonrası problem yaşayarsınızsa xahiş edirik <a class="weight-6" href="#">Bizimlə Əlaqə</a> saxlayın.</i> --}}
 			    		</div>
-
-
 			    	</div>
 
     			</div>
@@ -69,7 +68,6 @@
 								</div>
 								@endif
 								<div class="col-md-12 p-0">
-									{{-- <a href="#" class="save-shop">Yadda saxla</a> --}}
 									<div class="save">
 										<i class="far fa-heart unsave pull-right"></i>
 										<span>{{$product->product_price}} AZN</span>
@@ -122,114 +120,40 @@
 
 
 		<div class="col-md-10 col-md-offset-1">
-			<div class="col-md-12 mt-10">
+			<div class="col-xs-12 mt-10">
 				<h2>Müştərilər həmçinin baxdılar</h2>
 			</div>
 
-			{{-- Card --}}
-			<div class="col-md-3">
-	            <a href="/product/{{$product->slug}}" class="card-mini">
-	                <div class="price">
-	                    {{$product->product_price}} AZN
-	                </div>
+			@foreach ($more_products as $more)
+				{{-- Card --}}
+				<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+					<a href="/product/{{$more->slug}}" class="card-mini">
+						<div class="price">
+							{{$more->product_price}} AZN
+						</div>
+						<div class="card-img">
+							<img src="{{ asset('storage/'.$more->product_cover) }}" alt="">
+						</div>
+						
+						<div class="footer-wrapper">
+							<div class="card-title">
+								<h4 class="mb-0">{{$more->product_name}}</h4>
+							</div>
+						
+							{{-- <div class="card-body">
+								{}
+							</div> --}}
 
-	                <div class="card-img">
-	                    <img src="{{ asset('img/iphone2.jpg') }}" alt="">
-	                </div>
-	                
-	                <div class="card-title">
-	                    <h4 class="mb-0">{{$product->product_name}}</h4>
-	                </div>
-	                
-	                <div class="card-body">
-	                    Lorem ipsum dolor sit amet.
-	                </div>
-
-	                <div class="card-footer">
-	                    <p><?php echo date("d-m-Y H:i"); ?></p>
-	                </div>
-	            </a>
-        	</div>
-
-
-			{{-- Card --}}
-			<div class="col-md-3">
-	            <a href="/{{$product->slug}}" class="card-mini">
-	                <div class="price">
-	                    {{$product->product_price}} AZN
-	                </div>
-
-	                <div class="card-img">
-	                    <img src="{{ asset('img/iphone2.jpg') }}" alt="">
-	                </div>
-	                
-	                <div class="card-title">
-	                    <h4 class="mb-0">{{$product->product_name}}</h4>
-	                </div>
-	                
-	                <div class="card-body">
-	                    Lorem ipsum dolor sit amet.
-	                </div>
-
-	                <div class="card-footer">
-	                    <p><?php echo date("d-m-Y H:i"); ?></p>
-	                </div>
-	            </a>
-        	</div>
+							<div class="card-footer">
+								<p><?php echo $more->created_at; ?></p>
+							</div>
+						</div>
+					</a>
+				</div>
+			@endforeach
 
 
-			{{-- Card --}}
-			<div class="col-md-3">
-	            <a href="/{{$product->slug}}" class="card-mini">
-	                <div class="price">
-	                    {{$product->product_price}} AZN
-	                </div>
-
-	                <div class="card-img">
-	                    <img src="{{ asset('img/iphone2.jpg') }}" alt="">
-	                </div>
-	                
-	                <div class="card-title">
-	                    <h4 class="mb-0">{{$product->product_name}}</h4>
-	                </div>
-	                
-	                <div class="card-body">
-	                    Lorem ipsum dolor sit amet.
-	                </div>
-
-	                <div class="card-footer">
-	                    <p><?php echo date("d-m-Y H:i"); ?></p>
-	                </div>
-	            </a>
-        	</div>
-
-
-			{{-- Card --}}
-			<div class="col-md-3">
-	            <a href="/{{$product->slug}}" class="card-mini">
-	                <div class="price">
-	                    {{$product->product_price}} AZN
-	                </div>
-
-	                <div class="card-img">
-	                    <img src="{{ asset('img/iphone2.jpg') }}" alt="">
-	                </div>
-	                
-	                <div class="card-title">
-	                    <h4 class="mb-0">{{$product->product_name}}</h4>
-	                </div>
-	                
-	                <div class="card-body">
-	                    Lorem ipsum dolor sit amet.
-	                </div>
-
-	                <div class="card-footer">
-	                    <p><?php echo date("d-m-Y H:i"); ?></p>
-	                </div>
-	            </a>
-        	</div>
-
-        	<div class="col-md-12">
+        	<div class="col-xs-12">
         		<h2>Müştəri rəyləri</h2>
         	</div>
 
