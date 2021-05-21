@@ -99,11 +99,11 @@ $(document).ready(function(){
 		left();	
 	});
 
-	$('.mini-slide img').on('swipeleft', function(event){
+	$('.mini-slide').on('swipeleft', function(event){
 		left();
 	});
 
-	$('.mini-slide img').on('swiperight', function(event){
+	$('.mini-slide').on('swiperight', function(event){
 		right();
 	});
 
