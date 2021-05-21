@@ -101,6 +101,7 @@ $(document).ready(function(){
 
 	$('.mini-slide').on('swipeleft', function(event){
 		left();
+		alert(event);
 	});
 
 	// $('.mini-slide').on('swiperight', function(event){
