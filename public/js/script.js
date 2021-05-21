@@ -1,3 +1,5 @@
+
+
 $(document).ready(function(){
 	
 	$(".unsave").hover(function(){
@@ -9,7 +11,7 @@ $(document).ready(function(){
 	// });
 	// 	$(this).removeClass("fa").addClass("far");
 
-	$(".unsave").click(function(){
+	$(".unsave").on('click',function(){
 		$(this).removeClass("far unsave").addClass("fa save");
 		
 	});
@@ -95,6 +97,14 @@ $(document).ready(function(){
 
 	$('.left').on('click', function(){
 		left();	
+	});
+
+	$('.mini-slide img').on('swipeleft', function(event){
+		left();
+	});
+
+	$('.mini-slide img').on('swiperight', function(event){
+		right();
 	});
 
 });

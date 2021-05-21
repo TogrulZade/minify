@@ -15,11 +15,6 @@
     <div class="row">
     	<div class="col-md-10 col-md-offset-1 p-0">
 
-			<div class="col-md-12 mb-3">
-    			<h2 class="shop-title mt-2" style="margin-left: 50px;">
-					<strong>{{$product->product_name}}</strong>
-				</h2>
-    		</div>
     		<div class="col-md-12 mb-5">
     			<div class="col-md-8 col-sm-8 col-xs-12 line h-cover">
 					<div class="shop-img">	
