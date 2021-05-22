@@ -12,24 +12,19 @@
     <meta property="og:title" content="{{ config('app.name', 'Minify') }}" />
     <meta property="og:description" content="Pulsuz Elanlar, Alqı-satqı, Elektronika, Geyim, Şəxsi əşyalar, Xidmətlər, Uşaqlar üçün, Oyuncaqlar, Heyvanlar, Nəqliyyat" />
     <meta property="og:image" content="{{asset('storage/images/logo.png')}}" />
-
-
-    <!-- Scripts -->
+    <meta property="og:type" content="article" />
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link type="text/css" rel="stylesheet" href="{{asset('css/lightgallery.min.css')}}" /> 
-    <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
     <link href="{{asset('css/all.css')}}" rel="stylesheet">
     <link href="{{asset('css/fontawesome.min.css')}}" rel="stylesheet">
-    {{-- <link href="{{asset('css/brands.css')}}" rel="stylesheet"> --}}
-    {{-- <link href="{{asset('css/solid.css')}}" rel="stylesheet"> --}}
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,500,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/feather.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">    
+    {{-- <link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">     --}}
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -149,28 +144,24 @@
         <div class="col-md-4"></div>
     </footer>
 </body>
-    {{-- <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script> --}}
-    {{-- <script
-  src="https://code.jquery.com/jquery-2.2.4.min.js"
-  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-  crossorigin="anonymous"></script> --}}
-  {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> --}}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
-  <script src="http://code.jquery.com/mobile/1.5.0-rc1/jquery.mobile-1.5.0-rc1.min.js"></script>
-
-
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/swipe.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
 
-    {{-- <script type="text/javascript">
-        lightGallery(document.getElementById('aniimated-thumbnials'),{
-            mode: 'lg-fade',
-            download: false,
-            share: false,
-            width: '100%'
-        }); 
-    </script> --}}
-
+    <script>
+        // window.mySwipe = new Swipe(document.getElementById('slider'));
+        window.mySwipe = new Swipe(document.getElementById('mini-gallery'), {
+  startSlide: 0,
+  speed: 400,
+//   auto: 3000,
+  draggable: true,
+  continuous: true,
+  disableScroll: false,
+  stopPropagation: false,
+  ignore: ".scroller",
+  callback: function(index, elem, dir) {},
+  transitionEnd: function(index, elem) {}
+});
+    </script>
 </html>

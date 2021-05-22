@@ -17,19 +17,30 @@
 
     		<div class="col-md-12 mb-5">
     			<div class="col-md-8 col-sm-8 col-xs-12 line h-cover">
-					<div class="shop-img">	
+					{{-- <div class="shop-img">	
 						<div class="col-xs-12">									
 							<ul id="mini-gallery">
 								@foreach($pictures as $index=>$pic)
 									<div class="{{$index == 0 ? 'cover-photo col-md-12' : 'mini-photo col-md-3 col-sm-3 col-xs-6 col-xs-12'}}">
-										<li>
+										<li class="swipe-wrap">
 											<img data-index="{{$index}}" src="{{asset("storage/".$pic->url)}}" />
 										</li>
 									</div>
 								@endforeach
 							</ul>
 						</div>
+					</div> --}}
+					<div class="col-xs-12">
+						<div id="mini-gallery" class="swipe">
+							<div class="swipe-wrap">
+								@foreach($pictures as $index=>$pic)
+									<img data-index="{{$index}}" src="{{asset("storage/".$pic->url)}}" />
+								  @endforeach
+							</div>
+						  </div>
 					</div>
+
+					
 
 
 	    			<div class="col-xs-12 p-0">
