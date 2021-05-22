@@ -9,13 +9,15 @@
                 <h4 class="text-center">Sizin Reklamınız Burada</h4>
             </div>
         </div>
-        
+
         @if(!empty($vips))
-        <div class="col-md-12 text-center">
-            <h3 class="black mb-5">VIP Elanlar</h3>
-        </div>
         <div class="col-xs-12">
-        @foreach ($vips as $vip)
+        @foreach ($vips as $i=>$vip)
+            @if ($vip->id && $i == 0)
+            <div class="col-md-12 text-center">
+                <h3 class="black mb-5">VIP Elanlar</h3>
+            </div>
+            @endif
             <div class="col-md-4 col-xs-6 col-sm-4 mb-3 col-lg-3">
                 <a href="/product/{{$vip->slug}}" class="box">
                     <img src="{{asset('storage/'.$vip->product_cover)}}" alt="">
