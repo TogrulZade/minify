@@ -11,7 +11,7 @@
     
     <meta property="og:title" content="{{ config('app.name', 'Minify') }}" />
     <meta property="og:description" content="Pulsuz Elanlar, Alqı-satqı, Elektronika, Geyim, Şəxsi əşyalar, Xidmətlər, Uşaqlar üçün, Oyuncaqlar, Heyvanlar, Nəqliyyat" />
-    <meta property="og:image" content="https://scontent.fgyd4-3.fna.fbcdn.net/v/t1.6435-9/186052566_102658778675847_6032340977388600800_n.jpg?_nc_cat=105&ccb=1-3&_nc_sid=174925&_nc_ohc=h9GEJS498BIAX_UeQYU&_nc_ht=scontent.fgyd4-3.fna&oh=69b8187cc43cd68cadbc1332a1168a71&oe=60CFFD9C" />
+    <meta property="og:image" content="{{asset('storage/images/logo.png')}}" />
 
 
     <!-- Scripts -->
@@ -19,6 +19,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link type="text/css" rel="stylesheet" href="{{asset('css/lightgallery.min.css')}}" /> 
     <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+    <link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
 
 
     <link href="{{asset('css/all.css')}}" rel="stylesheet">
