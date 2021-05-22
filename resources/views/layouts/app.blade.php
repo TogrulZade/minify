@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }} - </title>
+    <meta name="description" content="Pulsuz Elanlar, Alqı-satqı, Elektronika, Geyim, Şəxsi əşyalar, Xidmətlər, Uşaqlar üçün, Oyuncaqlar, Heyvanlar, Nəqliyyat">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="{{ config('app.name', 'Minify') }}" />
+    <meta property="og:description" content="Pulsuz Elanlar, Alqı-satqı, Elektronika, Geyim, Şəxsi əşyalar, Xidmətlər, Uşaqlar üçün, Oyuncaqlar, Heyvanlar, Nəqliyyat" />
+    <meta property="og:image" content="https://scontent.fgyd4-3.fna.fbcdn.net/v/t1.6435-9/186052566_102658778675847_6032340977388600800_n.jpg?_nc_cat=105&ccb=1-3&_nc_sid=174925&_nc_ohc=h9GEJS498BIAX_UeQYU&_nc_ht=scontent.fgyd4-3.fna&oh=69b8187cc43cd68cadbc1332a1168a71&oe=60CFFD9C" />
+
+
     <!-- Scripts -->
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
