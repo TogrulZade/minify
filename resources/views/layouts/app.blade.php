@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }} - </title>
+    <title>Minify.Az - Pulsuz elanlar | Alq-satqı</title>
     <meta name="description" content="Pulsuz Elanlar, Alqı-satqı, Elektronika, Geyim, Şəxsi əşyalar, Xidmətlər, Uşaqlar üçün, Oyuncaqlar, Heyvanlar, Nəqliyyat">
     <meta name="robots" content="index, follow">
     
@@ -19,10 +19,6 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link type="text/css" rel="stylesheet" href="{{asset('css/lightgallery.min.css')}}" /> 
     <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
-    <link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-
-
-
     <link href="{{asset('css/all.css')}}" rel="stylesheet">
     <link href="{{asset('css/fontawesome.min.css')}}" rel="stylesheet">
     {{-- <link href="{{asset('css/brands.css')}}" rel="stylesheet"> --}}
@@ -33,6 +29,7 @@
     <link href="{{ asset('css/feather.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">    
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
