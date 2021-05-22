@@ -11,7 +11,7 @@
     
     <meta property="og:title" content="{{ config('app.name', 'Minify') }}" />
     <meta property="og:description" content="Pulsuz Elanlar, Alqı-satqı, Elektronika, Geyim, Şəxsi əşyalar, Xidmətlər, Uşaqlar üçün, Oyuncaqlar, Heyvanlar, Nəqliyyat" />
-    <meta property="og:image" content="{{asset('storage/images/Mini.png')}}" />
+    <meta property="og:image" content="{{asset('storage/images/logo2.png')}}" />
     <meta property="og:type" content="article" />
     
     <link rel="icon" type="image/png" href="{{asset('storage/images/Mini.png')}}">
