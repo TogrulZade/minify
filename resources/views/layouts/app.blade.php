@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Minify.Az - Pulsuz elanlar | Alq-satqı</title>
+    <title>Minify.Az - Pulsuz elanlar | Alqı-satqı</title>
     <meta name="description" content="Pulsuz Elanlar, Alqı-satqı, Elektronika, Geyim, Şəxsi əşyalar, Xidmətlər, Uşaqlar üçün, Oyuncaqlar, Heyvanlar, Nəqliyyat">
     <meta name="robots" content="index, follow">
     
     <meta property="og:title" content="{{ config('app.name', 'Minify') }}" />
     <meta property="og:description" content="Pulsuz Elanlar, Alqı-satqı, Elektronika, Geyim, Şəxsi əşyalar, Xidmətlər, Uşaqlar üçün, Oyuncaqlar, Heyvanlar, Nəqliyyat" />
-    <meta property="og:image" content="{{asset('storage/images/logo.png')}}" />
+    <meta property="og:image" content="{{asset('storage/images/logo2.png')}}" />
     <meta property="og:type" content="article" />
     
+    <link rel="icon" type="image/png" href="{{asset('storage/images/logo2.png')}}">
+    {{-- <link rel="icon" type="image/png" href="/favicon-16x16.png"> --}}
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="{{asset('css/all.css')}}" rel="stylesheet">
@@ -151,17 +154,17 @@
 
     <script>
         // window.mySwipe = new Swipe(document.getElementById('slider'));
-        window.mySwipe = new Swipe(document.getElementById('mini-gallery'), {
-  startSlide: 0,
-  speed: 400,
-//   auto: 3000,
-  draggable: true,
-  continuous: true,
-  disableScroll: false,
-  stopPropagation: false,
-  ignore: ".scroller",
-  callback: function(index, elem, dir) {},
-  transitionEnd: function(index, elem) {}
-});
+        window.mySwipe = new Swipe(document.getElementById('swipe'), {
+            startSlide: 0,
+            speed: 400,
+            //   auto: 3000,
+            draggable: true,
+            continuous: true,
+            disableScroll: false,
+            stopPropagation: false,
+            ignore: ".scroller",
+            callback: function(index, elem, dir) {},
+            transitionEnd: function(index, elem) {}
+        });
     </script>
 </html>

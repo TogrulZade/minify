@@ -858,7 +858,7 @@ form.navbar-form.navbar-left {
 }
 
 #mini-gallery img:hover{
-	cursor: ew-resize;
+	cursor: zoom-in;
 }
 
 .cover-photo{
@@ -934,7 +934,7 @@ form.navbar-form.navbar-left {
 }
 
 #mini-gallery div:hover{
-	cursor: move;
+	cursor: zoom-in;
 	/* transform: scale(1.02); */
 	/* -webkit-transform: scale(1.02); */
 	transition: all .2s linear;
