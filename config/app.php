@@ -175,6 +175,7 @@ return [
         // minify\Providers\BroadcastServiceProvider::class,
         minify\Providers\EventServiceProvider::class,
         minify\Providers\RouteServiceProvider::class,
+        minify\Providers\AgentServiceProvider::class,
 
     ],
 
