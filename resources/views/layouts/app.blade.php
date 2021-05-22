@@ -9,8 +9,9 @@
     <meta name="description" content="Pulsuz Elanlar, Alqı-satqı, Elektronika, Geyim, Şəxsi əşyalar, Xidmətlər, Uşaqlar üçün, Oyuncaqlar, Heyvanlar, Nəqliyyat">
     <meta name="robots" content="index, follow">
     
-    <meta property="og:title" content="{{ config('app.name', 'Minify') }}" />
+    <meta property="og:title" content="Minify.Az - Pulsuz elanlar | Alqı-satqı" />
     <meta property="og:description" content="Pulsuz Elanlar, Alqı-satqı, Elektronika, Geyim, Şəxsi əşyalar, Xidmətlər, Uşaqlar üçün, Oyuncaqlar, Heyvanlar, Nəqliyyat" />
+    <meta property="og:title" content="" />
     <meta property="og:image" content="{{asset('storage/images/logo2.png')}}" />
     <meta property="og:type" content="article" />
     
