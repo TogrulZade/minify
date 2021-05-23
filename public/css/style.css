@@ -1172,7 +1172,7 @@ form.navbar-form.navbar-left {
     position: absolute;
     bottom: -33px;
     right: 10%;
-    color: var(--main-bg-color);
+    color: var(--second-bg-color);
     font-size: 18px;
 }
 
