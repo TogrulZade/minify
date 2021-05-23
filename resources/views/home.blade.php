@@ -34,7 +34,7 @@
                     </div>
                     
                     <div class="card-body">
-                        <h4 class="mb-0">{{$vip->product_name}}</h4>
+                        <h5 class="mb-0">{{$vip->product_name}}</h5>
                     </div>
 
                     <div class="card-footer">
@@ -70,7 +70,7 @@
 
         @foreach($products as $pr)
             {{-- Card --}}
-            <div class="col-md-3 col-sm-4 col-xs-6">
+            <div class="col-md-2 col-sm-4 col-xs-6">
                 <a href="/product/{{$pr->slug}}" class="card">
 
                     <div class="card-img">
@@ -82,7 +82,7 @@
                     </div>
                     
                     <div class="card-body">
-                        <h4 class="mb-0">{{$pr->product_name}}</h4>
+                        <strong class="mb-0">{{$pr->product_name}}</strong>
                     </div>
 
                     <div class="card-footer">

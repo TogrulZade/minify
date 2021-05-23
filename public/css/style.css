@@ -897,10 +897,14 @@ form.navbar-form.navbar-left {
 	top:0;
 	left: 0;
 	background-color: #000;
-	opacity: .7;
+	opacity: .5;
 	visibility: hidden;
 }
 
+.brand a{
+	color: #000;
+	text-decoration: none;
+}
 
 .mini-slide-cover{
 	position: fixed;
@@ -1052,7 +1056,7 @@ form.navbar-form.navbar-left {
 	z-index: 9999;
 	box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
 	background: #f1f3f7;
-	transform: translateX(-120%);
+	transform: translateX(-100%);
 	transition: all .5s cubic-bezier(0.52, -0.3, 0.66, 0.9);
 }
 
@@ -1171,8 +1175,8 @@ form.navbar-form.navbar-left {
 .vip-icon {
     position: absolute;
     bottom: -33px;
-    right: 10%;
-    color: var(--second-bg-color);
+    right: 10px;
+    color: var(--error-color);
     font-size: 18px;
 }
 
@@ -1185,6 +1189,28 @@ form.navbar-form.navbar-left {
 	margin-bottom: 10px;
 }
 
+.drawer_footer{
+	/* position: static; */
+    /* padding: 50px 0; */
+}
+
+.drawer_footer_content{
+	display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+	bottom: 50px;
+    background-color: #fff;
+    color: #212c3a;
+    font-size: 16px;
+	padding: 10px;
+}
+
+/* .copy{
+	position: absolute;
+	bottom: 10px
+} */
+
 
 :root{
 	--main-color: #fee500;
@@ -1193,4 +1219,24 @@ form.navbar-form.navbar-left {
 	--line-color: #e2e2e2;
 	--second-bg-color: #000;
 	--error-color: #ff0000;
+}
+
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+@media screen and (min-width: 1200px){
+	.container{
+		width: 1070px;
+	}
+}
+.container{
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.card-body strong{
+	font-size: 15px;
+	font-weight: 400!important;
 }

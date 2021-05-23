@@ -99,11 +99,20 @@ $(document).ready(function(){
 
 	$(".drawer_close").on('click',function(){
 		$(".drawermenu").css('transform','translateX(-120%)');
+		$('.full-opacity').css('visibility','hidden');
 	});
-
+	
 	$(".drawermenu_button").on('click',function(){
+		$('.full-opacity').css('visibility','visible');
 		$(".drawermenu").css('transform','translateX(0%)');
 	});
+	
+	$(".full-opacity").on('click',function(){
+		$('.full-opacity').css('visibility','hidden');
+		$(".drawermenu").css('transform','translateX(-120%)');
+		mini_close();
+	});
+	
 
 });
 

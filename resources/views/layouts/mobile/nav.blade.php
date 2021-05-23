@@ -1,10 +1,11 @@
+<div class="full-opacity"></div>
 <div id="nav">
     <div class="drawermenu_button" style="">
         <i class="feather-menu"></i>
     </div>
 
     <div class="brand">
-        <span>Minify.az</span>
+        <a href="/">Minify.az</a>
     </div>
 
     <div class="add_elan">
@@ -34,10 +35,12 @@
                     {{-- <div class="seperator"></div> --}}
                     <li><a href="#">Saytda reklam</a></li>
                 </ul>
-
-
             </div>
-            <div class="drawer_footer"></div>
+            <div class="drawer_footer">
+                <div class="drawer_footer_content">
+                    <div class="copy">&copy; 2021 - Minify.az</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
