@@ -1126,7 +1126,6 @@ form.navbar-form.navbar-left {
 }
 
 .drawer_content{
-	/* background-color: #fff; */
 	float: left;
 	width: 100%;
 }
@@ -1139,7 +1138,6 @@ form.navbar-form.navbar-left {
 }
 .drawer_content ul li{
 	list-style: none;
-	/* padding: 10px 15px; */
 	float: left;
 	width: 100%;
 }
@@ -1148,6 +1146,7 @@ form.navbar-form.navbar-left {
 	display: block;
 	color: #333;
 	padding: 10px 15px;
+	font-size: 18px;
 }
 
 .section{

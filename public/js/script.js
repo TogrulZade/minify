@@ -97,20 +97,13 @@ $(document).ready(function(){
 		left();	
 	});
 
-	$('.mini-slide').on('swipeleft', function(event){
-		left();
-	});
-
-	$('.mini-slide').on('swiperight', function(event){
-		right();
-	});
-
 	$(".drawer_close").on('click',function(){
 		$(".drawermenu").css('transform','translateX(-120%)');
-	})
+	});
+
 	$(".drawermenu_button").on('click',function(){
 		$(".drawermenu").css('transform','translateX(0%)');
-	})
+	});
 
 });
 
