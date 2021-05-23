@@ -42,7 +42,7 @@
                 <li class="sticky-item">
                     <a href="#"><i class="feather-credit-card"></i></a>
                     <ul class="stick_hover_menu">
-                        <li>Balansınız: {{Auth::user()->balans}} AZN</li>
+                        <li>{!!Auth::user() ? 'Balans: <strong style="color: #fee500">'.Auth::user()->balans.' AZN<strong>' : 'Balansınızı artırın'!!}</li>
                     </ul>
                 </li>
                 <li class="sticky-item">

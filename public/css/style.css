@@ -1238,10 +1238,10 @@ form.navbar-form.navbar-left {
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
-	flex-wrap: wrap;
+	/* flex-wrap: wrap; */
 	flex-direction: column;
 	align-content: center;
-	padding: 10px 20px;
+	padding: 10px;
 	border-radius: 6px;
 }
 
