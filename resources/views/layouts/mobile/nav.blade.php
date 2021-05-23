@@ -31,7 +31,7 @@
                 </ul>
                 <ul class="section">
                     <li><a href="#">Tam versiya</a></li>
-                    <div class="seperator"></div>
+                    {{-- <div class="seperator"></div> --}}
                     <li><a href="#">Saytda reklam</a></li>
                 </ul>
 
