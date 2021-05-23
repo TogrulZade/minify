@@ -92,15 +92,4 @@
             transitionEnd: function(index, elem) {}
         });
     </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-7n+cy-10-d+fx"
-     data-ad-client="ca-pub-4868026875595408"
-     data-ad-slot="7515561504"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </html>

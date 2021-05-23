@@ -68,8 +68,23 @@
             @endif
         </div>
 
-        @foreach($products as $pr)
+        @foreach($products as $pr_index => $pr)
             {{-- Card --}}
+            @if ($pr_index == 0)
+                <div>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-format="fluid"
+                        data-ad-layout-key="-7n+cy-10-d+fx"
+                        data-ad-client="ca-pub-4868026875595408"
+                        data-ad-slot="7515561504"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            @endif
+
             <div class="col-md-2 col-sm-4 col-xs-6">
                 <a href="/product/{{$pr->slug}}" class="card">
 

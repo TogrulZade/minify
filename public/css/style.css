@@ -1189,10 +1189,10 @@ form.navbar-form.navbar-left {
 	margin-bottom: 10px;
 }
 
-.drawer_footer{
-	/* position: static; */
-    /* padding: 50px 0; */
-}
+/* .drawer_footer{
+	position: static;
+    padding: 50px 0;
+} */
 
 .drawer_footer_content{
 	display: flex;
