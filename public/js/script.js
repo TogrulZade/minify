@@ -142,6 +142,7 @@ var lastScrollTop = 0;
 		$("nav").css('transition',"all .15s linear");
 		$('nav').css("display",'none');
 		$('.header').css('margin-top',0);
+		$('.right-sticky').css('top',"50px");
 	} else {
 		// $('.navbar-brand').text('Yuxari');
 		// upscroll code
@@ -149,7 +150,8 @@ var lastScrollTop = 0;
 		$(".header").css('transition',"all .15s linear");
 		$("nav").css('transition',"all .15s linear");
 		$('nav').css("display",'block');
-		$('.header').css('margin-top',"50px");
+		$('.header').css('margin-top',"58px");
+		$('.right-sticky').css('top',"58px");
 	}
 	lastScrollTop = st;
 	});

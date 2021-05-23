@@ -17,18 +17,18 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#">Mağazalar</a></li>
-                <li class="active"><a href="#">Kateqoriyalar</a></li>
+                {{-- <li><a href="#">Mağazalar</a></li> --}}
+                {{-- <li class="active"><a href="#">Kateqoriyalar</a></li> --}}
             </ul>
-            {{-- <form class="navbar-form navbar-left" action="/axtar" role="search">
+            <form class="navbar-form navbar-left" action="/axtar" role="search">
                 <div class="form-group form-search">
                     <input id="axtar" type="text" name="axtar" class="form-control col-md-6" value="{{old('axtar')}}" placeholder="Əşya və ya xidmət axtarın...">
                     <div class="icon"><i class="feather-search" style="font-size: 15px"></i></div>
                 </div>
                 <button type="submit" class="btn btn-search">Axtarış et</button>
-            </form> --}}
-            <ul class="nav navbar-nav navbar-right xs-p-3">
-                <li><a class="btn-sel" href="/sell"><i class="fas fa-paper-plane"></i> Elan yerləşdir</a></li>
+            </form>
+            <ul class="nav navbar-nav navbar-right xs-p-3 nav-sign">
+                {{-- <li><a class="btn-sel" href="/sell"><i class="fas fa-paper-plane"></i> Elan yerləşdir</a></li> --}}
                 @auth
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}} {{Auth::user()->surname}}<b class="caret"></b></a>
