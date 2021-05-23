@@ -1170,9 +1170,10 @@ form.navbar-form.navbar-left {
 
 .vip-icon {
     position: absolute;
-    bottom: 4%;
+    bottom: -30px;
     right: 10%;
-    color: var(--second-bg-color);
+    color: var(--main-bg-color);
+    font-size: 16px;
 }
 
 .card-img {
