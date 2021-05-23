@@ -343,7 +343,7 @@ height: inherit;
 border-radius: 20px;
 }
 
-.box-footer{position: absolute;bottom: 0;height: 80px;box-sizing: border-box;background: var(--main-bg-color);width: 100%;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;padding-left: 15px;}
+.box-footer{position: absolute;bottom: 0;height: 80px;box-sizing: border-box;background: var(--main-bg-color);width: 100%;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;}
 
 .box-footer h4{/* margin: 29px; */float: left;font-size: 18px;color: #000;margin-top: 7px;margin-left: 3px;}
 
@@ -1147,8 +1147,38 @@ form.navbar-form.navbar-left {
 	display: block;
 	color: #000;
 	padding: 20px 15px;
-	font-size: 14px;
+	font-size: 16px;
 }
+
+.box .price {
+	width: 90%;
+	height: 40px;
+	line-height: 40px;
+	background: #000;
+	text-align: center;
+	cursor: pointer;
+	color: #fff;
+	border-radius: 20px;
+	bottom: 10px;
+	font-size: 14px;
+	position: absolute;
+	padding-left: 5%;
+	padding-right: 5%;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.vip-icon {
+    position: absolute;
+    bottom: 4%;
+    right: 10%;
+    color: var(--second-bg-color);
+}
+
+.card-img {
+    position: relative;
+}
+
 
 .section{
 	margin-bottom: 10px;

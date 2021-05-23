@@ -18,7 +18,32 @@
                 <h3 class="black mb-5">VIP Elanlar</h3>
             </div>
             @endif
-            <div class="col-md-4 col-xs-6 col-sm-4 mb-3 col-lg-3">
+
+            <div class="col-md-3 col-sm-4 col-xs-6">
+                <a href="/product/{{$vip->slug}}" class="card">
+
+                    <div class="card-img">
+                        <img src="{{asset('storage/'.$vip->product_cover)}}" alt="">
+                        <div class="vip-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="card-title">
+                        {{$vip->product_price}} AZN
+                    </div>
+                    
+                    <div class="card-body">
+                        <h4 class="mb-0">{{$vip->product_name}}</h4>
+                    </div>
+
+                    <div class="card-footer">
+                        <p>{{$vip->created_at}}</p>
+                    </div>
+                </a>
+            </div>
+
+            {{-- <div class="col-md-4 col-xs-6 col-sm-4 mb-3 col-lg-3">
                 <a href="/product/{{$vip->slug}}" class="box">
                     <img src="{{asset('storage/'.$vip->product_cover)}}" alt="">
                     <div class="box-footer">
@@ -30,7 +55,7 @@
                         </div>
                     </div>
                 </a>
-            </div>
+            </div> --}}
         @endforeach
         </div>
         @endif
