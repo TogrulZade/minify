@@ -105,6 +105,13 @@ $(document).ready(function(){
 		right();
 	});
 
+	$(".drawer_close").on('click',function(){
+		$(".drawermenu").css('transform','translateX(-120%)');
+	})
+	$(".drawermenu_button").on('click',function(){
+		$(".drawermenu").css('transform','translateX(0%)');
+	})
+
 });
 
 var lastScrollTop = 0;
