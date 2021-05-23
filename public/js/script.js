@@ -112,6 +112,13 @@ $(document).ready(function(){
 		$(".drawermenu").css('transform','translateX(-120%)');
 		mini_close();
 	});
+
+	$(".sticky-wrapper li").on("mouseenter",function(){
+		$(this).find("ul").css({'visibility':'visible','right':'55px','opacity':'1'});
+	});
+	$(".sticky-wrapper li").on("mouseleave",function(){
+		$(this).find('ul').css({'visibility':'hidden','right':'65px','opacity':'0'});
+	});
 	
 
 });

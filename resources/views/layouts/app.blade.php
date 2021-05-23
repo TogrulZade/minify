@@ -29,7 +29,7 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     {{-- <link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">     --}}
-    <script data-ad-client="ca-pub-4868026875595408" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    {{-- <script data-ad-client="ca-pub-4868026875595408" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> --}}
 
 </head>
 <body>
@@ -37,13 +37,34 @@
         @include('layouts.mobile.nav')    
     @else
         @include('layouts.web.nav')
+        <div class="right-sticky">
+            <ul class="sticky-wrapper">
+                <li class="sticky-item">
+                    <a href="#"><i class="feather-credit-card"></i></a>
+                    <ul class="stick_hover_menu">
+                        <li>Balansınız: {{Auth::user()->balans}} AZN</li>
+                    </ul>
+                </li>
+                <li class="sticky-item">
+                    <a href="#"><i class="feather-heart"></i></a>
+                </li>
+                <li class="sticky-item">
+                    <a href="#"><i class="feather-message-square"></i></i> </a>
+                    <ul class="stick_hover_menu">
+                        <li><a href="#">Gələnlər</a></li>
+                        <li><a href="#">Göndərdikləriniz</a></li>
+                    </ul>
+                </li>
+                <li class="sticky-item"><a href="#"><i class="feather-user"></i> </a></li>
+            </ul>
+        </div>
     @endif
 
     <main style="{{$agent->isMobile() ? 'margin-top: 20px' : ''}}">
         @yield('content')
     </main>
 
-    <footer>
+    {{-- <footer>
         <div class="col-md-4">
             <ul>
                 <li><a href="#">minify nədir?</a></li>
@@ -72,7 +93,7 @@
         </div>
         <div class="col-md-4"></div>
         <div class="col-md-4"></div>
-    </footer>
+    </footer> --}}
 </body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>

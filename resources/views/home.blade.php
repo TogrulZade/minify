@@ -70,7 +70,7 @@
 
         @foreach($products as $pr_index => $pr)
             {{-- Card --}}
-            @if ($pr_index == 0)
+            {{-- @if ($pr_index == 0)
                 <div>
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <ins class="adsbygoogle"
@@ -83,13 +83,16 @@
                         (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </div>
-            @endif
+            @endif --}}
 
             <div class="col-md-2 col-sm-4 col-xs-6">
                 <a href="/product/{{$pr->slug}}" class="card">
 
                     <div class="card-img">
                         <img src="{{asset('storage/'.$pr->product_cover)}}" alt="">
+                        <div class="add_favorite">
+                            <i class="fas fa-heart"></i>
+                        </div>
                     </div>
                     
                     <div class="card-title">

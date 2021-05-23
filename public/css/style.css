@@ -1206,10 +1206,119 @@ form.navbar-form.navbar-left {
 	padding: 10px;
 }
 
-/* .copy{
+.right-sticky {
+    position: fixed;
+    right: 0;
+    background: #222;
+    width: 50px;
+    height: 100vh;
+    top: 50px;
+    /* box-shadow: -3px 0 5px 1px rgba(0, 0, 0, 0.5); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+}
+
+.sticky-wrapper {
+	padding: 0;
+	list-style: none;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.sticky-wrapper li.sticky-item{
+	list-style: none;
+	position: relative;
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-content: center;
+	padding: 10px 20px;
+	border-radius: 6px;
+}
+
+.sticky-wrapper li{
+	list-style: none;
+	float: left;
+	width: 100%;
+	padding: 10px 20px;
+	/* border-radius: 6px; */
+}
+
+ul.stick_hover_menu::before {content: '';position: absolute;width: 40%;/* background: aqua; */height: 100%;right: -41px;}
+
+ul.stick_hover_menu::after {
+	content: '';
 	position: absolute;
-	bottom: 10px
-} */
+	width: 10px;
+	height: 10px;
+	background: #222;
+	right: -4px;top: 40%;
+	transform: rotate(45deg);
+}
+
+.sticky-wrapper li a{
+	color: #fff;
+	font-size: 22px;
+	display: flex;
+	justify-content: space-around;
+	align-content: center;
+	flex-direction: column;
+}
+
+.sticky-wrapper li.sticky-item:hover{
+	background-color: var(--main-bg-color);
+}
+
+.sticky-wrapper li.sticky-item:hover>a{
+	color: #000;
+}
+.sticky-wrapper li a:hover{
+	text-decoration: none;
+	
+}
+
+.add_favorite {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 22px;
+	color: #fff;
+}
+ul.stick_hover_menu {
+	position: absolute;
+	background: #222222;
+	color: #fff;
+	border-radius: 6px;
+	z-index: 99999;
+	padding: 0;
+	transition: right .3s, opacity 0.3s;
+	/* top: -3px; */
+	width: 180px;
+	right: 65px;
+	visibility: hidden;
+	opacity: 0;
+}
+
+.stick_hover_menu a{
+	font-size: 14px!important;
+	float: left;
+}
+.stick_hover_menu li:hover{
+	/* background-color: var(--main-bg-color); */
+	opacity: .9;
+}
+.stick_hover_menu li:not(:last-child){
+	border-bottom: 1px solid #444;
+}
 
 
 :root{

@@ -20,13 +20,13 @@
                 <li><a href="#">Mağazalar</a></li>
                 <li class="active"><a href="#">Kateqoriyalar</a></li>
             </ul>
-            <form class="navbar-form navbar-left" action="/axtar" role="search">
+            {{-- <form class="navbar-form navbar-left" action="/axtar" role="search">
                 <div class="form-group form-search">
                     <input id="axtar" type="text" name="axtar" class="form-control col-md-6" value="{{old('axtar')}}" placeholder="Əşya və ya xidmət axtarın...">
                     <div class="icon"><i class="feather-search" style="font-size: 15px"></i></div>
                 </div>
                 <button type="submit" class="btn btn-search">Axtarış et</button>
-            </form>
+            </form> --}}
             <ul class="nav navbar-nav navbar-right xs-p-3">
                 <li><a class="btn-sel" href="/sell"><i class="fas fa-paper-plane"></i> Elan yerləşdir</a></li>
                 @auth
