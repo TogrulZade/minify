@@ -68,46 +68,41 @@
             @endif
         </div>
 
+        @php $z = 0;@endphp
         @foreach($products as $pr_index => $pr)
-            {{-- Card --}}
-            {{-- @if ($pr_index == 0)
-                <div>
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <ins class="adsbygoogle"
-                        style="display:block"
-                        data-ad-format="fluid"
-                        data-ad-layout-key="-7n+cy-10-d+fx"
-                        data-ad-client="ca-pub-4868026875595408"
-                        data-ad-slot="7515561504"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                </div>
-            @endif --}}
-
-            <div class="col-md-2 col-sm-4 col-xs-6">
-                <a href="/product/{{$pr->slug}}" class="card">
-
-                    <div class="card-img">
-                        <img src="{{asset('storage/'.$pr->product_cover)}}" alt="">
-                        <div class="add_favorite">
+        <div class="col-md-2 col-sm-4 col-xs-6">
+            <a href="/product/{{$pr->slug}}" class="card-mini">
+                <div class="card-img">
+                    <img src="{{asset('storage/'.$pr->product_cover)}}" alt="">
+                        @foreach ($favs as $fav)
+                            @if ($fav->product_id == $pr->id)
+                            @php $z = $pr->id @endphp
+                                <div class="add_favorite" data-product_id="{{$pr->id}}" style="{{$fav->product_id == $pr->id ? 'color: red' : ''}}">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                            @endif
+                        @endforeach
+                        @if ($z != $pr->id)
+                        <div class="add_favorite" data-product_id="{{$pr->id}}" style="">
                             <i class="fas fa-heart"></i>
                         </div>
-                    </div>
-                    
-                    <div class="card-title">
-                        {{$pr->product_price}} AZN
-                    </div>
-                    
-                    <div class="card-body">
-                        <strong class="mb-0">{{$pr->product_name}}</strong>
-                    </div>
+                        @endif
+                </div>
+                            
+                <div class="card-title">
+                    {{$pr->product_price}} AZN
+                </div>
+                
+                <div class="card-body">
+                    <strong class="mb-0">{{$pr->product_name}}</strong>
+                </div>
 
-                    <div class="card-footer">
-                        <p>{{$pr->created_at}}</p>
-                    </div>
-                </a>
-            </div>
+                <div class="card-footer">
+                    <p>{{$pr->created_at}}</p>
+                </div>
+            </a>
+        </div>
+
             {{-- End card --}}
         @endforeach
     </div>

@@ -45,8 +45,11 @@
                         <li>{!!Auth::user() ? 'Balans: <strong style="color: #fee500">'.Auth::user()->balans.' AZN<strong>' : 'Balansınızı artırın'!!}</li>
                     </ul>
                 </li>
-                <li class="sticky-item">
-                    <a href="#"><i class="feather-heart"></i></a>
+                <li class="sticky-item favorite">
+                    <a href="#">
+                        <i class="feather-heart"></i>
+                        {{-- <div class="count-favorite">0</div> --}}
+                    </a>
                 </li>
                 <li class="sticky-item">
                     <a href="#"><i class="feather-message-square"></i></i> </a>
@@ -57,6 +60,46 @@
                 </li>
                 <li class="sticky-item"><a href="#"><i class="feather-user"></i> </a></li>
             </ul>
+        </div>
+
+        <div class="sticky-body">
+            <div class="sticky-body-wrapper">
+                <div class="sticky-body-header">
+                    Bəyəndikləriniz
+                </div>
+                <div class="sticky-body-content">
+                    @if (isset($products) && $products->count() > 0)
+                    @foreach ($products as $pr)
+                        @foreach ($favs as $fav)
+                        @if ($fav->product_id == $pr->id)
+                        <div class="col-md-6 col-sm-4 col-xs-6">
+                            <a href="/product/{{$pr->slug}}" class="card-mini">
+                                <div class="card-img">
+                                    <img src="{{asset('storage/'.$pr->product_cover)}}" alt="">
+                                        <div class="add_favorite" data-product_id="{{$pr->id}}" style="">
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                </div>
+                                            
+                                <div class="card-title">
+                                    {{$pr->product_price}} AZN
+                                </div>
+                                
+                                <div class="card-body">
+                                    <strong class="mb-0">{{$pr->product_name}}</strong>
+                                </div>
+                
+                                <div class="card-footer">
+                                    <p>{{$pr->created_at}}</p>
+                                </div>
+                            </a>
+                        </div>
+                        @endif
+                        @endforeach
+                    @endforeach
+                    @endif
+                </div>
+            </div>
         </div>
     @endif
 

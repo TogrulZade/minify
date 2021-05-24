@@ -1,3 +1,4 @@
+var csrf = document.querySelector('meta[name="csrf-token"]').content;
 $(document).ready(function(){
 	
 	$(".unsave").hover(function(){
@@ -119,6 +120,42 @@ $(document).ready(function(){
 	$(".sticky-wrapper li").on("mouseleave",function(){
 		$(this).find('ul').css({'visibility':'hidden','right':'65px','opacity':'0'});
 	});
+
+	$(".add_favorite").on('click', function(e){
+		const product_id = $(this).data('product_id');
+		e.preventDefault();
+		const that = $(this);
+		$.ajax({
+			url: 'addFavs',
+			type:'post',
+			data: {_token: csrf, product_id: product_id},
+			success: function(res){
+				if(res == 'redirect/login'){
+					window.location.href = '/login';
+				}else if(res == 'unfavorite'){
+					that.css('color',"#fff")
+				}else{
+					that.css('color','red');
+				}
+			},
+			error: function(error){
+				console.log(JSON.stringify(error));
+			}
+		})
+	});
+
+	$(".sticky-item.favorite").on('click',function(e){
+		e.preventDefault();
+		if($(this).hasClass('show-sticky')){
+			$(this).removeClass('show-sticky');
+			$(".right-sticky").css('right',"0");
+			$(".sticky-body").css('right',"-400px");
+		}else{
+			$(this).addClass('show-sticky');
+			$(".right-sticky").css('right',"397px");
+			$(".sticky-body").css('right',"0");
+		}
+	})
 	
 
 });

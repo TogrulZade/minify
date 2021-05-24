@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $guarded = array();
+    // protected $guarded = array();
     protected $table = 'products';
 
     public function pictures()
@@ -32,5 +32,10 @@ class Product extends Model
     public function purchase()
     {
         return $this->hasMany(Purchase::class, 'product_id','id');
+    }
+
+    public function favs()
+    {
+        return $this->hasMany(Fav::class, 'product_id','id');
     }
 }
