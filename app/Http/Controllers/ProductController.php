@@ -119,10 +119,14 @@ class ProductController extends Controller
 		$product->product_description = $request->product_description;
 		$product->merchant_number = $request->merchant_number;
 		$product->product_merchant = $request->product_merchant;
+		if(Auth::user()){
+			$product->user_id = Auth::user()->id;
+		}
 		$product->city = $request->city;
 		$product->slug = Str::slug($addId."-".$request->product_name, '-');
 
-		$prNumber = Product::create(["product_name"=>$request->product_name,"product_category"=>$request->product_category,"product_price"=>$request->product_price,"product_description"=>$request->product_description,"merchant_number"=>$request->merchant_number,"product_merchant"=>$request->product_merchant,"slug"=>Str::slug($addId."-".$request->product_name, '-')])->id;
+		$prNumber = Product::create(["product_name"=>$request->product_name,"product_category"=>$request->product_category,"product_price"=>$request->product_price,"product_description"=>$request->product_description,"merchant_number"=>$request->merchant_number,"product_merchant"=>$request->product_merchant,
+		"slug"=>Str::slug($addId."-".$request->product_name, '-')])->id;
 
         $files = $request->file('image');
 
