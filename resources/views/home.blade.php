@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-@include('partial.sticky')
+@if(!$agent->isMobile())
+    @include('partial.sticky')
+@endif
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
