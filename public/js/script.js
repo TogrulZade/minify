@@ -150,10 +150,12 @@ $(document).ready(function(){
 			$(this).removeClass('show-sticky');
 			$(".right-sticky").css('right',"0");
 			$(".sticky-body").css('right',"-400px");
+			$(this).removeClass('active-sticky');
 		}else{
 			$(this).addClass('show-sticky');
 			$(".right-sticky").css('right',"397px");
 			$(".sticky-body").css('right',"0");
+			$(this).addClass('active-sticky');
 		}
 	})
 	

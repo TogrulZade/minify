@@ -9,10 +9,14 @@ use minify\Product;
 use minify\Fav;
 use Auth;
 
+use minify\Traits\FavTrait;
+use minify\Helpers\ProductHelper;
+use minify\Helpers\FavHelper;
 
 
 class HomeController extends Controller
 {
+    use FavTrait;
     /**
      * Create a new controller instance.
      *
@@ -21,6 +25,10 @@ class HomeController extends Controller
     public function __construct()
     {
         // $this->middleware('auth');
+        // echo "cons";
+        // $x = new FavTrait();
+        // echo $this->fav_trait();
+        // echo ProductHelper::getAllProduct();
     }
 
     public function logo()
@@ -42,7 +50,6 @@ class HomeController extends Controller
         }
 
         $user = Auth::user() ? Auth::user()->id : $request->cookie('anonim');
-        // echo $request->cookie('anonim');
 
         $vips = Product::with('pictures')->whereHas('pictures',function($q){
             return $q->where('pictures.cover',"=",1);
@@ -53,8 +60,8 @@ class HomeController extends Controller
         $products = Product::with(['pictures'])->whereHas('pictures', function($q){
             return $q->where('pictures.cover',"=",1);
         })->doesntHave('vip')->select('*', 'products.id as id')->get();
-        $favs = Fav::where('user_id',"=",$user)->get();
-        // print_r($products);
+
+        $favs = FavHelper::getFavs($request);
         return view('home', ["products"=> $products, 'vips'=>$vips, 'favs'=>$favs, 'user'=>$user, 'categoryName'=>'']);
     }
 
@@ -72,7 +79,8 @@ class HomeController extends Controller
             return $q->where('pictures.cover',"=",1);
         })->where('product_name',"like","%".$axtar."%")->get();
         $categoryName = '';
-        return view('axtar',compact('products','vips','categoryName'));
+        $favs = FavHelper::getFavs($request);
+        return view('axtar',compact('products','vips','categoryName','favs'));
     }
 
     public function test()

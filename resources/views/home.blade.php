@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+@include('partial.sticky')
 <div class="container">
     <div class="row">
-
         <div class="col-xs-12">
             <div class="banner">
                 <h4 class="text-center">Sizin Reklamınız Burada</h4>
@@ -14,7 +14,7 @@
         <div class="col-xs-12">
         @foreach ($vips as $i=>$vip)
             @if ($vip->id && $i == 0)
-            <div class="col-md-12 text-center">
+            <div class="col-xs-12">
                 <h3 class="black mb-5">VIP Elanlar</h3>
             </div>
             @endif
@@ -62,22 +62,37 @@
 
         <div class="col-xs-12">
             @if($categoryName == '')
-                <h3 class="black text-center mb-5">Bütün Elanlar</h3>
+            <div class="col-xs-12 mb-3">
+                <h4>BÜTÜN ELANLAR</h4>
+            </div>
             @else
-                <h3 class="black text-center mb-5">{{$categoryName}}</h3>
+            <div class="col-xs-12 mb-3">
+                <h4 class="black mb-5">{{$categoryName}}</h4>
+            </div>
+                
             @endif
         </div>
 
         @php $z = 0;@endphp
+        @if (count($products) == 0 || empty($vips))
+        <div class="col-xs-12">
+            <div class="error-wrapper">
+                <div class="error-item">
+                    Kateqoriya boşdur
+                </div>
+            </div>
+        </div>
+        @endif
+
         @foreach($products as $pr_index => $pr)
         <div class="col-md-2 col-sm-4 col-xs-6">
             <a href="/product/{{$pr->slug}}" class="card-mini">
                 <div class="card-img">
                     <img src="{{asset('storage/'.$pr->product_cover)}}" alt="">
                         @foreach ($favs as $fav)
-                            @if ($fav->product_id == $pr->id)
+                            @if ($fav->id == $pr->id)
                             @php $z = $pr->id @endphp
-                                <div class="add_favorite" data-product_id="{{$pr->id}}" style="{{$fav->product_id == $pr->id ? 'color: red' : ''}}">
+                                <div class="add_favorite" data-product_id="{{$pr->id}}" style="{{$fav->id == $pr->id ? 'color: red' : ''}}">
                                     <i class="fas fa-heart"></i>
                                 </div>
                             @endif

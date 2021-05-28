@@ -28,70 +28,17 @@
     <link href="{{ asset('css/feather.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    {{-- <link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">     --}}
-    {{-- <script data-ad-client="ca-pub-4868026875595408" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> --}}
 
 </head>
 <body>
-    @if($agent->isMobile())
-        @include('layouts.mobile.nav')    
-    @else
-        @include('layouts.web.nav')
-    @endif
 
-    <main style="{{$agent->isMobile() ? 'margin-top: 20px' : ''}}">
+    <div class="main" style="{{$agent->isMobile() ? 'margin-top: 20px' : ''}}">
         @yield('content')
     </main>
 
-    {{-- <footer>
-        <div class="col-md-4">
-            <ul>
-                <li><a href="#">minify nədir?</a></li>
-                <li><a href="#">İstifadəçi razılaşması</a></li>
-                <li><a href="#">Saytda reklam</a></li>
-                <li><div class="brand-s">&#169; minify.</div></li>
-            </ul>
-        </div>
-
-
-        <div class="col-md-4">
-            <ul>
-                <li><a href="#">minify nədir?</a></li>
-                <li><a href="#">İstifadəçi razılaşması</a></li>
-                <li><a href="#">Saytda reklam</a></li>
-            </ul>
-        </div>
-
-
-        <div class="col-md-4">
-            <ul>
-                <li><a href="#">minify nədir?</a></li>
-                <li><a href="#">İstifadəçi razılaşması</a></li>
-                <li><a href="#">Saytda reklam</a></li>
-            </ul>
-        </div>
-        <div class="col-md-4"></div>
-        <div class="col-md-4"></div>
-    </footer> --}}
 </body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/swipe.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
-
-    <script>
-        // window.mySwipe = new Swipe(document.getElementById('slider'));
-        window.mySwipe = new Swipe(document.getElementById('swipe'), {
-            startSlide: 0,
-            speed: 400,
-            //   auto: 3000,
-            draggable: true,
-            continuous: true,
-            disableScroll: false,
-            stopPropagation: false,
-            ignore: ".scroller",
-            callback: function(index, elem, dir) {},
-            transitionEnd: function(index, elem) {}
-        });
-    </script>
 </html>

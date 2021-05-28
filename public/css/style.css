@@ -1194,7 +1194,7 @@ form.navbar-form.navbar-left {
 .right-sticky {
     position: fixed;
     right: 0;
-    background: #222;
+    background: #373737;
     width: 50px;
     height: 100vh;
     top: 60px;
@@ -1203,7 +1203,7 @@ form.navbar-form.navbar-left {
     justify-content: center;
     align-items: center;
     z-index: 999999;
-	transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
 }
 
 .right-sticky a, .right-sticky a:hover, .right-sticky a:active{
@@ -1323,15 +1323,15 @@ ul.nav.navbar-nav.navbar-right.xs-p-3.nav-sign {
 
 .sticky-body {
     width: 400px;
-    background: #484848;
+    background: #333;
     float: left;
     height: 100vh;
     position: fixed;
     right: -400px;
     top: 50px;
     z-index: 10;
-	transition: all .3s ease-in;
-	overflow: scroll;
+    transition: all .3s ease-in;
+    overflow: scroll;
 }
 
 .sticky-body-content{
@@ -1344,11 +1344,12 @@ ul.nav.navbar-nav.navbar-right.xs-p-3.nav-sign {
 .sticky-body-header {
     margin-top: 8px;
     width: 100%;
-    background: #fee500;
+    /* background: #fee500; */
     padding: 10px;
     font-size: 18px;
     text-align: center;
     box-shadow: 0 0 10px 1px rgba(0,0,0,.3);
+    color: #fff;
 }
 
 :root{
@@ -1396,4 +1397,81 @@ ul.nav.navbar-nav.navbar-right.xs-p-3.nav-sign {
 
 .card-footer {
     padding: 10px;
+}
+
+.sticky-body-wrapper {
+    padding-bottom: 60px;
+}
+
+.active-sticky{
+	background-color: var(--main-bg-color);
+	color: #000!important;
+}
+
+.active-sticky>a{
+	color: #000!important;
+}
+
+.stick-notify {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+    font-size: 18px;
+    color: #999;
+	flex-direction: column;
+}
+
+.stick-body-fav-icon {
+    font-size: 54px;
+    color: var(--main-bg-color);
+}
+
+.error-wrapper{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.error-item{
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	color: #c2c2c2;
+	font-size: 2em;
+}
+
+.brand{
+	font-size: 40px;
+}
+
+.axtar:hover, .axtar:focus{
+	border: 2px solid #494949!important;
+}
+
+.axtar{
+	outline: none;
+}
+
+.box-card {
+	cursor: pointer;
+	background: #fff;
+	box-shadow: 0 13px 20px 10px rgba(0,0,0,.2);
+	border-radius: 20px;
+	float: left;
+	position: relative;
+	width: 100%;
+	margin-bottom: 30px;
+	border: 1px solid transparent;
+}
+
+.box-card:hover{
+	text-decoration: none;
+	border: 1px solid #ff6000;
+}
+
+.box-card-body{
+	text-decoration: none;
+	color: #494949;
+	padding: 20px;
 }

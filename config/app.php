@@ -176,6 +176,7 @@ return [
         minify\Providers\EventServiceProvider::class,
         minify\Providers\RouteServiceProvider::class,
         minify\Providers\AgentServiceProvider::class,
+        minify\Providers\FavServiceProvider::class,
 
     ],
 
@@ -228,6 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Fav' => minify\Providers\FavServiceProvider::class,
 
     ],
 

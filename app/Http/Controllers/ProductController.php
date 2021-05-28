@@ -15,6 +15,7 @@ use minify\Category;
 use minify\City;
 use minify\vip;
 use minify\SeenProduct;
+use minify\Helpers\FavHelper;
 
 class ProductController extends Controller
 {
@@ -31,15 +32,6 @@ class ProductController extends Controller
     public function index(Request $request)
     {
     	$product = DB::table("products")->join("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->select("products.*","markets.*","markets.name as market","pictures.*","cities.name as city")->first();
-
-		// if ($product === null)
-			// return redirect('/');
-		
-		// $more_products = Product::where('product_category',"=",$product->product_category)->orWhere('product_name',"=",$product->product_name)->where('active',"=",0)->where('cover',"=",1)->get();
-
-		// $more_products = Product::where('product_category',"=",$product->product_category)->orWhere('product_name',"=",$product->product_name)->where('active',"=",0)->with('pictures')->whereHas('pictures', function($q){
-		// 	return $q->where('cover',"=",1);
-		// })->get();
 
 		$more_products = Product::with('pictures')->whereHas('pictures',function($q){
 			return $q->where('pictures.cover',"=",1);
@@ -175,7 +167,9 @@ class ProductController extends Controller
 				return $q->where('pictures.cover',"=",1);
 			})->where('products.product_category',"=",$getCat->id)->doesntHave('vip')->get();
 
-			return view('home', ['products'=>$products, 'vips'=>$vips, 'categoryName'=>$getCat->name]);
+			$favs = FavHelper::getFavs($request);
+
+			return view('home', ['products'=>$products, 'favs'=>$favs, 'vips'=>$vips, 'categoryName'=>$getCat->name]);
 		}else{
 			return redirect('/');
 		}
