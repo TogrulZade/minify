@@ -78,9 +78,13 @@
         @php $z = 0;@endphp
         @if (count($products) == 0 || empty($vips))
         <div class="col-xs-12">
-            <div class="error-wrapper">
-                <div class="error-item">
-                    Kateqoriya boşdur
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="row">
+                    <div class="error-wrapper mb-4">
+                        <div class="error-item">
+                            Kateqoriya boşdur
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

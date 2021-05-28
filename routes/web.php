@@ -26,8 +26,11 @@ Route::get("/c/{cat}", "ProductController@getByCategory");
 Route::get("update", "ProductController@update");
 Route::get("axtar", "HomeController@axtar");
 Route::post("addFavs", "FavController@addFavs");
+Route::get("showFavs", "FavController@show");
 Route::get("test", "HomeController@test");
 Route::get("cabinet", "CabinetController@index");
+Route::get("profile", "ProfileController@index");
+
 
 Auth::routes();
 Route::get('/logout', '\minify\Http\Controllers\Auth\LoginController@logout');

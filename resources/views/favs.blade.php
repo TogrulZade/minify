@@ -1,37 +1,14 @@
-<div class="right-sticky">
-    <ul class="sticky-wrapper">
-        <li class="sticky-item">
-            <a href="#"><i class="feather-credit-card"></i></a>
-            <ul class="stick_hover_menu">
-                <li>{!!Auth::user() ? 'Balans: <strong style="color: #fee500">'.Auth::user()->balans.' AZN</strong>' : 'Balansınızı artırın'!!}</li>
-            </ul>
-        </li>
-        <li class="sticky-item favorite">
-            <a href="#">
-                <i class="feather-heart"></i>
-                {{-- <div class="count-favorite">0</div> --}}
-            </a>
-        </li>
-        <li class="sticky-item">
-            <a href="#"><i class="feather-message-square"></i></i> </a>
-            <ul class="stick_hover_menu">
-                <li><a href="#">Gələnlər</a></li>
-                <li><a href="#">Göndərdikləriniz</a></li>
-            </ul>
-        </li>
-        <li class="sticky-item"><a href="#"><i class="feather-user"></i> </a></li>
-    </ul>
-</div>
+@extends('layouts.app')
 
-<div class="sticky-body">
-    <div class="sticky-body-wrapper">
-        <div class="sticky-body-header">
-            Bəyəndikləriniz
-        </div>
-        <div class="sticky-body-content">
+@section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 mb-4">
+                <h3>SEÇİLMİŞ MƏHSULLAR</h3>
+            </div>
             @if($favs->count() > 0)
                 @foreach ($favs as $fav)
-                    <div class="col-md-6 col-sm-4 col-xs-6">
+                    <div class="col-md-2 col-sm-4 col-xs-6">
                         <a href="/product/{{$fav->slug}}" class="card-mini">
                             <div class="card-img">
                                 <img src="{{asset('storage/'.$fav->product_cover)}}" alt="">
@@ -64,4 +41,4 @@
             @endif
         </div>
     </div>
-</div>
+@endsection

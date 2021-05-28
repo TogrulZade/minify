@@ -27,7 +27,7 @@
                         <li><a class="login" href="/login"><i class="feather-user"></i> Giriş</a></li>
                     @endif
                     <div class="seperator"></div>
-                    <li><a class="favorite" href="#"><i class="feather-heart"></i> Seçilmişlər</a></li>
+                    <li><a class="favorite" href="/showFavs"><i class="feather-heart"></i> Seçilmişlər</a></li>
                     <li><a class="icon-card"href="#"><i class="feather-credit-card"></i> Balansını artır</a></li>
                 </ul>
                 <ul class="section">

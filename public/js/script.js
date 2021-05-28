@@ -121,10 +121,9 @@ $(document).ready(function(){
 		$(this).find('ul').css({'visibility':'hidden','right':'65px','opacity':'0'});
 	});
 
-	$(".add_favorite").on('click', function(e){
-		const product_id = $(this).data('product_id');
-		e.preventDefault();
-		const that = $(this);
+	const add_favorite = (the)=>{
+		const product_id = the.data('product_id');
+		const that = the;
 		$.ajax({
 			url: 'addFavs',
 			type:'post',
@@ -133,15 +132,23 @@ $(document).ready(function(){
 				if(res == 'redirect/login'){
 					window.location.href = '/login';
 				}else if(res == 'unfavorite'){
-					that.css('color',"#fff")
+					that.css('color',"#a0a0a0");
+					// alert('unfollow');
+					// that.parent().css('background-color','blue');
 				}else{
 					that.css('color','red');
+					// alert('followed');
 				}
 			},
 			error: function(error){
 				console.log(JSON.stringify(error));
 			}
 		})
+	}
+
+	$(".add_favorite").on('click', function(e){
+		e.preventDefault();
+		add_favorite($(this));
 	});
 
 	$(".sticky-item.favorite").on('click',function(e){
@@ -157,7 +164,35 @@ $(document).ready(function(){
 			$(".sticky-body").css('right',"0");
 			$(this).addClass('active-sticky');
 		}
-	})
+	});
+
+	var hash = window.location.hash;
+	if(hash){
+		hash = hash.replace('#','');
+		$('.tab-body').hide();
+		$("."+hash+"-body").show();
+		$('.tab-item a').removeClass('active');
+		$('.'+hash+'-link a').addClass('active');
+	}else{
+		$(".aktiv-link").addClass('active');
+		$('.tab-body').hide();
+		$('.aktiv-body').show();
+	}
+
+	$('.yoxlanilan-link').on('click', function(){
+		$(".tab-item a").removeClass('active');
+		$(this).find('a').addClass('active');
+		$('.tab-body').hide();
+		$(".yoxlanilan-body").show();
+	});
+
+	$('.aktiv-link').on('click', function(){
+		$(".tab-item a").removeClass('active');
+		$(this).find('a').addClass('active');
+		$('.tab-body').hide();
+		$(".aktiv-body").show();
+	});
+	
 	
 
 });

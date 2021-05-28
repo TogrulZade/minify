@@ -31,15 +31,18 @@ class ProductController extends Controller
 	}
     public function index(Request $request)
     {
-    	$product = DB::table("products")->join("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->select("products.*","markets.*","markets.name as market","pictures.*","cities.name as city")->first();
+    	$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->select("products.*","markets.*","products.id as pr_id","markets.name as market","pictures.*","cities.name as city")->first();
+
+		if($product == null)
+			abort(404);
 
 		$more_products = Product::with('pictures')->whereHas('pictures',function($q){
 			return $q->where('pictures.cover',"=",1);
-		})->leftJoin('vip', 'vip.product_id','products.id')->where("products.product_category","=",$product->product_category)->orderBy('vip.created_at',"DESC")->get();
+		})->leftJoin('vip', 'vip.product_id','products.id')->where("products.product_category","=",$product->product_category)->orderBy('vip.created_at',"DESC")->select("*",'products.created_at as created')->get();
 		// print_r($more_products);
 
-		$pictures = Picture::where("product_id","=",$product->product_id)->get();
-		
+		$pictures = Picture::where("product_id","=",$product->pr_id)->get();
+		$favs = FavHelper::getFavs($request);
 		// Mehsula baxildi
 		//Eger anonim userdirse user_id=0 olacaq.
 		$minutes = 60*24*30*12*100;
@@ -50,13 +53,13 @@ class ProductController extends Controller
 
 		SeenProduct::create([
 			'user_id'=>Auth::user() ? Auth::user()->id : null, 
-			'product_id'=>$product->product_id,
+			'product_id'=>$product->pr_id,
 			'anonim'=>$request->cookie('anonim') ? $request->cookie('anonim') : null
 		]);
 		
-		$count_seen = SeenProduct::where('product_id',"=",$product->product_id)->get();
+		$count_seen = SeenProduct::where('product_id',"=",$product->pr_id)->get();
 
-		return view("product", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen->count(), "more_products"=>$more_products]);
+		return view("product", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen->count(), "more_products"=>$more_products,'favs'=>$favs]);
     }
 
     public function sell(Request $request)

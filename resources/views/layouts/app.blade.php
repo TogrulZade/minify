@@ -33,6 +33,9 @@
 
 </head>
 <body>
+    <a href='/sell' class="addItemButton">
+        <span><i class="feather-plus"></i></span>
+    </a>
     @if($agent->isMobile())
         @include('layouts.mobile.nav')    
     @else

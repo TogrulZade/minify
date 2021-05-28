@@ -6,14 +6,21 @@ use Illuminate\Http\Request;
 use minify\Fav;
 use minify\Product;
 use Auth;
+use minify\Helpers\FavHelper;
 
 class FavController extends Controller
 {
+
+    public function show(Request $request)
+    {
+        $getFavs = FavHelper::getfavs($request);
+        return view('favs', ['favs'=>$getFavs]);
+    }
     public function addFavs(Request $request)
     {
         $user = Auth::user() ? Auth::user()->id : $request->cookie('anonim');
         $find = Product::where('id',"=",$request->product_id)->first();
-        if($find->count() == 0){
+        if(count($find) == 0){
             return response()->json('not_found');
         }
 

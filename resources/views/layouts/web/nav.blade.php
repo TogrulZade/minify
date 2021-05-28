@@ -34,6 +34,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}} {{Auth::user()->surname}}<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/cabinet">Şəxsi kabinet</a></li>
+                        <li><a href="/showFavs">Seçilənlər</a></li>
                         <li><a href="#">Balans</a></li>
                         <li class="divider"></li>
                         {{-- <form action="/logout" method="post"> --}}

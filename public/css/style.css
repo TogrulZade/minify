@@ -1,7 +1,11 @@
 body{
-	color: #525252;
+	color: #525252!important;
 	/*background-color: #f2f2f2;*/
 	font-family: "Nunito", sans-serif;
+}
+
+strong{
+	color: inherit;
 }
 
 a{
@@ -1279,10 +1283,10 @@ ul.stick_hover_menu::after {
 
 .add_favorite {
     position: absolute;
-    top: 10px;
+    bottom: -35px;
     right: 10px;
     font-size: 22px;
-	color: #fff;
+	color: #a0a0a0;
 }
 ul.stick_hover_menu {
 	position: absolute;
@@ -1474,4 +1478,117 @@ ul.nav.navbar-nav.navbar-right.xs-p-3.nav-sign {
 	text-decoration: none;
 	color: #494949;
 	padding: 20px;
+}
+
+.bg-primary{
+	background-color: var(--main-bg-color);
+}
+
+.btn-primary{
+	background-color: var(--main-bg-color);
+	color: #494949;
+	border: 1px solid #494949;
+}
+
+.btn-primary:hover{
+	background-color: #494949!important;
+}
+
+.addItemButton{
+	position: fixed;
+	bottom: 40px;
+	right: 70px;
+	width: 50px;
+	height: 50px;
+	background-color: #0070cc;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	border-radius: 50%;
+	z-index: 9999;
+}
+
+.addItemButton:hover, .addItemButton:focus{
+	text-decoration: none;
+	background-color:#007ae4;
+	font-weight: 600;
+	color: #fff;
+}
+
+.cabinet-tab{
+	width: 100%;
+	position: relative;
+	padding: 0;
+	float: left;
+	background-color: #494949;
+	margin: 0;
+}
+
+.cabinet-tab li{
+	list-style: none;
+	float: left;
+}
+
+
+.cabinet-tab li.tab-item a{
+	color: #fff;
+	padding: 20px 30px;
+	display: block;
+	border-right: 1px solid #fff;
+	border-bottom: 4px solid transparent;
+	transition: all .1s linear;
+}
+
+.cabinet-tab li.tab-item a:hover{
+	text-decoration: none;
+	border-bottom: 4px solid var(--main-bg-color);
+}
+
+.cabinet-body{
+	min-height: 300px;
+	background-color: #f2f2f2;
+	padding: 40px;
+	display: block;
+	float: left;
+	margin: 0;
+	width: 100%;
+	display: flex;
+	/* align-items: center; */
+	/* justify-content: center; */
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+
+.cabinet-tab li.tab-item .active{
+	border-bottom: 4px solid var(--main-bg-color);
+}
+
+.cabinet-tab li.tab-item a:hover,.cabinet-tab li.tab-item a:focus{
+	text-decoration: none;
+}
+
+.centered{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	height: 40vh;
+	width: 100%;
+}
+
+.aktiv-body{
+	width: 100%;
+	float: left;
+	display: block;
+}
+
+.yoxlanilir-body{
+	width: 100%;
+	float: left;
+	display: none;
+}
+
+a.card-mini:focus {
+    text-decoration: none;
 }

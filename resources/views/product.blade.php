@@ -13,12 +13,16 @@
 
 	@if ($agent->isMobile())
 		<div class="col-xs-12 p-0">
-			{{-- <h3>Mobile</h3> --}}
+			<h3>{{$product->name}}</h3>
 			<div id="swipe" class="swipe">
 				<div class="swipe-wrap">
+					@if(count($pictures) < 1)
+						<img data-index="{{$index}}" src="{{asset("storage/images/not-found.jpeg")}}" />
+					@else
 					@foreach($pictures as $index=>$pic)
 						<img data-index="{{$index}}" src="{{asset("storage/".$pic->url)}}" />
 						@endforeach
+					@endif
 				</div>
 				</div>
 		</div>
@@ -30,9 +34,13 @@
 			@if (!$agent->isMobile())
     		<div class="col-md-12 mb-5">
     			<div class="col-md-8 col-sm-8 col-xs-12 line h-cover">
+					<h3 style="padding-left: 20px">{{$product->product_name}}</h3>
 					<div class="shop-img">	
 						<div class="col-xs-12">									
 							<ul id="mini-gallery">
+								@if(count($pictures) < 1)
+									<img src="{{asset("storage/images/not-found.jpeg")}}" />
+								@else
 								@foreach($pictures as $index=>$pic)
 									<div class="{{$index == 0 ? 'cover-photo col-md-12' : 'mini-photo col-md-3 col-sm-3 col-xs-6 col-xs-12'}}">
 										<li>
@@ -40,15 +48,12 @@
 										</li>
 									</div>
 								@endforeach
+								@endif
 							</ul>
 						</div>
 					</div>
 					@endif
 					
-
-					
-
-
 	    			<div class="col-xs-12 p-0">
 			    		<div class="shop-extra mt-5">
 			    			<h2>Haqqında</h2>
@@ -61,7 +66,7 @@
 
     			</div>
 
-    			<div class="col-md-4 col-sm-4 col-xs-12">
+    			<div class="col-md-4 col-sm-4 col-xs-12" style="margin-top: 50px">
     				<div class="bg-white shop-desc">
 						<div class="col-md-12 p-0 desc-text">
 							<div class="shop-icon">
@@ -80,14 +85,14 @@
 								</div>
 								@endif
 								<div class="col-md-12 p-0">
-									<div class="save">
+									<div class="add_favorite save">
 										<i class="far fa-heart unsave pull-right"></i>
 										<span>{{$product->product_price}} AZN</span>
 									</div>
 								</div>
 
 								<div class="col-md-12 bought center mt-2 p-0">
-									<i class="fas fa-check-circle"></i> <span>5 nəfər alıb</span>
+									{{-- <i class="fas fa-check-circle"></i> <span>5 nəfər alıb</span> --}}
 									<span class="pull-right"><i class="far fa-eye"></i> {{$count_seen}}</span> 
 								</div>
 
@@ -97,22 +102,26 @@
 
 							<div class="col-md-12 p-0 mt-2 mb-2" style="font-weight: 600">
 								@if($product->city)
-									<div class="col-md-6 p-0 mb-2">Şəhər</div>
-									<div class="col-md-6 p-0 mb-2"><span class="pull-right"><strong>{{$product->city}}</strong></span></div>
+									<div class="col-xs-6 p-0 mb-2">Şəhər</div>
+									<div class="col-xs-6 p-0 mb-2">
+										<span class="pull-right">
+											<strong>{{$product->city}}</strong>
+										</span>
+									</div>
 								@endif
 								@if($product->tip)
-									<div class="col-md-6 p-0 mb-2">Malın növü</div>
-									<div class="col-md-6 p-0 mb-2"><span class="pull-right"><strong>Smartfon</strong></span></div>
+									<div class="col-xs-6 p-0 mb-2">Malın növü</div>
+									<div class="col-xs-6 p-0 mb-2"><span class="pull-right"><strong>Smartfon</strong></span></div>
 								@endif
 								@if($product->model)
-									<div class="col-md-6 p-0 mb-2">Model</div>
-									<div class="col-md-6 p-0 mb-2"><span class="pull-right"><strong>Digər</strong></span></div>
+									<div class="col-xs-6 p-0 mb-2">Model</div>
+									<div class="col-xs-6 p-0 mb-2"><span class="pull-right"><strong>Digər</strong></span></div>
 								@endif
-								<div class="col-md-6 p-0 mb-2">Yeni</div>
-								<div class="col-md-6 p-0 mb-2"><span class="pull-right"><strong>{{$product->new == 0 ? 'Xeyr' : 'Bəli'}}</strong></span></div>
+								<div class="col-xs-6 p-0 mb-2">Yeni</div>
+								<div class="col-xs-6 p-0 mb-2"><span class="pull-right"><strong>{{$product->new == 0 ? 'Xeyr' : 'Bəli'}}</strong></span></div>
 
-								<div class="col-md-6 p-0 mb-2">Çatdırılma</div>
-								<div class="col-md-6 p-0 mb-2"><span class="pull-right"><strong>{{$product->delivery == 0 ? 'Xeyr' : 'Bəli'}}</strong></span></div>
+								<div class="col-xs-6 p-0 mb-2">Çatdırılma</div>
+								<div class="col-xs-6 p-0 mb-2"><span class="pull-right"><strong>{{$product->delivery == 0 ? 'Xeyr' : 'Bəli'}}</strong></span></div>
 							</div>
 
 							<div class="col-md-12 p-0 contact">
@@ -135,39 +144,46 @@
 			<div class="col-xs-12 mt-10">
 				<h2>Müştərilər həmçinin baxdılar</h2>
 			</div>
-
+			@php $z = 0;@endphp
 			@foreach ($more_products as $more)
-				{{-- Card --}}
-				<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-					<a href="/product/{{$more->slug}}" class="card-mini">
-						<div class="price">
-							{{$more->product_price}} AZN
-						</div>
-						<div class="card-img">
-							<img src="{{ asset('storage/'.$more->product_cover) }}" alt="">
-						</div>
-						
-						<div class="footer-wrapper">
-							<div class="card-title">
-								<h4 class="mb-0">{{$more->product_name}}</h4>
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<a href="/product/{{$more->slug}}" class="card-mini">
+					<div class="card-img">
+						<img src="{{asset('storage/'.$more->product_cover)}}" alt="">
+							@foreach ($favs as $fav)
+								@if ($fav->id == $more->id)
+								@php $z = $more->id @endphp
+									<div class="add_favorite" data-product_id="{{$more->id}}" style="{{$fav->id == $more->id ? 'color: red' : ''}}">
+										<i class="fas fa-heart"></i>
+									</div>
+								@endif
+							@endforeach
+							@if ($z != $more->id)
+							<div class="add_favorite" data-product_id="{{$more->id}}" style="">
+								<i class="fas fa-heart"></i>
 							</div>
-						
-							{{-- <div class="card-body">
-								{}
-							</div> --}}
-
-							<div class="card-footer">
-								<p><?php echo $more->created_at; ?></p>
-							</div>
-						</div>
-					</a>
-				</div>
+							@endif
+					</div>
+								
+					<div class="card-title">
+						{{$more->product_price}} AZN
+					</div>
+					
+					<div class="card-body">
+						<strong class="mb-0">{{$more->product_name}}</strong>
+					</div>
+	
+					<div class="card-footer">
+						<p>{{$more->created}}</p>
+					</div>
+				</a>
+			</div>
 			@endforeach
 
 
-        	<div class="col-xs-12">
+        	{{-- <div class="col-xs-12">
         		<h2>Müştəri rəyləri</h2>
-        	</div>
+        	</div> --}}
 
 		</div>
     	{{-- @endforeach --}}
