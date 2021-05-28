@@ -62,7 +62,7 @@
 
         <div class="col-xs-12">
             @if($categoryName == '')
-                <h3 class="black text-center mb-5">Bütün Elanlar</h3>
+                <h3 class="black mb-5">Bütün Elanlar</h3>
             @else
                 <h3 class="black text-center mb-5">{{$categoryName}}</h3>
             @endif

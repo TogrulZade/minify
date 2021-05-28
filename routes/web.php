@@ -27,6 +27,7 @@ Route::get("update", "ProductController@update");
 Route::get("axtar", "HomeController@axtar");
 Route::post("addFavs", "FavController@addFavs");
 Route::get("test", "HomeController@test");
+Route::get("cabinet", "CabinetController@index");
 
 Auth::routes();
 Route::get('/logout', '\minify\Http\Controllers\Auth\LoginController@logout');
