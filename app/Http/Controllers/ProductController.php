@@ -119,14 +119,23 @@ class ProductController extends Controller
 		$product->product_description = $request->product_description;
 		$product->merchant_number = $request->merchant_number;
 		$product->product_merchant = $request->product_merchant;
-		if(Auth::user()){
-			$product->user_id = Auth::user()->id;
-		}
+		
+
+		// dd(Auth::user());
 		$product->city = $request->city;
 		$product->slug = Str::slug($addId."-".$request->product_name, '-');
 
-		$prNumber = Product::create(["product_name"=>$request->product_name,"product_category"=>$request->product_category,"product_price"=>$request->product_price,"product_description"=>$request->product_description,"merchant_number"=>$request->merchant_number,"product_merchant"=>$request->product_merchant,
-		"slug"=>Str::slug($addId."-".$request->product_name, '-')])->id;
+		if(Auth::user()){
+			$prNumber = Product::create(["product_name"=>$request->product_name,"product_category"=>$request->product_category,"product_price"=>$request->product_price,"product_description"=>$request->product_description,"merchant_number"=>$request->merchant_number,
+			"user_id" => Auth::user()->id,
+			"product_merchant"=>$request->product_merchant,
+			"closed_at"=>date('Y-m-d H:i:s', strtotime('+30 days')),
+			"slug"=>Str::slug($addId."-".$request->product_name, '-')])->id;
+		}else{
+			$prNumber = Product::create(["product_name"=>$request->product_name,"product_category"=>$request->product_category,"product_price"=>$request->product_price,"product_description"=>$request->product_description,"merchant_number"=>$request->merchant_number,"product_merchant"=>$request->product_merchant,
+			"closed_at"=>date('Y-m-d H:i:s', strtotime('+30 days')),
+			"slug"=>Str::slug($addId."-".$request->product_name, '-')])->id;
+		}
 
         $files = $request->file('image');
 

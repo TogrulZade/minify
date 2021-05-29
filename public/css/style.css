@@ -1592,3 +1592,8 @@ ul.nav.navbar-nav.navbar-right.xs-p-3.nav-sign {
 a.card-mini:focus {
     text-decoration: none;
 }
+
+.tab-body{
+	width: 100%;
+	float: left;
+}

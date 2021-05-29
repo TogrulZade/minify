@@ -28,7 +28,7 @@ Route::get("axtar", "HomeController@axtar");
 Route::post("addFavs", "FavController@addFavs");
 Route::get("showFavs", "FavController@show");
 Route::get("test", "HomeController@test");
-Route::get("cabinet", "CabinetController@index");
+Route::get("cabinet", "CabinetController@index")->middleware('auth');
 Route::get("profile", "ProfileController@index");
 
 
