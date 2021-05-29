@@ -81,7 +81,8 @@ class ProductController extends Controller
     		'city' 	=> "required",
     		'delivery' 	=> "required",
     		'new' 	=> "required",
-            "image.*"           => 'mimes:jpeg,jpg,png',
+            "image.*"           => 'mimes:jpeg,jpg,png|required',
+			"image"=>'required'
     	];
 
     	$messages = [
@@ -95,6 +96,8 @@ class ProductController extends Controller
     		'delivery.required' => 'Çatdırılma qeyd etmədiniz',
     		'new.required' => 'Yeni və ya köhnə olduğunu qeyd etmədiniz',
             'image.*.mimes'=> "Yalnız jpeg,jpg,png formatlı şəkil yükləyə bilərsiniz",
+            'image.required'=> "Elanın ən az bir şəklini yerləşdirməlisiniz",
+			// 'files.required'=>'Elanın ən az bir şəklini yerləşdirməlisiniz'
     	];
 
     	$validator = Validator::make($request->all(), $rules, $messages);
@@ -182,6 +185,16 @@ class ProductController extends Controller
 			$products = Product::with('pictures')->whereHas('pictures', function($q){
 				return $q->where('pictures.cover',"=",1);
 			})->where('products.product_category',"=",$getCat->id)->doesntHave('vip')->get();
+
+			$products = Product::with('pictures')
+			->whereHas('pictures', function($q){
+				return $q->where('pictures.cover',"=",1);
+			})
+			->where('products.product_category',"=",$getCat->id)
+			->where('products.closed_at',"=",date('Y-d-m H:i:s'))
+			->where('products.active','=',1)
+			->doesntHave('vip')
+			->get();
 
 			$favs = FavHelper::getFavs($request);
 

@@ -1,16 +1,5 @@
-@extends('Admin/Layouts/layout')
+@extends('Admin.Layouts.layout')
 
 @section('main')
-@foreach ($tables as $table)
-    
-    @if($table->editable)
-    <div class="col-3 float-left mb-5">
-        <a href="admin/table/{{$table->Tables_in_shopin}}" class="card bg-blue text-white">
-            <div class="card-body">
-                <h4 class="card-title">{{$table->Tables_in_shopin}}</h4>
-            </div>
-        </a>
-    </div>
-    @endif
-@endforeach
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. At error animi numquam eligendi illo culpa dolores ratione dolore, quibusdam laudantium minima nostrum distinctio nemo nulla, aliquam magni corporis possimus inventore?
 @endsection

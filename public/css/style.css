@@ -506,9 +506,11 @@ height: 440px;
 .bg-white{background-color: white}
 
 .shop-desc{
-/*padding: 15px;*/
+padding: 15px;
 border-radius: 6px;
 color: #333;
+float: left;
+width: 100%;
 }
 
 .shop-desc .desc-text{
@@ -1596,4 +1598,138 @@ a.card-mini:focus {
 .tab-body{
 	width: 100%;
 	float: left;
+}
+
+.wrap{
+	display: flex;
+	width: 100%;
+	min-height: 300px;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	color: #494949;
+	margin-top: 100px;
+}
+
+.wrap i, .wrap span{
+	font-size: 8em;
+	
+}
+
+.wrap p{
+	font-size: 1.4em;
+}
+
+
+
+@media (max-width: 768px){
+	.wrap p{
+		font-size: 1.2em;
+		margin-top: 20px;
+	}
+
+	.wrap-content{
+		width: 70%;
+	}
+}
+
+@media screen and (max-width: 768px){
+	body{
+		background-color: #e5edee;
+	}
+}
+@media screen and (min-width: 991px){
+.login-wrapper{
+	margin-top: 50px;
+}
+}
+@media screen and (max-width: 768px){
+	.login-wrapper{
+		margin-top: 50px;
+	}
+}
+
+.header-mobile{
+	width: 100%;
+	background-color: #fff;
+	float: left;
+	border-bottom-left-radius: 20px;
+}
+
+.header-mobile .header-container{
+	width: 100%;
+	float: left;
+}
+
+.search-bar{
+	position: relative;
+	width: 100%;
+	float: left;
+	padding: 10px;
+}
+
+.search-bar input{
+	width: 100%;
+	padding: 10px 10px;
+	border-radius: 10px;
+	border: 1px solid #c2c2c2;
+}
+.search-bar input:focus{
+	outline: none;
+}
+.mobile-category{
+	width: 100%;
+	float: left;
+	overflow-x: scroll;
+	background-color: #fff;
+	padding: 10px;
+	/* margin-bottom: 20px; */
+	box-shadow: 0 4px 10px 1px rgba(0, 0, 0, 0.2);
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+.mobile-category ul{
+	list-style: none;
+	padding: 0 10px;
+	display: flex;
+	flex-wrap: nowrap;
+	overflow-x: auto;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	float: left;
+}
+
+.mobile-category ul::-webkit-scrollbar, .mobile-category::-webkit-scrollbar{
+	display: none;
+}
+
+.mobile-category ul li{
+	float: left;
+	border: 1px solid #c2c2c2;
+	margin-right: 10px;
+	text-align: center;
+	min-width: 100px;
+	border-radius: 6px;
+	width: -webkit-max-content;
+	width: -moz-max-content;
+    width: max-content;
+}
+
+.mobile-category ul li a{
+	color: #494949;
+	display: block;
+	padding: 10px;
+}
+
+.icon-search{
+	position: absolute;
+	top: 12px;
+	right: 13px;
+	font-size: 18px;
+	padding: 6px 10px;
+	border-radius: 6px;
+	color: #494949;
+	background-color: #fff;
+	border: none;
 }

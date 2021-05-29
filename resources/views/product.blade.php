@@ -66,7 +66,7 @@
 
     			</div>
 
-    			<div class="col-md-4 col-sm-4 col-xs-12" style="margin-top: 50px">
+    			<div class="col-md-4 col-sm-12 col-xs-12" style="margin-top: 50px">
     				<div class="bg-white shop-desc">
 						<div class="col-md-12 p-0 desc-text">
 							<div class="shop-icon">
@@ -85,7 +85,7 @@
 								</div>
 								@endif
 								<div class="col-md-12 p-0">
-									<div class="add_favorite save">
+									<div class="save">
 										<i class="far fa-heart unsave pull-right"></i>
 										<span>{{$product->product_price}} AZN</span>
 									</div>

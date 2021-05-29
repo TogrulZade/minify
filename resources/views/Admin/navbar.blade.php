@@ -1,39 +1,55 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-        <a class="navbar-brand" style="font-size: 1.8em!important;letter-spacing: 1px;margin-top: -5px;" href="#">Pin.az</a>
-      
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto ">
-          {{-- <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li> --}}
-          <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
-          </li>
-          
-          {{-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Logout</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-            </div>
-             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  @csrf
-              </form>
-          </li> --}}
-          {{-- <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li> --}}
-        </ul>
-        
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+              Minify
+              {{-- <span style="font-size: 22px; font-family: Poppins; font-weight: 600">mini<span style="margin-left: 2px;padding: 5px 8px; background: #222; color: #fff; border-radius: 6px">fy</span></span> --}}
+          </a>
       </div>
-</div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav navbar-category">
+              {{-- <li><a href="#">Mağazalar</a></li> --}}
+              {{-- <li class="active"><a href="#">Kateqoriyalar</a></li> --}}
+          </ul>
+          <form class="navbar-form navbar-left" action="/axtar" role="search">
+              <div class="form-group form-search">
+                  <input id="axtar" type="text" name="axtar" class="form-control col-md-6" value="{{old('axtar')}}" placeholder="Əşya və ya xidmət axtarın...">
+                  <div class="icon"><i class="feather-search" style="font-size: 15px"></i></div>
+              </div>
+              <button type="submit" class="btn btn-search">Axtarış et</button>
+          </form>
+          <ul class="nav navbar-nav navbar-right xs-p-3 nav-sign">
+              {{-- <li><a class="btn-sel" href="/sell"><i class="fas fa-paper-plane"></i> Elan yerləşdir</a></li> --}}
+              @auth
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}} {{Auth::user()->surname}}<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                      <li><a href="/cabinet">Şəxsi kabinet</a></li>
+                      <li><a href="/showFavs">Seçilənlər</a></li>
+                      <li><a href="#">Balans</a></li>
+                      <li class="divider"></li>
+                      {{-- <form action="/logout" method="post"> --}}
+                          {{-- @csrf --}}
+                          <li><a href="{{url('logout')}}">Təhlükəsiz çıxış</a></li>
+                      {{-- </form> --}}
+                  </ul>
+              </li>
+              @else
+              <li class="sign">
+                  <li><a href="/login">Daxil ol</a></li>
+                  <li><a href="/register">Qeydiyyat</a></li>
+              </li>
+              @endauth
+          </ul>
+      </div><!-- /.navbar-collapse -->
+  </div>
 </nav>

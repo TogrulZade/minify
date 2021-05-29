@@ -33,16 +33,16 @@
 
 </head>
 <body>
-    <a href='/sell' class="addItemButton">
-        <span><i class="feather-plus"></i></span>
-    </a>
     @if($agent->isMobile())
         @include('layouts.mobile.nav')    
     @else
         @include('layouts.web.nav')
+        <a href='/sell' class="addItemButton">
+            <span><i class="feather-plus"></i></span>
+        </a>
     @endif
 
-    <main style="{{$agent->isMobile() ? 'margin-top: 20px' : ''}}">
+    <main style="{{$agent->isMobile() ? 'margin-top: 0' : ''}}">
         @yield('content')
     </main>
 
@@ -80,7 +80,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/swipe.js') }}"></script>
-    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/script.js?r=') }}<?php echo rand(0,99999)?>"></script>
 
     <script>
         // window.mySwipe = new Swipe(document.getElementById('slider'));

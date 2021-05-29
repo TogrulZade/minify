@@ -40,6 +40,9 @@
 								@if($errors->has("image.*"))
 									<p class="error">{{ $errors->first('image.*') }}</p>
 								@endif
+								@if($errors->has("image"))
+									<p class="error">{{ $errors->first('image') }}</p>
+								@endif
 
 								<input type="file" multiple accept="image/*" name="image[]" id="imgfile" class="my-pond" style="display: none;"/>
 								<label for="imgfile" class="image"><i class="fas fa-camera"></i> Şəkil əlavə et</label>

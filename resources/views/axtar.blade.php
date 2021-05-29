@@ -1,15 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-@include('partial.sticky')
+@if(!$agent->isMobile())
+    @include('partial.sticky')
+    <div class="col-md-12">
+        <div class="banner">
+            <h4 class="text-center">Sizin Reklamınız Burada</h4>
+        </div>
+    </div>
+@else
+    @include('layouts.mobile.header-mobile')
+@endif
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <div class="banner">
-                <h4 class="text-center">Sizin Reklamınız Burada</h4>
-            </div>
-        </div>
+        
         @if(!empty($vips))
         <div class="col-xs-12">
         @foreach ($vips as $i=>$vip)
@@ -60,6 +65,8 @@
         </div>
         @endif
 
+
+        @if (count($products)>0)
         <div class="col-xs-12">
             @if($categoryName == '')
                 <h3 class="black mb-5">Bütün Elanlar</h3>
@@ -105,6 +112,15 @@
 
             {{-- End card --}}
         @endforeach
+        @else
+            <div class="wrap">
+                <div class="wrap-contetn">
+                    <i class="feather-search"></i>
+                    {{-- <i class="fas fa-box-open"></i> --}}
+                    <p> Axtarış nəticəsinə uyğun aktiv elan tapılmadı</p>
+                </div>
+            </div>
+        @endif
     </div>
 </div>
 @endsection

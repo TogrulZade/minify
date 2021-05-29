@@ -57,9 +57,11 @@ class HomeController extends Controller
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
         })->get();
 
-        $products = Product::with(['pictures'])->whereHas('pictures', function($q){
-            return $q->where('pictures.cover',"=",1);
-        })->doesntHave('vip')->select('*', 'products.id as id')->get();
+        // $products = Product::with(['pictures'])->whereHas('pictures', function($q){
+        //     return $q->where('pictures.cover',"=",1);
+        // })->doesntHave('vip')->select('*', 'products.id as id')->get();
+
+        $products = ProductHelper::allAktivElanlar();
 
         $favs = FavHelper::getFavs($request);
         return view('home', ["products"=> $products, 'vips'=>$vips, 'favs'=>$favs, 'user'=>$user, 'categoryName'=>'']);
@@ -75,9 +77,14 @@ class HomeController extends Controller
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
         })->where('product_name',"like","%".$axtar."%")->get();
 
-        $products = Product::with('pictures')->whereHas('pictures', function($q){
+        $products = Product::with('pictures')
+        ->whereHas('pictures', function($q){
             return $q->where('pictures.cover',"=",1);
-        })->where('product_name',"like","%".$axtar."%")->get();
+        })->where('product_name',"like","%".$axtar."%")
+        ->where('products.closed_at',"=",date('Y-d-m H:i:s'))
+        ->where('products.active','=',1)
+        ->get();
+        
         $categoryName = '';
         $favs = FavHelper::getFavs($request);
         return view('axtar',compact('products','vips','categoryName','favs'));

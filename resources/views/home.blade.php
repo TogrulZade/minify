@@ -3,14 +3,18 @@
 @section('content')
 @if(!$agent->isMobile())
     @include('partial.sticky')
+@else
+    @include('layouts.mobile.header-mobile')
 @endif
 <div class="container">
     <div class="row">
-        <div class="col-xs-12">
-            <div class="banner">
-                <h4 class="text-center">Sizin Reklamınız Burada</h4>
+        @if (!$agent->isMobile())    
+            <div class="col-xs-12">
+                <div class="banner">
+                    <h4 class="text-center">Sizin Reklamınız Burada</h4>
+                </div>
             </div>
-        </div>
+        @endif
 
         @if(!empty($vips))
         <div class="col-xs-12">
@@ -62,6 +66,21 @@
         </div>
         @endif
 
+        @php $z = 0;@endphp
+        @if (count($products) == 0 || empty($vips))
+        <div class="col-xs-12">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="row">
+                    <div class="wrap">
+                        <div class="wrap-content">
+                            <i class="fas fa-box-open"></i>
+                            <p>Göstəriləcək məhsul tapılmadı</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @else
         <div class="col-xs-12">
             @if($categoryName == '')
             <div class="col-xs-12 mb-3">
@@ -73,20 +92,6 @@
             </div>
                 
             @endif
-        </div>
-
-        @php $z = 0;@endphp
-        @if (count($products) == 0 || empty($vips))
-        <div class="col-xs-12">
-            <div class="col-sm-6 col-sm-offset-3">
-                <div class="row">
-                    <div class="error-wrapper mb-4">
-                        <div class="error-item">
-                            Kateqoriya boşdur
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         @endif
 

@@ -20,6 +20,7 @@ class FavServiceProvider extends ServiceProvider
     {
         $cat = Category::all();
         View::share('cat',$cat);
+        View::share('layouts/mobile/nav',$cat);
     }
     
     /**

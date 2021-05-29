@@ -15,7 +15,7 @@ class AddFinishedAtToProducts extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->timestamp('started_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('closed_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('closed_at')->nullable();
         });
     }
 

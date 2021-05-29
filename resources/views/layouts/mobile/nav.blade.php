@@ -11,7 +11,6 @@
     <div class="add_elan">
         <i class="feather-plus"></i>
     </div>
-
     <div class="drawermenu">
         <div class="drawer_wrapper">
             <div class="drawer_header">
@@ -31,7 +30,7 @@
                     <li><a class="icon-card"href="#"><i class="feather-credit-card"></i> Balansını artır</a></li>
                 </ul>
                 <ul class="section">
-                    <li><a href="#">Tam versiya</a></li>
+                    {{-- <li><a href="#">Tam versiya</a></li> --}}
                     {{-- <div class="seperator"></div> --}}
                     <li><a href="#">Saytda reklam</a></li>
                 </ul>

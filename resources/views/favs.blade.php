@@ -3,10 +3,11 @@
 @section('content')
     <div class="container">
         <div class="row">
+            
+            @if($favs->count() > 0)
             <div class="col-xs-12 mb-4">
                 <h3>SEÇİLMİŞ MƏHSULLAR</h3>
             </div>
-            @if($favs->count() > 0)
                 @foreach ($favs as $fav)
                     <div class="col-md-2 col-sm-4 col-xs-6">
                         <a href="/product/{{$fav->slug}}" class="card-mini">
@@ -32,11 +33,11 @@
                     </div>
                 @endforeach
             @else
-                <div class="stick-notify">
-                    <div class="stick-body-fav-icon">
+                <div class="wrap">
+                    <div class="wrap-content">
                         <i class="feather-heart"></i>
+                        <p>Seçilmişlər siyahısında məhsul tapılmadı. Məhsul sahibi tərəfindən silinmiş və ya elanların vaxtı bitmiş ola bilər.</p>
                     </div>
-                    <p>Seçilmiş məhsul tapılmadı</p>
                 </div>
             @endif
         </div>

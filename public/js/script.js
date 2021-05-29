@@ -192,9 +192,14 @@ $(document).ready(function(){
 		$('.tab-body').hide();
 		$(".aktiv-body").show();
 	});
-	
-	
 
+	$(".search-bar input").on("input",function(){
+		if($(this).val()){
+			$(".icon-search").css({'color':'#1396ff'});
+		}else{
+			$(".icon-search").css('color','#494949');
+		}
+	});
 });
 
 var lastScrollTop = 0;

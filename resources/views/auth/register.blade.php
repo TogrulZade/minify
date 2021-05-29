@@ -5,10 +5,10 @@
 <div class="container">
     <div class="row justify-content-center">
 
-        <div class="col-md-4 col-md-offset-4 p-0 col-xs-10 col-xs-offset-1">
+        <div class="col-md-4 col-md-offset-4 p-0 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
             <form method="POST" action="{{ route('register') }}">
                 @csrf
-                <div class="card" style="margin-bottom: 92px;margin-top: 40px;border: 1px solid #e2e2e2; box-shadow: 0 0 7px 1px rgba(0,0,0,.2); border-radius: 10px;padding: 20px">
+                <div class="card" style="margin-bottom: 92px;margin-top: 40px;border: 1px solid #e2e2e2; background-color: #fff; box-shadow: 0 0 7px 1px rgba(0,0,0,.2); border-radius: 10px;padding: 20px">
                     <div class="text-center">
                         <h4>Yeni hesab aç</h4>
                         <hr>
