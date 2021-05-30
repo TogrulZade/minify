@@ -9,11 +9,11 @@
 <div class="container">
     <div class="row">
         @if (!$agent->isMobile())    
-            <div class="col-xs-12">
+            {{-- <div class="col-xs-12">
                 <div class="banner">
                     <h4 class="text-center">Sizin Reklamınız Burada</h4>
                 </div>
-            </div>
+            </div> --}}
         @endif
 
         @if(!empty($vips))

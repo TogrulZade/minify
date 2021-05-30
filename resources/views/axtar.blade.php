@@ -3,11 +3,11 @@
 @section('content')
 @if(!$agent->isMobile())
     @include('partial.sticky')
-    <div class="col-md-12">
+    {{-- <div class="col-md-12">
         <div class="banner">
             <h4 class="text-center">Sizin Reklamınız Burada</h4>
         </div>
-    </div>
+    </div> --}}
 @else
     @include('layouts.mobile.header-mobile')
 @endif

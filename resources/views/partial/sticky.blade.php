@@ -19,7 +19,12 @@
                 <li><a href="#">Göndərdikləriniz</a></li>
             </ul>
         </li>
-        <li class="sticky-item"><a href="#"><i class="feather-user"></i> </a></li>
+        <li class="sticky-item">
+            <a href="/cabinet"><i class="feather-user"></i></a>
+            <ul class="stick_hover_menu">
+                <li><a href="/cabinet">Şəxsi kabinet</a></li>
+            </ul>
+        </li>
     </ul>
 </div>
 
