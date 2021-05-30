@@ -194,7 +194,7 @@ class ProductController extends Controller
 				return $q->where('pictures.cover',"=",1);
 			})
 			->where('products.product_category',"=",$getCat->id)
-			->where('products.closed_at',"=",date('Y-d-m H:i:s'))
+			->where('products.closed_at',">",date('Y-d-m H:i:s'))
 			->where('products.active','=',1)
 			->doesntHave('vip')
 			->get();
