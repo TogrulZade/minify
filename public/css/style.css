@@ -1019,7 +1019,7 @@ form.navbar-form.navbar-left {
 	font-size: 24px;
 }
 
-#nav .brand{
+#nav .brand {
 	font-size: 22px;
 	font-weight: 700;
 	font-family: 'Nunito', sans-serif;
@@ -1027,7 +1027,7 @@ form.navbar-form.navbar-left {
 	color: #000
 }
 
-.add_elan{
+.add_elan a, .add_elan a:active, .add_elan a:focus{
 	font-size: 20px;
 	width: 30px;
 	height: 30px;
@@ -1037,6 +1037,8 @@ form.navbar-form.navbar-left {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	outline: navajowhite;
+	text-decoration: none;
 }
 
 .drawermenu{

@@ -9,7 +9,7 @@
     </div>
 
     <div class="add_elan">
-        <i class="feather-plus"></i>
+        <a href="/sell"><i class="feather-plus"></i></a>
     </div>
     <div class="drawermenu">
         <div class="drawer_wrapper">
