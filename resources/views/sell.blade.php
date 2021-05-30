@@ -36,7 +36,7 @@
 								<input type="text" class="form-control shop-form" placeholder='Məhsulun adı' value="{{ old('product_name') }}" name="product_name">
 							</div>
 
-							<div class="form-group">
+							{{-- <div class="form-group">
 								@if($errors->has("image.*"))
 									<p class="error">{{ $errors->first('image.*') }}</p>
 								@endif
@@ -47,6 +47,13 @@
 								<input type="file" multiple accept="image/*" name="image[]" id="imgfile" class="my-pond" style="display: none;"/>
 								<label for="imgfile" class="image"><i class="fas fa-camera"></i> Şəkil əlavə et</label>
 
+								<div class="izle col-md-12">
+
+								</div>
+							</div> --}}
+
+							<div class="form-group">
+								<input type="file" name="image" id="file" multiple accept="image/*">
 								<div class="izle col-md-12">
 
 								</div>
@@ -84,7 +91,7 @@
 								</select>
 							</div>
 
-
+							<input type="hidden" name="t" class="t" value="{{$uniqid}}">
 
 							<div class="form-group">
 								<label for="">Çatdırılma</label>

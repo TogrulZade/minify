@@ -1,3 +1,4 @@
+
 var csrf = document.querySelector('meta[name="csrf-token"]').content;
 $(document).ready(function(){
 	
@@ -15,32 +16,13 @@ $(document).ready(function(){
 		
 	});
 
-	// Canli izle
-
-	function readURL(input) {
-	  if (input.files && input.files[0]) {
-	   for (var i=0; i <= input.files.length; i++) {
-	    var reader = new FileReader();
-	    reader.onload = function(e) {
-       		$(".izle").append("<img style='width: 100px; margin: 10px; height: 80px' src="+e.target.result+" />");
-	    }
-	    
-	    reader.readAsDataURL(input.files[i]);
-	    }
-	  }
-	}
-
-	$("#imgfile").change(function() {
-	  readURL(this);
-	});
-
 	const mini_close = ()=>{
 		$('.mini-slide-cover').css('visibility','hidden');
 		$('.full-opacity').css('visibility','hidden');
 		$('body').css("overflow","visible");
-	  }
+	}
 
-	  const right = ()=>{
+	const right = ()=>{
 		index++;
 		if(index > count_photos){index = 0;}
 		const img = $("#mini-gallery div").find('[data-index="'+(index)+'"]').attr('src');
@@ -64,7 +46,7 @@ $(document).ready(function(){
 		if (e.key == "ArrowLeft") {
 			left();
 		}
-	  });
+	});
 
 	const width = $(window).width();
 	const height = $(window).height();
@@ -234,3 +216,97 @@ var lastScrollTop = 0;
 	}
 	lastScrollTop = st;
 	});
+
+
+	// Canli izle
+
+	function readURL(input) {
+		files = [];
+		// if (input.files && input.files[0]) {
+		//  for (var i=0; i < input.files.length; i++) {
+		[...input.files].map((file,index)=>{			
+		  	var reader = new FileReader();
+			const item = document.createElement('div');
+		  	reader.onload = function(e) {
+				item.className = 'item';
+				item.innerHTML = `
+					<img style='width: 100px; margin: 10px; height: 80px' src="${e.target.result}" />
+					<div class='bar'> <span></span> </div>
+					`;
+					files.push({
+						file,
+						el: item
+					});
+				result.appendChild(item);
+			}
+			
+			if (input.files[0]) {reader.readAsDataURL(input.files[index])}
+		})
+	  }
+  
+  
+	  $("#imgfile").change(function() {
+		readURL(this);
+	  });
+
+	  function fileUpload(index){
+		const {file, el} = files[index];
+		const formData = new FormData();
+		formData.append('image', file);
+		formData.append('_token',csrf);
+		formData.append('t',t);
+		
+		const request = new XMLHttpRequest();
+
+		 request.addEventListener('load', function(){
+			if (index + 1 < files.length){
+				fileUpload(index+1);
+			}else{
+				files = [];
+				console.log('Yükləmə bitdi');
+			}
+		 })
+
+		 request.upload.addEventListener('progress', function(e){
+			let faiz = (e.loaded / e.total) * 100;
+		 });
+
+		 request.open("POST", '/uploadImage');
+		 request.send(formData);
+		 request.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				console.log(this.responseText);
+			}else{
+				console.log(this.responseText);
+			}
+		}
+	}
+  
+		const fileInput = document.querySelector('#file'),
+			result = document.querySelector('.izle'),
+			t = document.querySelector('.t').value;
+			files = [];
+
+			fileInput.addEventListener('change', function(){
+				[...this.files].map((file, index)=>{
+					if(file.name.match(/\.jpe?g|png|gif/)){
+						const reader = new FileReader();
+						reader.addEventListener('load', function(){
+							const item = document.createElement('div');
+							item.className = 'item';
+							item.innerHTML = `<img style='width: 100px; margin: 10px; height: 80px' src='${this.result}' />`;
+							result.appendChild(item);
+						});
+
+						files.push({
+							file,
+						});
+
+							reader.readAsDataURL(file);
+					}else{
+						alert('error');
+					}
+				})
+			
+				fileUpload(0);
+			});

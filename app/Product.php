@@ -11,7 +11,7 @@ class Product extends Model
 
     public function pictures()
     {
-        return $this->hasMany(Picture::class, 'product_id','id');
+        return $this->hasMany(Picture::class, 'uniqid','uniqid');
     }
 
     public function city()

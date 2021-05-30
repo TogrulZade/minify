@@ -6,7 +6,7 @@
     {{-- <div class="row"> --}}
     @if(count($products) > 0)
         <div class="col-xs-12 mb-3">
-            <h3>Təsdiq gözləyən elanlar</h3>
+            <h3>Düzəliş gözləyən elanlar</h3>
         </div>
         @foreach($products as $pr_index => $pr)
         <div class="col-md-2 col-sm-4 col-xs-6">
@@ -37,7 +37,7 @@
             <div class="wrap">
                 <div class="wrap-content">
                     <i class="fas fa-box-open"></i>
-                    <p>Təsdiq gözləyən elanlar yoxdur.</p>
+                    <p>Düzəliş gözləyən elanlar yoxdur.</p>
                 </div>
             </div>
         @endif

@@ -31,7 +31,7 @@ class ProductController extends Controller
 	}
     public function index(Request $request)
     {
-    	$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->select("products.*","markets.*","products.id as pr_id","markets.name as market","pictures.*","cities.name as city")->first();
+    	$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->where('products.active','=',1)->select("products.*","markets.*","products.id as pr_id","markets.name as market","pictures.*","cities.name as city")->first();
 
 		if($product == null)
 			abort(404);
@@ -66,11 +66,18 @@ class ProductController extends Controller
     {
 		$cities = City::all();
 		$category = Category::where('status',">",0)->get();
-    	return view("sell",['category'=>$category,'cities'=>$cities]);
+    	return view("sell",['category'=>$category,'cities'=>$cities, 'uniqid'=>uniqid()]);
     }
 
     public function sellAction(Request $request)
     {
+
+		$find_images = Picture::where('uniqid',"=",$request->t)->get();
+		$error = ['picture_not_found'=>'Şəkil bazaya yüklənməyib'];
+		if(count($find_images)<1){
+			return redirect('sell')->withErrors($error)->withInput();
+		}
+
     	$rules = [
     		"product_category" => "required",
     		'product_name' 	=> "required",
@@ -106,7 +113,6 @@ class ProductController extends Controller
     		return redirect('sell')->withErrors($validator)->withInput();
 		}
 
-		$product = new Product();
         $picture = new Picture();
 
 		$lastId = Product::orderBy("id","DESC")->first();
@@ -116,57 +122,54 @@ class ProductController extends Controller
 			$addId = $lastId->id+1;
 		}
 
-		$product->product_name = $request->product_name;
-		$product->product_category = $request->product_category;
-		$product->product_price = $request->product_price;
-		$product->product_description = $request->product_description;
-		$product->merchant_number = $request->merchant_number;
-		$product->product_merchant = $request->product_merchant;
-		
-
-		// dd(Auth::user());
-		$product->city = $request->city;
-		$product->slug = Str::slug($addId."-".$request->product_name, '-');
-
 		if(Auth::user()){
 			$prNumber = Product::create(["product_name"=>$request->product_name,"product_category"=>$request->product_category,"product_price"=>$request->product_price,"product_description"=>$request->product_description,"merchant_number"=>$request->merchant_number,
 			"user_id" => Auth::user()->id,
 			"product_merchant"=>$request->product_merchant,
 			"closed_at"=>date('Y-m-d H:i:s', strtotime('+30 days')),
+			'uniqid'=>$request->t,
 			"slug"=>Str::slug($addId."-".$request->product_name, '-')])->id;
 		}else{
+			// User olmadiqda .. hazirda bu funksiya islemir
 			$prNumber = Product::create(["product_name"=>$request->product_name,"product_category"=>$request->product_category,"product_price"=>$request->product_price,"product_description"=>$request->product_description,"merchant_number"=>$request->merchant_number,"product_merchant"=>$request->product_merchant,
 			"closed_at"=>date('Y-m-d H:i:s', strtotime('+30 days')),
 			"slug"=>Str::slug($addId."-".$request->product_name, '-')])->id;
 		}
 
-        $files = $request->file('image');
+        // $files = $request->file('image');
 
-        $imageName = [];
+        // $imageName = [];
 
-        $k = 0;
-        foreach ($files as $file) {
-            $k++;
-            $ex = $file->getClientOriginalExtension();
-            $url = "public/products/".uniqid($prNumber."_", true).".".$ex;
-            $image = Storage::put($url, file_get_contents($file));
-            $imgurl = substr($url, 7);
-            if($k == 1){
-				$coverUrl = "storage/products/cover/".uniqid($prNumber."_", true).".".$ex;
-				$coverCut = substr($coverUrl, 8);
-				$image_resize = Image::make($file->getRealPath());          
-				$image_resize->resize(220, 163);	
-				$image_resize->save(public_path($coverUrl));
-				$cover = 1;
-                $up = Product::find($prNumber);
-                $up->product_cover = $coverCut;
-                $up->save();
-            }else{$cover = 0;}
+        // $k = 0;
+        // foreach ($files as $file) {
+        //     $k++;
+        //     $ex = $file->getClientOriginalExtension();
+        //     $url = "public/products/".uniqid($prNumber."_", true).".".$ex;
+        //     $image = Storage::put($url, file_get_contents($file));
+        //     $imgurl = substr($url, 7);
+        //     if($k == 1){
+		// 		$coverUrl = "storage/products/cover/".uniqid($prNumber."_", true).".".$ex;
+		// 		$coverCut = substr($coverUrl, 8);
+		// 		$image_resize = Image::make($file->getRealPath());          
+		// 		$image_resize->resize(220, 163);	
+		// 		$image_resize->save(public_path($coverUrl));
+		// 		$cover = 1;
+        //         $up = Product::find($prNumber);
+        //         $up->product_cover = $coverCut;
+        //         $up->save();
+        //     }else{$cover = 0;}
             
-            Picture::create(["product_id"=>$prNumber, "url"=>$imgurl,"cover"=>$cover]);
-        }
-        
-
+        //     Picture::create(["product_id"=>$prNumber, "url"=>$imgurl,"cover"=>$cover]);
+        // }
+		
+		
+		foreach($find_images as $fi){
+			if($fi->cover == 1){
+				$cp = Product::find($prNumber);
+				$cp->product_cover = $fi->url;
+				$cp->update();
+			}
+		}
 		return redirect("sell")->withInput(["success"=>"Məhsulunuz müvəffəqiyyətlə əlavə edildi."]);
 
     }

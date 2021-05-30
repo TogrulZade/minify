@@ -1608,18 +1608,18 @@ a.card-mini:focus {
 	align-items: center;
 	text-align: center;
 	color: #494949;
-	margin-top: 100px;
 }
 
 .wrap i, .wrap span{
 	font-size: 8em;
-	
+	color:#c2c2c2;
 }
 
 .wrap p{
 	font-size: 1.4em;
+	color:#c2c2c2;
+	margin-top: 20px;
 }
-
 
 
 @media (max-width: 768px){
@@ -1732,4 +1732,32 @@ a.card-mini:focus {
 	color: #494949;
 	background-color: #fff;
 	border: none;
+}
+
+.izle .item{
+	float: left;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.izle .bar{
+	width: 101px;
+	/* border: 2px solid #c2c2c2; */
+	border-radius: 20px;
+	margin: 0 10px;
+	position: relative;
+	/* float: left; */
+	height: 6px;
+	background: #c2c2c2;
+}
+
+.bar span{
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	/* width: 74%; */
+	background-color: #0070cc;
+	height: 6px;
+	border-radius: 20px;
 }

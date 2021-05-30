@@ -9,7 +9,7 @@
             <h3>Təsdiq gözləyən elanlar</h3>
         </div>
         @foreach($products as $pr_index => $pr)
-        <div class="col-md-2 col-sm-4 col-xs-6">
+        <div class="col-md-3 col-sm-4 col-xs-6">
             <a href="/product/{{$pr->slug}}" class="card-mini">
                 <div class="card-img">
                     <img src="{{asset('storage/'.$pr->product_cover)}}" alt="">

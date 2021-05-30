@@ -28,6 +28,22 @@ class ProductHelper{
         })->doesntHave('vip')->where('products.closed_at',">",date('Y-m-d H:i:s'))->where('active',"=",'1')->select('*', 'products.id as id')->get();
         return $products;
     }
+    
+    public static function waiting()
+    {
+        $products = Product::with(['pictures'])->whereHas('pictures', function($q){
+            return $q->where('pictures.cover',"=",1);
+        })->where('products.closed_at',">",date('Y-m-d H:i:s'))->where('active',"=",'0')->select('*', 'products.id as id')->get();
+        return $products;
+    }
+
+    public static function duzelis()
+    {
+        $products = Product::with(['pictures'])->whereHas('pictures', function($q){
+            return $q->where('pictures.cover'   ,"=",1);
+        })->where('products.closed_at',">",date('Y-m-d H:i:s'))->where('active',"=",'2')->select('*', 'products.id as id')->get();
+        return $products;
+    }
 }
 
 ?>

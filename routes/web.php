@@ -13,15 +13,18 @@
   
 Route::group(['middleware' => ['auth']], function () {
     Route::get('admin/', 'Admin\AdminController@index');
+    Route::get('admin/showTesdiq', 'Admin\AdminController@showTesdiq');
+    Route::post('admin/product/tesdiqle', 'Admin\AdminController@elantesdiqle');
+    Route::get('admin/showDuzelis', 'Admin\AdminController@showDuzelis');
 });
 
 Route::get("/", "HomeController@index");
 Route::get("/logo", "HomeController@logo");
 Route::get("/stores", "HomeController@index");
 Route::get("/product/{slug}", "ProductController@index");
-Route::get("/sell", "ProductController@sell");
+Route::get("/sell", "ProductController@sell")->middleware('auth');
 Route::get("/cv", "HomeController@cv");
-Route::post("/sell", "ProductController@sellAction");
+Route::post("/sell", "ProductController@sellAction")->middleware('auth');
 Route::get("/c/{cat}", "ProductController@getByCategory");
 Route::get("update", "ProductController@update");
 Route::get("axtar", "HomeController@axtar");
@@ -30,6 +33,7 @@ Route::get("showFavs", "FavController@show");
 Route::get("test", "HomeController@test");
 Route::get("cabinet", "CabinetController@index")->middleware('auth');
 Route::get("profile", "ProfileController@index");
+Route::post("uploadImage", "PictureController@uploadImage");
 
 
 Auth::routes();

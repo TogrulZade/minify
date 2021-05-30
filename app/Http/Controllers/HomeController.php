@@ -64,6 +64,7 @@ class HomeController extends Controller
         $products = ProductHelper::allAktivElanlar();
 
         $favs = FavHelper::getFavs($request);
+
         return view('home', ["products"=> $products, 'vips'=>$vips, 'favs'=>$favs, 'user'=>$user, 'categoryName'=>'']);
     }
 
