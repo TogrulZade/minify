@@ -19,7 +19,7 @@ class FavController extends Controller
     public function addFavs(Request $request)
     {
         $user = Auth::user() ? Auth::user()->id : $request->cookie('anonim');
-        $find = Product::where('id',"=",$request->product_id)->first();
+        $find = Product::where('id',"=",$request->product_id)->get();
         if(count($find) == 0){
             return response()->json('not_found');
         }
