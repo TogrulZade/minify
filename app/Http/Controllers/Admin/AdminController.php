@@ -13,7 +13,7 @@ class AdminController extends Controller
     public function index()
     {
         $products = ProductHelper::waiting();
-        return view("Admin.Admin", ['products'=>$products]);
+        return view("admin.Admin", ['products'=>$products]);
     }
 
     public function showTesdiq(Request $request)

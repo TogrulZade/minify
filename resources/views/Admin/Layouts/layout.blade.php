@@ -37,10 +37,10 @@
     <a href='/sell' class="addItemButton">
         <span><i class="feather-plus"></i></span>
     </a>
-    @include('Admin.navbar')
+    @include('admin.navbar')
 
     <main>
-        @include('Admin.menu')
+        @include('admin.menu')
         @yield('content')
     </main>
 
