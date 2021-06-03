@@ -25,7 +25,7 @@
                     <input id="axtar" type="text" name="axtar" class="form-control col-md-6" value="{{old('axtar')}}" placeholder="Əşya və ya xidmət axtarın...">
                     <div class="icon"><i class="feather-search" style="font-size: 15px"></i></div>
                 </div>
-                <button type="submit" class="btn btn-search">Axtarış et</button>
+                <button type="submit" class="btn btn-search">Axtarış et.</button>
             </form>
             <ul class="nav navbar-nav navbar-right xs-p-3 nav-sign">
                 {{-- <li><a class="btn-sel" href="/sell"><i class="fas fa-paper-plane"></i> Elan yerləşdir</a></li> --}}
