@@ -1,5 +1,5 @@
 var csrf = document.querySelector('meta[name="csrf-token"]').content;
-$(function(){
+$(document).ready(function(){
     $('.tesdiqle').on('click', function(e){
         e.preventDefault();
         const that = $(this);

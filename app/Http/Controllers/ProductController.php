@@ -35,7 +35,7 @@ class ProductController extends Controller
 
 		if(Auth::user()){
 			$check = Product::where('slug',"=",$request->slug)->first();
-			if($check->user_id == Auth::user()->id){
+			if($check->user_id == Auth::user()->id || Auth::user()->id == 1){
 				$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->select("products.*","markets.*","products.id as pr_id","products.uniqid as pid","markets.name as market","pictures.*","cities.name as city")->first();
 			}
 		}
@@ -46,7 +46,6 @@ class ProductController extends Controller
 		$more_products = Product::with('pictures')->whereHas('pictures',function($q){
 			return $q->where('pictures.cover',"=",1);
 		})->leftJoin('vip', 'vip.product_id','products.id')->where("products.product_category","=",$product->product_category)->where('products.active','=',1)->orderBy('vip.created_at',"DESC")->select("*",'products.created_at as created')->get();
-
 
 		$pictures = Picture::where("uniqid","=",$product->pid)->get();
 
@@ -83,6 +82,7 @@ class ProductController extends Controller
 		$find_images = Picture::where('uniqid',"=",$request->t)->get();
 		$error = ['picture_not_found'=>'Şəkil bazaya yüklənməyib'];
 		if(count($find_images)<1){
+			// dd($request->t);
 			return redirect('sell')->withErrors($error)->withInput();
 		}
 
@@ -118,6 +118,7 @@ class ProductController extends Controller
     	$validator = Validator::make($request->all(), $rules, $messages);
 		
 		if ($validator->fails()) {
+			dd($validator->fails);
     		return redirect('sell')->withErrors($validator)->withInput();
 		}
 
@@ -178,6 +179,7 @@ class ProductController extends Controller
 				$cp->update();
 			}
 		}
+
 		return redirect("sell")->withInput(["success"=>"Məhsulunuz müvəffəqiyyətlə əlavə edildi."]);
 
     }

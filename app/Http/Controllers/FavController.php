@@ -21,7 +21,7 @@ class FavController extends Controller
         $user = Auth::user() ? Auth::user()->id : $request->cookie('anonim');
         $find = Product::where('id',"=",$request->product_id)->get();
         if(count($find) == 0){
-            return response()->json('not_found');
+            return response()->json($request->product_id);
         }
 
         $check = Fav::where('user_id',"=",$user)->where('product_id',"=",$request->product_id);

@@ -39,7 +39,15 @@
 						<div class="col-xs-12">									
 							<ul id="mini-gallery">
 								@if(count($pictures) < 1)
+									@if($product->product_cover != '')
+									<div class="cover-photo col-md-12">
+										<li>
+										<img src="{{asset("storage/$product->product_cover")}}" />
+										</li>
+									</div>
+									@else
 									<img src="{{asset("storage/images/not-found.jpeg")}}" />
+									@endif
 								@else
 								@foreach($pictures as $index=>$pic)
 									<div class="{{$index == 0 ? 'cover-photo col-md-12' : 'mini-photo col-md-3 col-sm-3 col-xs-6 col-xs-12'}}">
@@ -85,8 +93,21 @@
 								</div>
 								@endif
 								<div class="col-md-12 p-0">
-									<div class="save">
-										<i class="far fa-heart unsave pull-right"></i>
+								<div class="save">
+									@php $z = ''; @endphp
+									@foreach ($favs as $fav)
+										@if ($fav->id == $product->pr_id)
+										@php $z = $product->pr_id @endphp
+											<i style="{{$fav->id == $product->pr_id ? 'color: red' : ''}}" data-product_id="{{$product->pr_id}}" class="bookmarks fas fa-heart pull-right"></i>
+										@endif
+									@endforeach
+									
+									@if ($z != $product->pr_id)
+										<i style="{{$fav->id == $product->pr_id ? 'color: red' : 'color: red'}}" data-product_id="{{$product->pr_id}}" class="bookmarks far fa-heart pull-right"></i>
+									@endif
+
+
+										{{-- <i data-product_id="{{$product->pr_id}}" class="bookmarks far fa-heart pull-right"></i> --}}
 										<span>{{$product->product_price}} AZN</span>
 									</div>
 								</div>

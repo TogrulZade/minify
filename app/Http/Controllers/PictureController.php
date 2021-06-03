@@ -17,6 +17,8 @@ class PictureController extends Controller
         $imageName = [];
         $coverCut = '';
 
+        // dd($file);
+
         $check = Picture::where('uniqid',"=",$t)->get();
         if(count($check) < 1){$cover = 1;}else{$cover = 0;}
 

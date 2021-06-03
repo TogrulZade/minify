@@ -16,6 +16,10 @@
 
 						<form action="/sell" method="POST" enctype="multipart/form-data">
 							{{@csrf_field()}}
+							
+							@if($errors->has("picture_not_found"))
+								<p class="error">{{ $errors->first('picture_not_found') }}</p>
+							@endif
 							<div class="form-group">
 								@if($errors->has("product_category"))
 									<p class="error">{{ $errors->first('product_category') }}</p>

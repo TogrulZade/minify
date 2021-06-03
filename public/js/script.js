@@ -105,20 +105,30 @@ $(document).ready(function(){
 
 	const add_favorite = (the)=>{
 		const product_id = the.data('product_id');
+
 		const that = the;
 		$.ajax({
-			url: 'addFavs',
+			url: '/addFavs',
 			type:'post',
 			data: {_token: csrf, product_id: product_id},
 			success: function(res){
 				if(res == 'redirect/login'){
 					window.location.href = '/login';
 				}else if(res == 'unfavorite'){
-					that.css('color',"#a0a0a0");
-					// alert('unfollow');
-					// that.parent().css('background-color','blue');
+
+					if(that.hasClass('bookmarks')){
+						that.removeClass('fas').addClass('far');
+					}else{
+						that.css('color',"#a0a0a0");
+					}
 				}else{
-					that.css('color','red');
+
+					if(that.hasClass('bookmarks')){
+						that.removeClass('far').addClass('fas');
+					}else{
+						that.css('color','red');
+					}
+					
 					// alert('followed');
 				}
 			},
@@ -129,6 +139,11 @@ $(document).ready(function(){
 	}
 
 	$(".add_favorite").on('click', function(e){
+		e.preventDefault();
+		add_favorite($(this));
+	});
+
+	$(".bookmarks").on('click', function(e){
 		e.preventDefault();
 		add_favorite($(this));
 	});
@@ -147,6 +162,7 @@ $(document).ready(function(){
 			$(this).addClass('active-sticky');
 		}
 	});
+
 
 	var hash = window.location.hash;
 	if(hash){
@@ -182,6 +198,11 @@ $(document).ready(function(){
 			$(".icon-search").css('color','#494949');
 		}
 	});
+
+
+	// $(".")
+
+
 });
 
 var lastScrollTop = 0;
@@ -250,6 +271,7 @@ var lastScrollTop = 0;
 	  });
 
 	  function fileUpload(index){
+		  console.log(files)
 		t = document.querySelector('.t').value;
 		console.log(fileInput);
 		const {file, el} = files[index];
@@ -275,24 +297,25 @@ var lastScrollTop = 0;
 
 
 
-		//  request.open("POST", '/uploadImage');
-		//  request.send(formData);
-		//  request.onreadystatechange = function() {
-		// 	if (this.readyState == 4 && this.status == 200) {
-		// 		console.log(this.responseText);
-		// 	}else{
-		// 		console.log(this.responseText);
-		// 	}
-		// }
+		 request.open("POST", '/uploadImage');
+		 request.send(formData);
+		 request.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				console.log(this.responseText);
+			}else{
+				console.log(this.responseText);
+			}
+		}
 	}
   
 const fileInput = document.querySelector('#file') ? document.querySelector('#file') : null,
-	  result = document.querySelector('.izle'),
+	  result = document.querySelector('.izle');
 	
 	  files = [];
 
-	  if(fileInput){
+	if(fileInput){
 	fileInput.addEventListener('change', function(){
+		// alert('Changed');
 		[...this.files].map((file, index)=>{
 			if(file.name.match(/\.jpe?g|png|gif/)){
 				const reader = new FileReader();
@@ -301,9 +324,9 @@ const fileInput = document.querySelector('#file') ? document.querySelector('#fil
 					item.className = 'item';
 					item.innerHTML = `<img style='width: 100px; margin: 10px; height: 80px' src='${this.result}' />`;
 					result.appendChild(item);
-					files.push({
-						el: item
-					});
+					// files.push({
+					// 	el: item
+					// });
 				});
 
 				files.push({
