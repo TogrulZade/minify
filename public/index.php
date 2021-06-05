@@ -6,7 +6,7 @@
  * @package  Laravel
  * @author   Taylor Otwell <taylor@laravel.com>
  */
-echo "Hello";
+echo $_SERVER['REMOTE_ADDR'];
 define('LARAVEL_START', microtime(true));
 
 /*
