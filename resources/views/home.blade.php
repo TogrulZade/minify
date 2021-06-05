@@ -97,7 +97,7 @@
 
         @foreach($products as $pr_index => $pr)
         <div class="col-md-3 col-sm-4 col-xs-6">
-            <a href="/product/{{$pr->slug}}" class="card">
+            <a href="/product/{{$pr->slug}}" class="{{ $agent->isMobile() ? 'card-mini' : 'card' }}">
                 <div class="card-img">
                     <img src="{{asset('storage/'.$pr->product_cover)}}" alt="">
                         @foreach ($favs as $fav)

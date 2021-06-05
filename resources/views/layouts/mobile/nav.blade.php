@@ -21,7 +21,11 @@
             <div class="drawer_content">
                 <ul class="section">
                     @if (Auth::user())
-                        <li><a class="username" href="#"><i class="feather-user"></i>{{Auth::user()->name}}</a></li>
+                        @if(Auth::user()->id == 1)
+                            <li><a class="username" href="/admin"><i class="feather-monitor"></i> Admin Panel</a></li>
+                        @endif
+                        <li><a class="username" href="/cabinet"><i class="feather-user"></i>{{Auth::user()->name}}</a></li>
+                        
                     @else
                         <li><a class="login" href="/login"><i class="feather-user"></i> Giriş</a></li>
                     @endif

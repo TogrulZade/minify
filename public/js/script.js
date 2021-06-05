@@ -190,6 +190,13 @@ $(document).ready(function(){
 		$(".aktiv-body").show();
 	});
 
+	$('.duzelis-link').on('click', function(){
+		$(".tab-item a").removeClass('active');
+		$(this).find('a').addClass('active');
+		$('.tab-body').hide();
+		$(".duzelis-body").show();
+	});
+
 	$(".search-bar input").on("input",function(){
 		if($(this).val()){
 			$(".icon-search").css({'color':'#1396ff'});

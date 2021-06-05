@@ -11,6 +11,7 @@ class CabinetController extends Controller
     {
         $aktivElanlar = ProductHelper::aktivElanlar();
         $yoxlanilanElanlar = ProductHelper::yoxlanilanElanlar();
-        return view('cabinet',['aktivElanlar'=>$aktivElanlar,'yoxlanilanElanlar'=>$yoxlanilanElanlar]);
+        $duzelisElanlar = ProductHelper::duzelisElanlar();
+        return view('cabinet',['aktivElanlar'=>$aktivElanlar,'yoxlanilanElanlar'=>$yoxlanilanElanlar,'duzelisElanlar'=>$duzelisElanlar]);
     }
 }

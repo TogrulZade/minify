@@ -64,6 +64,8 @@
 					
 	    			<div class="col-xs-12 p-0">
 			    		<div class="shop-extra mt-5">
+							<a href="/productVerifyEdition" class="btn btn btn-success">Düzəlişi təsdiqlə</a>
+							<a href="/productVerifyEdition" class="btn btn btn-danger">Düzəliş et</a>
 			    			<h2>Haqqında</h2>
 							<p>{!! nl2br(e($product->product_description))!!}</p>
 			    			<div class="line-bottom"></div>
@@ -96,9 +98,11 @@
 								<div class="save">
 									@php $z = ''; @endphp
 									@foreach ($favs as $fav)
+										@if(count($favs)>0)
 										@if ($fav->id == $product->pr_id)
 										@php $z = $product->pr_id @endphp
 											<i style="{{$fav->id == $product->pr_id ? 'color: red' : ''}}" data-product_id="{{$product->pr_id}}" class="bookmarks fas fa-heart pull-right"></i>
+										@endif
 										@endif
 									@endforeach
 									

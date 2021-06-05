@@ -22,6 +22,15 @@ class ProductHelper{
         return $all;
     }
 
+    public static function duzelisElanlar()
+    {
+        $id = Auth::user()->id;
+        $all = Product::with('pictures')->whereHas('pictures',function($q){
+			return $q->where('pictures.cover',"=",1);
+		})->where('closed_at',">=",date('Y-m-d H:i:s'))->where('user_id',"=",$id)->orderBy('products.created_at','DESC')->where('active',"=",2)->get();
+        return $all;
+    }
+
     public static function allAktivElanlar(){
         $products = Product::with(['pictures'])->whereHas('pictures', function($q){
             return $q->where('pictures.cover',"=",1);
