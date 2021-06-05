@@ -1396,9 +1396,11 @@ ul.nav.navbar-nav.navbar-right.xs-p-3.nav-sign {
 	font-weight: 400!important;
 }
 
-.add_favorite:hover>i{
-	color: var(--error-color);	
-	transition: color .2s ease-in;
+@media (min-width: 768px){
+	.add_favorite:hover>i{
+		color: var(--error-color);	
+		transition: color .2s ease-in;
+	}
 }
 
 

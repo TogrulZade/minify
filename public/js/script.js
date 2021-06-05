@@ -115,7 +115,6 @@ $(document).ready(function(){
 				if(res == 'redirect/login'){
 					window.location.href = '/login';
 				}else if(res == 'unfavorite'){
-
 					if(that.hasClass('bookmarks')){
 						that.removeClass('fas').addClass('far');
 					}else{
