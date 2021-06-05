@@ -14,6 +14,7 @@ use Auth;
 use minify\Category;
 use minify\City;
 use minify\vip;
+use minify\Fav;
 use minify\SeenProduct;
 use minify\Helpers\FavHelper;
 
@@ -31,7 +32,9 @@ class ProductController extends Controller
 	}
     public function index(Request $request)
     {
+		$user = Auth::user() ? Auth::user()->id : $request->cookie('anonim');
     	$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->where('products.active','=',1)->select("products.*","markets.*","products.uniqid as pid","products.id as pr_id","markets.name as market","pictures.*","cities.name as city")->first();
+		
 
 		if(Auth::user()){
 			$check = Product::where('slug',"=",$request->slug)->first();
@@ -50,6 +53,9 @@ class ProductController extends Controller
 		$pictures = Picture::where("uniqid","=",$product->pid)->get();
 
 		$favs = FavHelper::getFavs($request);
+		$user = Auth::user() ? Auth::user()->id : $request->cookie('anonim');
+		$isFav = Fav::where('product_id',"=",$product->pr_id)->where('user_id',"=",$user)->first();
+
 		// Mehsula baxildi
 		//Eger anonim userdirse user_id=0 olacaq.
 		$minutes = 60*24*30*12*100;
@@ -66,7 +72,7 @@ class ProductController extends Controller
 		
 		$count_seen = SeenProduct::where('product_id',"=",$product->pr_id)->get();
 
-		return view("product", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen->count(), "more_products"=>$more_products,'favs'=>$favs]);
+		return view("product", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen->count(), "more_products"=>$more_products,'favs'=>$favs, 'isFav'=>$isFav]);
     }
 
     public function sell(Request $request)

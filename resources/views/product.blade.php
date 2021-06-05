@@ -96,20 +96,9 @@
 								@endif
 								<div class="col-md-12 p-0">
 								<div class="save">
-									@php $z = ''; @endphp
-									@foreach ($favs as $fav)
-										@if(count($favs)>0)
-										@if ($fav->id == $product->pr_id)
-										@php $z = $product->pr_id @endphp
-											<i style="{{$fav->id == $product->pr_id ? 'color: red' : ''}}" data-product_id="{{$product->pr_id}}" class="bookmarks fas fa-heart pull-right"></i>
-										@endif
-										@endif
-									@endforeach
 									
-									@if ($z != $product->pr_id)
-										<i style="{{$fav->id == $product->pr_id ? 'color: red' : 'color: red'}}" data-product_id="{{$product->pr_id}}" class="bookmarks far fa-heart pull-right"></i>
-									@endif
-
+									<i style="{{$isFav ? 'color: red' : ''}}" data-product_id="{{$product->pr_id}}" class="bookmarks {{$isFav ? 'fas' : 'far'}} fa-heart pull-right"></i>
+									
 
 										{{-- <i data-product_id="{{$product->pr_id}}" class="bookmarks far fa-heart pull-right"></i> --}}
 										<span>{{$product->product_price}} AZN</span>
