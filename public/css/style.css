@@ -203,19 +203,7 @@ text-decoration: none;
 background-color: var(--main-bg-color);
 }
 
-a.card {
-cursor: pointer;
-float: left;
-box-shadow: 0 0 9px 0px rgb(0 0 0 / 10%);
-border-radius: 6px;
-background: #fff;
-margin-bottom: 20px;
-border-radius: 6px;
-width: 100%;
-height: 285px;
-color: #333;
-position: relative;
-}
+a.card {cursor: pointer;float: left;box-shadow: 0 0 9px 0px rgb(0 0 0 / 10%);border-radius: 6px;background: #fff;margin-bottom: 20px;border-radius: 6px;width: 100%;height: 330px;color: #333;position: relative;}
 
 
 a.card-mini {
@@ -1423,7 +1411,9 @@ ul.nav.navbar-nav.navbar-right.xs-p-3.nav-sign {
 }
 
 .card .card-footer {
-    padding: 40px 15px 1px;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
 }
 
 .sticky-body-wrapper {

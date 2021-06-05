@@ -10,6 +10,7 @@ if($_SERVER['HTTP_HOST'] == 'fragbenny.5pzjhv9fpx-lxd6rqkn939g.p.runcloud.link')
     http_response_code(404);
     die;
 }
+
 define('LARAVEL_START', microtime(true));
 
 /*
