@@ -16,6 +16,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin/showTesdiq', 'Admin\AdminController@showTesdiq');
     Route::post('admin/product/tesdiqle', 'Admin\AdminController@elantesdiqle');
     Route::get('admin/showDuzelis', 'Admin\AdminController@showDuzelis');
+    Route::get('admin/edit/{pid}', 'Admin\AdminController@edit');
+    Route::post('admin/edit/action', 'Admin\AdminController@editAction');
 });
 
 Route::get("/", "HomeController@index");
@@ -34,6 +36,7 @@ Route::get("test", "HomeController@test");
 Route::get("cabinet", "CabinetController@index")->middleware('auth');
 Route::get("profile", "ProfileController@index");
 Route::post("uploadImage", "PictureController@uploadImage");
+Route::get("verifyEdition/{uniqid}", "ProductController@verifyEdition")->middleware('auth');
 
 
 Auth::routes();

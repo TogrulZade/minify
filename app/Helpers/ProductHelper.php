@@ -53,6 +53,16 @@ class ProductHelper{
         })->where('products.closed_at',">",date('Y-m-d H:i:s'))->where('active',"=",'2')->select('*', 'products.id as id')->get();
         return $products;
     }
+
+    public static function hasPid($pid)
+    {
+        $find = Product::find($pid);
+        if($find == null){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }
 
 ?>

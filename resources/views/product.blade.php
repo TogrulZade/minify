@@ -13,6 +13,7 @@
 
 	@if ($agent->isMobile())
 		<div class="col-xs-12 p-0">
+			<p class="success">{{ old("success") }}</p>
 			<h3>{{$product->name}}</h3>
 			<div id="swipe" class="swipe">
 				<div class="swipe-wrap">
@@ -34,6 +35,11 @@
 			@if (!$agent->isMobile())
     		<div class="col-md-12 mb-5">
     			<div class="col-md-8 col-sm-8 col-xs-12 line h-cover">
+					@if(old('success'))
+					<div class="alert alert-success">
+						{{ old("success") }}
+					</div>
+					@endif
 					<h3 style="padding-left: 20px">{{$product->product_name}}</h3>
 					<div class="shop-img">	
 						<div class="col-xs-12">									
@@ -64,9 +70,18 @@
 					
 	    			<div class="col-xs-12 p-0">
 			    		<div class="shop-extra mt-5">
-							<a href="/productVerifyEdition" class="btn btn btn-success">Düzəlişi təsdiqlə</a>
+
+							@if((Auth::id() == $product->user_id && $product->active == 2)  or Auth::id() == 1) 
+							<a href="/verifyEdition/{{$product->pid}}" class="btn btn btn-success">Düzəlişi təsdiqlə</a>
 							<a href="/productVerifyEdition" class="btn btn btn-danger">Düzəliş et</a>
-			    			<h2>Haqqında</h2>
+							@endif
+
+							@if (Auth::id() == 1)
+							<a href="/admin/edit/{{$product->pr_id}}" class="btn btn btn-warning">Düzəlişi et</a>
+							@endif
+
+			    			
+							<h2>Haqqında</h2>
 							<p>{!! nl2br(e($product->product_description))!!}</p>
 			    			<div class="line-bottom"></div>
 
@@ -95,12 +110,8 @@
 								</div>
 								@endif
 								<div class="col-md-12 p-0">
-								<div class="save">
-									
-									<i style="{{$isFav ? 'color: red' : ''}}" data-product_id="{{$product->pr_id}}" class="bookmarks {{$isFav ? 'fas' : 'far'}} fa-heart pull-right"></i>
-									
-
-										{{-- <i data-product_id="{{$product->pr_id}}" class="bookmarks far fa-heart pull-right"></i> --}}
+									<div class="save">
+										<i style="{{$isFav ? 'color: red' : ''}}" data-product_id="{{$product->pr_id}}" class="bookmarks {{$isFav ? 'fas' : 'far'}} fa-heart pull-right"></i>
 										<span>{{$product->product_price}} AZN</span>
 									</div>
 								</div>

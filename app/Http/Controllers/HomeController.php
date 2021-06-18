@@ -88,7 +88,7 @@ class HomeController extends Controller
         ->whereHas('pictures', function($q){
             return $q->where('pictures.cover',"=",1);
         })->where('product_name',"like","%".$axtar."%")
-        ->where('products.closed_at',"=",date('Y-d-m H:i:s'))
+        ->where('products.closed_at',">",date('Y-d-m H:i:s'))
         ->where('products.active','=',1)
         ->get();
         

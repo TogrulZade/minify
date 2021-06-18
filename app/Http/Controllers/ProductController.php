@@ -29,12 +29,23 @@ class ProductController extends Controller
 		// 	$p->name = $city;
 		// 	$p->save();
 		// }
+
+		// $up = Product::where('user_id',"=",'')->get();
+		// foreach($up as $u){
+		// 	echo $u->product_name."<br/>";
+		// 	$u->user_id = rand(1,10);
+		// 	$u->update();
+		// }
 	}
+
     public function index(Request $request)
     {
 		$user = Auth::user() ? Auth::user()->id : $request->cookie('anonim');
     	$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->where('products.active','=',1)->select("products.*","markets.*","products.uniqid as pid","products.id as pr_id","markets.name as market","pictures.*","cities.name as city")->first();
-		
+
+
+		// echo $product->product->uid;
+		// die;
 
 		if(Auth::user()){
 			$check = Product::where('slug',"=",$request->slug)->first();
@@ -57,7 +68,6 @@ class ProductController extends Controller
 		$isFav = Fav::where('product_id',"=",$product->pr_id)->where('user_id',"=",$user)->first();
 
 		// Mehsula baxildi
-		//Eger anonim userdirse user_id=0 olacaq.
 		$minutes = 60*24*30*12*100;
 		$anonim = Str::random(14);
         if(!$request->cookie('anonim')){
@@ -221,5 +231,18 @@ class ProductController extends Controller
 		}else{
 			return redirect('/');
 		}
+	}
+
+	public function verifyEdition(Request $request)
+	{
+		$uniqid =  $request->uniqid;
+		$find = Product::where('uniqid',"=",$uniqid)->first();
+		if($find->user_id !=Auth::id() && Auth::id() !=1){
+			return redirect('/');
+		}
+
+		$find->active = 1;
+		$find->update();
+		return redirect("/product/".$find->slug)->withInput(["success"=>"Elan müvəffəqiyyətlə paylaşıldı."]);
 	}
 }

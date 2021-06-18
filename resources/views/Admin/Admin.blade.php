@@ -9,14 +9,20 @@
             <h3>Təsdiq gözləyən elanlar</h3>
         </div>
         @foreach($products as $pr_index => $pr)
-        <div class="col-md-2 col-sm-4 col-xs-6">
+        <div class="col-md-3 col-sm-4 col-xs-6">
             <a href="/product/{{$pr->slug}}" class="card-mini">
                 <div class="card-img">
                     <img src="{{asset('storage/'.$pr->product_cover)}}" alt="">
                 </div>
-                <div class="col-xs-12">
-                    <div class="tesdiqle" data-product_id='{{$pr->id}}'>Tesdiqle</div>
-                </div>
+
+                    <div class="col-xs-6">
+                        <div class="tesdiqle" data-product_id='{{$pr->id}}'>Tesdiqle</div>
+                    </div>
+
+                    <div class="col-xs-6 mt-1">
+                        <div onclick="window.location.href='/admin/edit/{{$pr->id}}'; return false" class="btn btn-sm btn-block btn-warning" data-product_id='{{$pr->id}}'>Düzəliş et</div>
+                    </div>
+                
                 <div class="card-title">
                     {{$pr->product_price}} AZN
                 </div>
