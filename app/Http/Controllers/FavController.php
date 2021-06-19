@@ -25,7 +25,7 @@ class FavController extends Controller
             return response()->json($request->product_id);
         }
 
-        $check = Fav::where('user_id',"=",$user)->where('product_id',"=",(string)$request->product_id);
+        $check = Fav::where('user_id',"=",(string)$user)->where('product_id',"=",(string)$request->product_id);
         if($check->count() > 0){
             $check->delete();
             return response()->json('unfavorite');
