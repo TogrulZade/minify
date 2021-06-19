@@ -1784,6 +1784,7 @@ a.card-mini:focus {
 .card-mini img, .card img{
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
+	height: 161.25px;
 }
 
 .card-mini .card-footer {
