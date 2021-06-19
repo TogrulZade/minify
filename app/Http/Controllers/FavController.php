@@ -16,6 +16,7 @@ class FavController extends Controller
         $getFavs = FavHelper::getfavs($request);
         return view('favs', ['favs'=>$getFavs]);
     }
+
     public function addFavs(Request $request)
     {
         $user = Auth::user() ? Auth::user()->id : $request->cookie('anonim');
@@ -24,7 +25,7 @@ class FavController extends Controller
             return response()->json($request->product_id);
         }
 
-        $check = Fav::where('user_id',"=",$user)->where('product_id',"=",$request->product_id);
+        $check = Fav::where('user_id',"=",$user)->where('product_id',"=",(string)$request->product_id);
         if($check->count() > 0){
             $check->delete();
             return response()->json('unfavorite');
