@@ -234,7 +234,7 @@ $(document).ready(function(){
 				success: function(res){
 				p = p+1;
 					res.map(data=>{
-						$("#autoload").before('<div class="col-md-3 col-sm-4 col-xs-6"><a target="_blank" href="/product/'+data.slug+'" class="card"><div class="card-img"><img src="storage/'+data.product_cover+'" alt=""><div class="add_favorite" data-product_id="'+data.id+'" style=""><i class="fas fa-heart"></i></div></div><div class="card-title">'+data.product_price+' AZN</div><div class="card-body"><strong class="mb-0">'+data.product_name+'</strong></div><div class="card-footer"><p>'+data.started_at+'</p></div></a></div>');
+						$("#autoload").before('<div class="col-md-3 col-sm-4 col-xs-6"><a target="_blank" href="/product/'+data.slug+'" class="card"><div class="card-img"><img src="/storage/'+data.product_cover+'" alt=""><div class="add_favorite" data-product_id="'+data.id+'" style=""><i class="fas fa-heart"></i></div></div><div class="card-title">'+data.product_price+' AZN</div><div class="card-body"><strong class="mb-0">'+data.product_name+'</strong></div><div class="card-footer"><p>'+data.started_at+'</p></div></a></div>');
 					})
 					$("#loading-image").hide();
 					
