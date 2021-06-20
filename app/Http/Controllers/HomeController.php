@@ -67,7 +67,7 @@ class HomeController extends Controller
         //     return $q->where('pictures.cover',"=",1);
         // })->doesntHave('vip')->select('*', 'products.id as id')->get();
 
-        $products = ProductHelper::allAktivElanlar();
+        $products = ProductHelper::allAktivElanlar(0,5);
 
         $favs = FavHelper::getFavs($request);
 

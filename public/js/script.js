@@ -206,8 +206,45 @@ $(document).ready(function(){
 	});
 
 
-	// $(".")
+	// 
+	// var current = $(window).position().top;
+	// alert(current);
 
+	// $(window).scroll(function (event) {
+	// 	var top = $("#autoload").offset().top;
+	// 	var scroll = $(window).scrollTop();
+	// 	var height = $(window).height();
+	// 	$(".pan").text("Scroll: "+scroll+" Autoload: "+(top-height-10));
+	// 	if(scroll == top-height-10){
+	// 		$("#autoload").before('<div class="col-md-3 col-sm-4 col-xs-6"><a href="/product/259-xiaomi-redmi-note-8-64gb" class="card"><div class="card-img"><img src="http://127.0.0.1:8000/storage/products/60bcd3286cf00.png" alt=""><div class="add_favorite" data-product_id="259" style=""><i class="fas fa-heart"></i></div></div><div class="card-title">678 AZN</div><div class="card-body"><strong class="mb-0">Xiaomi Redmi Note 8, 64GB</strong></div><div class="card-footer"><p>2021-06-06 13:52:52</p></div></a></div>');
+	// 	}
+	// });
+
+	var p = 1;
+	   $(window).scroll(function() {
+		if(Math.ceil($(window).scrollTop()) 
+		   == Math.ceil(($(document).height() - $(window).height()))) {
+			$.ajax({
+				url: '/loadProduct',
+				type:'get',
+				data: {_token: csrf, p: p},
+				beforeSend: function() {
+					$("#loading-image").show();
+				 },
+				success: function(res){
+				p = p+1;
+					res.map(data=>{
+						$("#autoload").before('<div class="col-md-3 col-sm-4 col-xs-6"><a target="_blank" href="/product/'+data.slug+'" class="card"><div class="card-img"><img src="storage/'+data.product_cover+'" alt=""><div class="add_favorite" data-product_id="'+data.id+'" style=""><i class="fas fa-heart"></i></div></div><div class="card-title">'+data.product_price+' AZN</div><div class="card-body"><strong class="mb-0">'+data.product_name+'</strong></div><div class="card-footer"><p>'+data.started_at+'</p></div></a></div>');
+					})
+					$("#loading-image").hide();
+					
+				},
+				error: function(){
+					alert('Error');
+				}
+			})
+		}
+	});
 
 });
 
@@ -356,3 +393,4 @@ function isNum(evt)
 
 	return true;
 }
+

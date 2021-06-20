@@ -37,6 +37,7 @@ Route::get("cabinet", "CabinetController@index")->middleware('auth');
 Route::get("profile", "ProfileController@index");
 Route::post("uploadImage", "PictureController@uploadImage");
 Route::get("verifyEdition/{uniqid}", "ProductController@verifyEdition")->middleware('auth');
+Route::get("loadProduct", "ProductController@loadProduct");
 
 
 Auth::routes();

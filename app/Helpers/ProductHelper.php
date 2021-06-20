@@ -31,10 +31,10 @@ class ProductHelper{
         return $all;
     }
 
-    public static function allAktivElanlar(){
+    public static function allAktivElanlar($page = 0, $take = 5){
         $products = Product::with(['pictures'])->whereHas('pictures', function($q){
             return $q->where('pictures.cover',"=",1);
-        })->doesntHave('vip')->where('products.closed_at',">",date('Y-m-d H:i:s'))->where('active',"=",'1')->select('*', 'products.id as id')->get();
+        })->doesntHave('vip')->where('products.closed_at',">",date('Y-m-d H:i:s'))->where('active',"=",'1')->select('*', 'products.id as id')->skip($page*$take)->take($take)->get();
         return $products;
     }
     

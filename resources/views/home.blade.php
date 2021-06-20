@@ -131,6 +131,9 @@
 
             {{-- End card --}}
         @endforeach
+
+        <div id="autoload"></div>
+        <div id="load-image" style="display: none">Loading...</div>
     </div>
 </div>
 @endsection

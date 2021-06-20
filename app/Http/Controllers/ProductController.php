@@ -17,6 +17,7 @@ use minify\vip;
 use minify\Fav;
 use minify\SeenProduct;
 use minify\Helpers\FavHelper;
+use minify\Helpers\ProductHelper;
 
 class ProductController extends Controller
 {
@@ -244,5 +245,11 @@ class ProductController extends Controller
 		$find->active = 1;
 		$find->update();
 		return redirect("/product/".$find->slug)->withInput(["success"=>"Elan müvəffəqiyyətlə paylaşıldı."]);
+	}
+
+	public function loadProduct(Request $request)
+	{
+		$products = ProductHelper::allAktivElanlar($request->p, 5);
+		return $products;
 	}
 }
