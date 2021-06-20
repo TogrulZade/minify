@@ -12,6 +12,7 @@ use Auth;
 use minify\Traits\FavTrait;
 use minify\Helpers\ProductHelper;
 use minify\Helpers\FavHelper;
+use minify\Helpers\SettingsHelper;
 
 
 class HomeController extends Controller
@@ -48,6 +49,8 @@ class HomeController extends Controller
         // $u->closed_at = date('Y-m-d H:i:s', strtotime("+2 months"));
         // $u->update();
         // }
+
+        $take = SettingsHelper::take();
         
     	$minutes = 60*24*30*12*100;
 		$anonim = Str::random(14);
@@ -67,7 +70,7 @@ class HomeController extends Controller
         //     return $q->where('pictures.cover',"=",1);
         // })->doesntHave('vip')->select('*', 'products.id as id')->get();
 
-        $products = ProductHelper::allAktivElanlar(0,5);
+        $products = ProductHelper::allAktivElanlar(0,$take->take);
 
         $favs = FavHelper::getFavs($request);
 

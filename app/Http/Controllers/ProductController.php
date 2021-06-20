@@ -18,6 +18,7 @@ use minify\Fav;
 use minify\SeenProduct;
 use minify\Helpers\FavHelper;
 use minify\Helpers\ProductHelper;
+use minify\Helpers\SettingsHelper;
 
 class ProductController extends Controller
 {
@@ -249,7 +250,8 @@ class ProductController extends Controller
 
 	public function loadProduct(Request $request)
 	{
-		$products = ProductHelper::allAktivElanlar($request->p, 5);
+		$take = SettingsHelper::take();
+		$products = ProductHelper::allAktivElanlar($request->p, $take->take);
 		return $products;
 	}
 }
