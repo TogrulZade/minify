@@ -71,13 +71,13 @@
 	    			<div class="col-xs-12 p-0">
 			    		<div class="shop-extra mt-5">
 
-							@if((Auth::id() == $product->user_id && $product->active == 2)  or Auth::id() == 1) 
+							@if($product->active == 2 and (Auth::id() == $product->user_id or Auth::id() == 1))
 							<a href="/verifyEdition/{{$product->pid}}" class="btn btn btn-success">Düzəlişi təsdiqlə</a>
-							<a href="/productVerifyEdition" class="btn btn btn-danger">Düzəliş et</a>
+							{{-- <a href="/productVerifyEdition" class="btn btn btn-danger">Düzəliş et</a> --}}
 							@endif
 
 							@if (Auth::id() == 1)
-							<a href="/admin/edit/{{$product->pr_id}}" class="btn btn btn-warning">Düzəlişi et</a>
+							<a href="/admin/edit/{{$product->pr_id}}" class="btn btn btn-info">Elana düzəlişi et</a>
 							@endif
 
 			    			

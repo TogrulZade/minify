@@ -38,6 +38,12 @@ class ProductController extends Controller
 		// 	$u->user_id = rand(1,10);
 		// 	$u->update();
 		// }
+
+		$up = Product::all();
+		foreach($up as $u){
+		$u->closed_at = "2021-12-31 00:00:00";
+		$u->update();
+		}
 	}
 
     public function index(Request $request)
