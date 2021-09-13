@@ -59,8 +59,10 @@ class ProductController extends Controller
 
 		if(Auth::user()){
 			$check = Product::where('slug',"=",$request->slug)->first();
-			if($check->user_id == Auth::user()->id || Auth::user()->id == 1){
-				$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("products.slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->select("products.*","markets.*","products.id as pr_id","products.uniqid as pid","markets.name as market","pictures.*","cities.name as city")->first();
+			if($check){
+				if($check->user_id == Auth::user()->id || Auth::user()->id == 1){
+					$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("products.slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->select("products.*","markets.*","products.id as pr_id","products.uniqid as pid","markets.name as market","pictures.*","cities.name as city")->first();
+				}
 			}
 		}
 
