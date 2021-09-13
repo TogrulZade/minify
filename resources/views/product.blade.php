@@ -14,7 +14,7 @@
 	@if ($agent->isMobile())
 		<div class="col-xs-12 p-0">
 			<p class="success">{{ old("success") }}</p>
-			<h3>{{$product->name}}</h3>
+			<h2>{{$product->name}}</h2>
 			<div id="swipe" class="swipe">
 				<div class="swipe-wrap">
 					@if(count($pictures) < 1)
@@ -31,6 +31,49 @@
 
 <div class="container">
     <div class="row">
+		@if($product->market !='')
+				<div class="col-xs-12 p-5" style="background-color: #fffede">
+					<div class="p-0" style="float: left; margin-right: 15px">
+						<img style="width: 162px; height: 162px" src="{{asset('storage/'.$product->picture)}}" alt="">
+						<div style="display: flex; justify-content: center; align-items: center; height: 40px; background-color:#635acc; width: 162px; margin-top: 10px">
+							<span style="color: #fff">300 elan</span>
+						</div>
+					</div>
+					<div class="col-md-9 p-0">
+						<div class="col-md-8" style="border-right: 1px solid #b4b1db">
+							
+							<h1 class="m-0" style="font-size: 22px; "><strong>{{$product->market}}</strong></h1>
+							<div class="mt-1">
+								<i class="fas fa-eye"></i> <span>84 232</span>
+							</div>
+							<div class="mt-1" style="line-height: 1.25; height: 75px; overflow: hidden">
+								<p>{{$product->about}}</p>
+							</div>
+
+							<div style="font-size: 16px; color: #635acc">
+								<i class="far fa-clock"></i> <span>{{$product->open_at}}-{{$product->close_at}}</span>
+							</div>
+							
+						</div>
+						
+						<div class="col-md-4 p-3" style="font-size: 16px">
+							<div class="mb-3">
+								<i class="fas fa-phone" style="color: #635acc"></i> <span>{{$product->tel}}</span>
+							</div>
+							<div>
+								<i style="color: #635acc" class="fas fa-thumbtack"></i> <span style="font-size: 14px">{{$product->unvan}}</span>
+							</div>
+						</div>
+
+						<div class="col-xs-12" style="height: 40px;background-color: #635acc;width: 100%;margin-top: 21px;color: #fff;line-height: 40px;text-align: center;">
+							<i style="transform: rotate(-10deg); font-size: 18px;" class="fas fa-star"></i> <span>{{$product->slogan}}</span>
+						</div>
+
+					</div>
+
+
+				</div>
+			@endif
     	<div class="col-md-10 col-md-offset-1 p-0">
 			@if (!$agent->isMobile())
     		<div class="col-md-12 mb-5">
@@ -40,7 +83,13 @@
 						{{ old("success") }}
 					</div>
 					@endif
-					<h3 style="padding-left: 20px">{{$product->product_name}}</h3>
+
+					@if($product->user_id == Auth::id() && $product->active == 0)
+						<div class="alert alert-info" style="">
+							<i class="fas fa-user-clock" style="font-size: 20px"></i> <span>Məhsulunuz <strong>Minify moderatorları</strong> tərəfindən təsdiq gözləyir</span>
+						</div>
+					@endif
+					<h2 style="padding-left: 20px">{{$product->product_name}}</h2>
 					<div class="shop-img">	
 						<div class="col-xs-12">									
 							<ul id="mini-gallery">
@@ -73,15 +122,16 @@
 
 							@if($product->active == 2 and (Auth::id() == $product->user_id or Auth::id() == 1))
 							<a href="/verifyEdition/{{$product->pid}}" class="btn btn btn-success">Düzəlişi təsdiqlə</a>
-							{{-- <a href="/productVerifyEdition" class="btn btn btn-danger">Düzəliş et</a> --}}
 							@endif
+
+							
 
 							@if (Auth::id() == 1)
 							<a href="/admin/edit/{{$product->pr_id}}" class="btn btn btn-info">Elana düzəlişi et</a>
 							@endif
 
 			    			
-							<h2>Haqqında</h2>
+							<h3>Haqqında</h3>
 							<p>{!! nl2br(e($product->product_description))!!}</p>
 			    			<div class="line-bottom"></div>
 

@@ -20,6 +20,22 @@
 							@if($errors->has("picture_not_found"))
 								<p class="error">{{ $errors->first('picture_not_found') }}</p>
 							@endif
+
+							@if(count($markets) >0)
+							<div class="form-group">
+								@if($errors->has("market"))
+									<p class="error">{{ $errors->first('market') }}</p>
+								@endif
+								<select name="market">
+										<option disabled selected>Mağaza seç</option>
+										<option value="0">Fərdi elan</option>
+										@foreach ($markets as $market)
+											<option {{ old("market") == $market->id ? "selected":"" }} value="{{$market->id}}">{{$market->name}}</option>
+										@endforeach
+								</select>
+							</div>
+							@endif
+
 							<div class="form-group">
 								@if($errors->has("product_category"))
 									<p class="error">{{ $errors->first('product_category') }}</p>

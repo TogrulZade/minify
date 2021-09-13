@@ -94,10 +94,20 @@ class HomeController extends Controller
         ->where('products.closed_at',">",date('Y-d-m H:i:s'))
         ->where('products.active','=',1)
         ->get();
+
+        $cats = Product::with('pictures')
+        ->with('category')
+        ->whereHas('pictures', function($q){
+            return $q->where('pictures.cover',"=",1);
+        })->where('product_name',"like","%".$axtar."%")
+        ->where('products.closed_at',">",date('Y-d-m H:i:s'))
+        ->where('products.active','=',1)
+        ->groupBy('product_category')
+        ->get();
         
         $categoryName = '';
         $favs = FavHelper::getFavs($request);
-        return view('axtar',compact('products','vips','categoryName','favs'));
+        return view('axtar',compact('products','vips','categoryName','favs','cats'));
     }
 
     public function test()

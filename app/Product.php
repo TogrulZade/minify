@@ -14,6 +14,11 @@ class Product extends Model
         return $this->hasMany(Picture::class, 'uniqid','uniqid');
     }
 
+    public function category()
+    {
+        return $this->hasMany(Category::class, 'id','product_category');
+    }
+
     public function city()
     {
         return $this->hasOne(City::class, 'id',"city_id");

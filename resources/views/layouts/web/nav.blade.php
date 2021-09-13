@@ -33,6 +33,8 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}} {{Auth::user()->surname}}<b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        <li class="active"><a href="makeMarket">Mağaza aç</a></li>
+                        <li><a href="/myMarket">Mağazalarım</a></li>
                         @if(Auth::user()->id == 1)
                             <li><a href="/admin">Admin Panel</a></li>
                         @endif

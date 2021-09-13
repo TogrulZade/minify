@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use minify\Product;
 use minify\Picture;
+use minify\market;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -39,17 +40,18 @@ class ProductController extends Controller
 		// 	$u->update();
 		// }
 
-		$up = Product::all();
-		foreach($up as $u){
-		$u->closed_at = "2021-12-31 00:00:00";
-		$u->update();
-		}
+		// $up = Product::all();
+		// foreach($up as $u){
+		// $u->closed_at = "2021-12-31 00:00:00";
+		// $u->update();
+		// }
 	}
 
     public function index(Request $request)
     {
 		$user = Auth::user() ? Auth::user()->id : $request->cookie('anonim');
-    	$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->where('products.active','=',1)->select("products.*","markets.*","products.uniqid as pid","products.id as pr_id","markets.name as market","pictures.*","cities.name as city")->first();
+    	
+		$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("products.slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->where('products.active','=',1)->select("products.*","markets.*","products.uniqid as pid","products.id as pr_id","markets.name as market","pictures.*","cities.name as city")->first();
 
 
 		// echo $product->product->uid;
@@ -58,7 +60,7 @@ class ProductController extends Controller
 		if(Auth::user()){
 			$check = Product::where('slug',"=",$request->slug)->first();
 			if($check->user_id == Auth::user()->id || Auth::user()->id == 1){
-				$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->select("products.*","markets.*","products.id as pr_id","products.uniqid as pid","markets.name as market","pictures.*","cities.name as city")->first();
+				$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("products.slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->select("products.*","markets.*","products.id as pr_id","products.uniqid as pid","markets.name as market","pictures.*","cities.name as city")->first();
 			}
 		}
 
@@ -97,7 +99,8 @@ class ProductController extends Controller
     {
 		$cities = City::all();
 		$category = Category::where('status',">",0)->get();
-    	return view("sell",['category'=>$category,'cities'=>$cities, 'uniqid'=>uniqid()]);
+		$markets = market::where("uid","=",Auth::id())->get();
+    	return view("sell",['category'=>$category,'cities'=>$cities, 'uniqid'=>uniqid(), 'markets'=>$markets]);
     }
 
     public function sellAction(Request $request)
@@ -121,7 +124,7 @@ class ProductController extends Controller
     		'delivery' 	=> "required",
     		'new' 	=> "required",
             "image.*"           => 'mimes:jpeg,jpg,png|required',
-			"image"=>'required'
+			"image"=>'required',
     	];
 
     	$messages = [
@@ -155,12 +158,15 @@ class ProductController extends Controller
 			$addId = $lastId->id+1;
 		}
 
+		if($request->market == 0)$request->market = '';
+
 		if(Auth::user()){
 			$prNumber = Product::create(["product_name"=>$request->product_name,"product_category"=>$request->product_category,"product_price"=>$request->product_price,"product_description"=>$request->product_description,"merchant_number"=>$request->merchant_number,
 			"user_id" => Auth::user()->id,
 			"product_merchant"=>$request->product_merchant,
 			"closed_at"=>date('Y-m-d H:i:s', strtotime('+30 days')),
 			'uniqid'=>$request->t,
+			'market_id'=>$request->market,
 			"slug"=>Str::slug($addId."-".$request->product_name, '-')])->id;
 		}else{
 			// User olmadiqda .. hazirda bu funksiya islemir
@@ -204,7 +210,10 @@ class ProductController extends Controller
 			}
 		}
 
-		return redirect("sell")->withInput(["success"=>"Məhsulunuz müvəffəqiyyətlə əlavə edildi."]);
+		$sl = Product::where("id","=",$prNumber)->first();
+
+		// return redirect("sell")->withInput(["success"=>"Məhsulunuz müvəffəqiyyətlə əlavə edildi."]);
+		return redirect("/product/".$sl->slug)->withInput(["success"=>"Məhsulunuz müvəffəqiyyətlə əlavə edildi."]);
 
     }
 

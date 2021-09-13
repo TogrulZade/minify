@@ -17,6 +17,7 @@ a{
 .navbar-default .navbar-nav>li>a{color: #000;}
 .sign a{color: #000}
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{background: #000000;color: #fff;}
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover{background-color: #07C8F9;}
 /*.navbar-brand{color: #000!important;font-size: 28px;font-family: 'Philosopher', sans-serif;font-weight: 500;}*/
 .navbar-brand{color: #000!important;font-size: 28px;font-family: 'Nunito', sans-serif;font-weight: 600;padding-top: 20px;}
 .navbar-default .navbar-brand:hover{color: #fff;}
@@ -458,8 +459,8 @@ width: 100%;
 height: 400px;
 }
 
-.p-0{padding: 0;}
-.m-0{margin: 0;}
+.p-0{padding: 0!important;}
+.m-0{margin: 0!important;}
 
 a.btn-order {
 width: 100%;
@@ -1169,10 +1170,14 @@ form.navbar-form.navbar-left {
 
 .vip-icon {
     position: absolute;
-    bottom: -33px;
+    bottom: 10px;
     right: 10px;
     color: var(--error-color);
     font-size: 18px;
+    background-color: #fff;
+    padding: 6px 5px;
+    border-radius: 5px;
+    line-height: 5px;
 }
 
 .card-img {
@@ -1806,4 +1811,10 @@ a.card-mini:focus {
 	top: 200px;
 	left: 200px;
 	z-index: 99999;
+}
+
+.form-card{
+	padding: 15px 20px;
+	box-shadow: 0 0 10px 1px rgba(0,0,0,.2);
+	border-radius: 10px;
 }

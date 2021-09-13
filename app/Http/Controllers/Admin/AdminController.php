@@ -47,7 +47,7 @@ class AdminController extends Controller
         if($product == null){
             return 'Tapilmadi';
         }else{
-            return view('admin/edit', ['product'=>$product, 'category'=>$cat]);
+            return view('admin.edit', ['product'=>$product, 'category'=>$cat]);
         }
     }
 
@@ -64,7 +64,7 @@ class AdminController extends Controller
         $update->product_price = $request->price;
         $update->merchant_number = $request->merchant_number;
         $update->product_category = $request->product_category;
-        $update->active = $request->active;
+        $update->active = 2;
         $update->started_at = $request->started_at;
         $update->closed_at = $request->closed_at;
         if($update->update()){

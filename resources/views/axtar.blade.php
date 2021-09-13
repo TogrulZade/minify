@@ -14,7 +14,6 @@
 
 <div class="container">
     <div class="row">
-        
         @if(!empty($vips))
         <div class="col-xs-12">
         @foreach ($vips as $i=>$vip)
@@ -77,7 +76,7 @@
 
         @php $z = 0;@endphp
         @foreach($products as $pr_index => $pr)
-        <div class="col-md-2 col-sm-4 col-xs-6">
+        <div class="col-md-3 col-sm-4 col-xs-6">
             <a href="/product/{{$pr->slug}}" class="card-mini">
                 <div class="card-img">
                     <img src="{{asset('storage/'.$pr->product_cover)}}" alt="">

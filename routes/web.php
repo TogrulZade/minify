@@ -38,6 +38,10 @@ Route::get("profile", "ProfileController@index");
 Route::post("uploadImage", "PictureController@uploadImage");
 Route::get("verifyEdition/{uniqid}", "ProductController@verifyEdition")->middleware('auth');
 Route::get("loadProduct", "ProductController@loadProduct");
+Route::get("makeMarket", "marketController@index")->middleware('auth');
+Route::post("makeMarket", "marketController@create")->middleware('auth');
+Route::get("myMarket", "marketController@myMarket")->middleware('auth');
+Route::get("market/{slug}", "marketController@showMarket");
 
 
 Auth::routes();
