@@ -51,7 +51,7 @@ class ProductController extends Controller
     {
 		$user = Auth::user() ? Auth::user()->id : $request->cookie('anonim');
     	
-		$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("products.slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->where('products.active','=',1)->select("products.*","markets.*","products.uniqid as pid","products.id as pr_id","markets.name as market","pictures.*","cities.name as city")->first();
+		$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("products.slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->where('products.active','=',1)->leftJoin("categories","products.product_category","categories.id")->select("products.*","markets.*","products.uniqid as pid","products.id as pr_id","markets.name as market","pictures.*","cities.name as city","categories.name as category_name","markets.slug as market_slug")->first();
 
 
 		// echo $product->product->uid;
@@ -61,7 +61,7 @@ class ProductController extends Controller
 			$check = Product::where('slug',"=",$request->slug)->first();
 			if($check){
 				if($check->user_id == Auth::user()->id || Auth::user()->id == 1){
-					$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("products.slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->select("products.*","markets.*","products.id as pr_id","products.uniqid as pid","markets.name as market","pictures.*","cities.name as city")->first();
+					$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("products.slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->leftJoin("categories","products.product_category","categories.id")->select("products.*","markets.*","products.id as pr_id","products.uniqid as pid","markets.name as market","pictures.*","cities.name as city","categories.name as category_name","markets.slug as market_slug")->first();
 				}
 			}
 		}
@@ -94,7 +94,8 @@ class ProductController extends Controller
 		
 		$count_seen = SeenProduct::where('product_id',"=",$product->pr_id)->get();
 
-		return view("product", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen->count(), "more_products"=>$more_products,'favs'=>$favs, 'isFav'=>$isFav]);
+		// return view("product", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen->count(), "more_products"=>$more_products,'favs'=>$favs, 'isFav'=>$isFav]);
+		return view("detail", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen->count(), "more_products"=>$more_products,'favs'=>$favs, 'isFav'=>$isFav]);
     }
 
     public function sell(Request $request)
@@ -169,11 +170,15 @@ class ProductController extends Controller
 			"closed_at"=>date('Y-m-d H:i:s', strtotime('+30 days')),
 			'uniqid'=>$request->t,
 			'market_id'=>$request->market,
+			'new'=>$request->new,
+			'delivery'=>$request->delivery,
 			"slug"=>Str::slug($addId."-".$request->product_name, '-')])->id;
 		}else{
 			// User olmadiqda .. hazirda bu funksiya islemir
 			$prNumber = Product::create(["product_name"=>$request->product_name,"product_category"=>$request->product_category,"product_price"=>$request->product_price,"product_description"=>$request->product_description,"merchant_number"=>$request->merchant_number,"product_merchant"=>$request->product_merchant,
 			"closed_at"=>date('Y-m-d H:i:s', strtotime('+30 days')),
+			'new'=>$request->new,
+			'delivery'=>$request->delivery,
 			"slug"=>Str::slug($addId."-".$request->product_name, '-')])->id;
 		}
 

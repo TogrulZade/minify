@@ -42,7 +42,7 @@
         </a>
     @endif
 
-    <main style="{{$agent->isMobile() ? 'margin-top: 0' : ''}}">
+    <main style="{{$agent->isMobile() ? 'margin-top: 0' : 'background-color:#f8f9fa'}}">
         @yield('content')
     </main>
 

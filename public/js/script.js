@@ -1,15 +1,15 @@
 
 var csrf = document.querySelector('meta[name="csrf-token"]').content;
 $(document).ready(function(){
-	
+
+	var h = $('.shop-desc').height();
+	$(".shop-img").css("height",h+31);
+
+
 	$(".unsave").hover(function(){
 		$(this).removeClass("far").addClass("fa");
 	});
 	
-	// $(".unsave").mouseleave(function(){
-	// 	$(this).removeClass("fa").addClass("far");
-	// });
-	// 	$(this).removeClass("fa").addClass("far");
 
 	$(".unsave").on('click',function(){
 		$(this).removeClass("far unsave").addClass("fa save");
@@ -120,6 +120,10 @@ $(document).ready(function(){
 					}else{
 						that.css('color',"#a0a0a0");
 					}
+
+					if(that.hasClass('btn-pink')){
+						that.removeClass('btn-pink').addClass('btn-pink-outline')
+					}
 				}else{
 
 					if(that.hasClass('bookmarks')){
@@ -137,9 +141,46 @@ $(document).ready(function(){
 		})
 	}
 
+	const sevimli = (the)=>{
+		const product_id = the.data('product_id');
+
+		const that = the;
+		$.ajax({
+			url: '/addFavs',
+			type:'post',
+			data: {_token: csrf, product_id: product_id},
+			success: function(res){
+				if(res == 'redirect/login'){
+					window.location.href = '/login';
+				}else if(res == 'unfavorite'){
+					if(that.hasClass('btn-pink')){
+						that.removeClass('btn-pink').addClass('btn-pink-outline')
+					}
+				}else{
+
+					if(that.hasClass('bookmarks')){
+						that.removeClass('far').addClass('fas');
+					}else{
+						that.removeClass('btn-pink-outline').addClass('btn-pink');
+					}
+					
+					// alert('followed');
+				}
+			},
+			error: function(error){
+				console.log(JSON.stringify(error));
+			}
+		})
+	}
+
 	$(".add_favorite").on('click', function(e){
 		e.preventDefault();
 		add_favorite($(this));
+	});
+
+	$(".sevimli").on('click', function(e){
+		e.preventDefault();
+		sevimli($(this));
 	});
 
 	$(".bookmarks").on('click', function(e){
