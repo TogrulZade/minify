@@ -217,9 +217,8 @@
 												@endif
 												@endforeach
 												@if ($x != $product->pr_id)
-													<a class="sevimli btn btn-pink-outline p-3 btn-block" data-product_id="{{$product->pr_id}}" href=""><i class="fas fa-heart" style="{{$f->id == $product->pr_id ? 'background-color: #e51a3a' : ''}};font-size: 18px"></i> {{$product->id}} Seçilmişlərə əlavə et</a>
+													<a class="sevimli btn btn-pink-outline p-3 btn-block" data-product_id="{{$product->pr_id}}" href=""><i class="fas fa-heart" style="font-size: 18px"></i> {{$product->id}} Seçilmişlərə əlavə et</a>
 												@endif
-												
 										</div>
 									</div>
 								</div>

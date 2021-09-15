@@ -50,7 +50,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
 		$user = Auth::user() ? Auth::user()->id : $request->cookie('anonim');
-    	
+
 		$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("products.slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->where('products.active','=',1)->leftJoin("categories","products.product_category","categories.id")->select("products.*","markets.*","products.uniqid as pid","products.id as pr_id","markets.name as market","pictures.*","cities.name as city","categories.name as category_name","markets.slug as market_slug")->first();
 
 
