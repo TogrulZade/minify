@@ -31,8 +31,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        // $cat = Category::where("parent_id","=",0)->with("childrenCategories")->get();
+        $cat = Category::where("parent_id","=",0)->with("childrenCategories")->get();
 
-        // View::share('getCategory', $cat);
+        View::share('getCategory', $cat);
     }
 }
