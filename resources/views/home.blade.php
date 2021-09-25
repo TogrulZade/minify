@@ -21,7 +21,7 @@
         @foreach ($vips as $i=>$vip)
             @if ($vip->id && $i == 0)
             <div class="col-xs-12">
-                <h3 class="black mb-5">VIP Elanlar</h3>
+                <h3 class="black mb-5" style="color: #8d94ad; font-size: 16px;">VIP Elanlar</h3>
             </div>
             @endif
 

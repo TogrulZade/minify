@@ -29,7 +29,7 @@
 		</div>
 		@endif
 
-<div class="container" style="padding: 0">
+<div class="container" style="{{!$agent->isMobile() ? 'padding: 0': ''}}">
     <div class="row">
 		{{-- @if($product->market !='')
             <div class="col-xs-12 p-5" style="background-color: #fffede">
@@ -205,10 +205,10 @@
 									</div>
 
 									<div class="mt-4">
-										<div class="col-sm-6" style="padding-left: 0">
-										<a class="btn btn-primary2 p-3 btn-block" href=""> Mesaj yazın</a>
+										<div class="col-sm-6 pl-0" style="{{$agent->isMobile() ? 'padding-left: 0':''}}">
+										<a class="btn btn-primary2 mb-3 p-3 btn-block" href=""> Mesaj yazın</a>
 										</div>
-										<div class="col-sm-6" style="padding-right: 0">
+										<div class="col-sm-6" style="{{!$agent->isMobile() ? 'padding-right: 0':''}}">
 											@php $x = 0; @endphp
 											@foreach ($favs as $f)
 												@if ($f->id == $product->pr_id)
@@ -217,7 +217,7 @@
 												@endif
 												@endforeach
 												@if ($x != $product->pr_id)
-													<a class="sevimli btn btn-pink-outline p-3 btn-block" data-product_id="{{$product->pr_id}}" href=""><i class="fas fa-heart" style="font-size: 18px"></i> {{$product->id}} Seçilmişlərə əlavə et</a>
+													<a class="sevimli btn btn-pink-outline p-3 btn-block" data-product_id="{{$product->pr_id}}" href=""><i class="fas fa-heart" style="font-size: 18px"></i> Seçilmişlərə əlavə et</a>
 												@endif
 										</div>
 									</div>

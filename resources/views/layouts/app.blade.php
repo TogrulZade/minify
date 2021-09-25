@@ -38,11 +38,11 @@
     @else
         @include('layouts.web.nav')
         <a href='/sell' class="addItemButton">
-            <span><i class="feather-plus"></i></span>
+            <span><i class="feather-plus" style="font-size: 20px;"></i></span>
         </a>
     @endif
 
-    <main style="{{$agent->isMobile() ? 'margin-top: 0' : 'background-color:#f8f9fa'}}">
+    <main style="{{$agent->isMobile() ? 'margin-top: 0;' : 'background-color:#f8f9fd;'}} {{!Request::is('/') ? 'margin-top: 120px;' : ''}}">
         @yield('content')
     </main>
 

@@ -59,6 +59,36 @@
     </div>
 </nav>
 
+{{-- <div class="header navbar navbar-fixed-top">
+    <div class="navbar-header">
+    <button type="button" class="navbar-toggle navbar-toggle-black collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                    
+                <li><a href="/c/elektronika">Elektronika</a></li>
+                <li><a href="/c/elektronika">Elektronika</a></li>
+                <li><a href="/c/geyim">Geyim</a></li>
+                <li><a href="/c/shexsi-esyalar">Şəxsi əşyalar</a></li>
+                <li><a href="/c/xidmetler">Xidmətlər</a></li>
+                <li><a href="/c/usaq">Uşaq</a></li>
+                <li><a href="/c/hobbi-ve-asude">Hobbi və asudə</a></li>
+                <li><a href="/c/usaq-alemi">Uşaq aləmi</a></li>
+                <li><a href="/c/heyvanlar">Heyvanlar</a></li>
+                <li><a href="/c/neqliyyat">Nəqliyyat</a></li>
+            </ul>
+        </div>
+    </div>
+</div> --}}
+
+
 <div class="header navbar navbar-fixed-top">
     <div class="navbar-header">
     <button type="button" class="navbar-toggle navbar-toggle-black collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -72,11 +102,33 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <div class="container">
             <ul class="nav navbar-nav">
+
+                <li class="drop-down"><a href="#"><i class="fas fa-bars"></i> Kataloq</a>
+                    <div class="subcategory hide">
+                        <ul class="ul_subcategory">
+                            @foreach ($getCategory as $gc)
+                                <li>
+                                    <a href="#">{{$gc->name}} 
+                                        @if ($gc->childrenCategories)
+                                        <i class="fas fa-chevron-right"></i>
+                                        @endif
+                                    </a>
+                                </li>
+                                <ul class="sub_item">
+                                    @foreach ($gc->childrenCategories as $childCategory)
+                                        @include('child_category', ['child_category' => $childCategory])
+                                    @endforeach
+                                </ul>
+                            @endforeach
+                            
+                        </ul>
+                    </div>
+                </li>
+                
+
                 <li><a href="/c/elektronika">Elektronika</a></li>
-                <li><a href="/c/geyim">Geyim</a></li>
                 <li><a href="/c/shexsi-esyalar">Şəxsi əşyalar</a></li>
                 <li><a href="/c/xidmetler">Xidmətlər</a></li>
-                <li><a href="/c/usaq">Uşaq</a></li>
                 <li><a href="/c/hobbi-ve-asude">Hobbi və asudə</a></li>
                 <li><a href="/c/usaq-alemi">Uşaq aləmi</a></li>
                 <li><a href="/c/heyvanlar">Heyvanlar</a></li>
@@ -85,3 +137,32 @@
         </div>
     </div>
 </div>
+
+@if(Request::is('/'))
+<div style="background-color: #f8f9fd; width: 100%; float: left">
+<div class="container" style="margin-top: 100px; margin-bottom: 20px">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrap-category">
+                @foreach ($getCategory as $index=>$gc)
+                <div class="category-item" href="/c/{{$gc->slug}}" style="border:1px solid {{$gc->color}}">
+                    <div class="items-wr">
+                    <div class="item-icon">
+                    <i class="fas {{$gc->icon}}" style="color: {{$gc->color}}"></i>
+                    </div>
+                    <span class="item-name">{{$gc->name}}</span>
+                    </div>
+                    <ul class="subcat">
+                        @foreach ($gc->childrenCategories as $childCategory)
+                            <li><a href="">{{$childCategory->name}}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+@endif

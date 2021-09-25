@@ -10,6 +10,24 @@ $(document).ready(function(){
 		$(this).removeClass("far").addClass("fa");
 	});
 	
+	$(".drop-down a").on("click", function(e){
+		e.preventDefault();
+		if($(".subcategory").hasClass('hide')){
+			$(".subcategory").removeClass('hide').addClass("show");
+		}else{
+			$(".subcategory").removeClass('show').addClass("hide");
+		}
+	});
+
+	$(".ul_subcategory li").hover(function(){
+		$(this).next("ul").removeClass("hide").addClass("show");
+	});
+
+	$(".sub_item li").hover(function(){
+		$(this).next("ul").removeClass("hide").addClass("show");
+	},function(){
+		$(".sub_item").find("ul").removeClass("show").addClass('hide');
+	});
 
 	$(".unsave").on('click',function(){
 		$(this).removeClass("far unsave").addClass("fa save");

@@ -27,7 +27,8 @@ Route::get("/product/{slug}", "ProductController@index");
 Route::get("/sell", "ProductController@sell")->middleware('auth');
 Route::get("/cv", "HomeController@cv");
 Route::post("/sell", "ProductController@sellAction")->middleware('auth');
-Route::get("/c/{cat}", "ProductController@getByCategory");
+Route::get("/c/{cat}", "ProductController@getByCategory")
+        ->where('cat','^[a-zA-Z0-9-_\/]+$');
 Route::get("update", "ProductController@update");
 Route::get("axtar", "HomeController@axtar");
 Route::post("addFavs", "FavController@addFavs");
@@ -42,6 +43,7 @@ Route::get("makeMarket", "marketController@index")->middleware('auth');
 Route::post("makeMarket", "marketController@create")->middleware('auth');
 Route::get("myMarket", "marketController@myMarket")->middleware('auth');
 Route::get("market/{slug}", "marketController@showMarket");
+Route::get("subGrab", "SubCategoryController@index");
 
 
 Auth::routes();

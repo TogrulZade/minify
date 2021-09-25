@@ -221,13 +221,14 @@ class ProductController extends Controller
 
 		// return redirect("sell")->withInput(["success"=>"Məhsulunuz müvəffəqiyyətlə əlavə edildi."]);
 		return redirect("/product/".$sl->slug)->withInput(["success"=>"Məhsulunuz müvəffəqiyyətlə əlavə edildi."]);
-
     }
 
 	public function getByCategory(Request $request)
 	{
-		$cat = $request->cat;
-		$getCat = Category::where('slug','=',$cat)->first();
+		$cat = explode("/",$request->cat);
+
+		$getCat = Category::where('slug',"=",$cat[count($cat)-1])->first();
+
 		if($getCat){
 			$vips = Product::with('pictures')->whereHas('pictures',function($q){
 				return $q->where('pictures.cover',"=",1);
@@ -255,6 +256,7 @@ class ProductController extends Controller
 		}else{
 			return redirect('/');
 		}
+		
 	}
 
 	public function verifyEdition(Request $request)
