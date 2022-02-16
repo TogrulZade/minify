@@ -51,17 +51,29 @@ class ProductController extends Controller
     {
 		$user = Auth::user() ? Auth::user()->id : $request->cookie('anonim');
 
-		$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("products.slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->where('products.active','=',1)->leftJoin("categories","products.product_category","categories.id")->select("products.*","markets.*","products.uniqid as pid","products.id as pr_id","markets.name as market","pictures.*","cities.name as city","categories.name as category_name","markets.slug as market_slug")->first();
+		// $product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("products.slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->where('products.active','=',1)->leftJoin("categories","products.product_category","categories.id")->leftJoin('vip',"products.id","vip.product_id")->select("products.*","markets.*","products.uniqid as pid","products.id as pr_id","markets.name as market","pictures.*","cities.name as city","categories.name as category_name","categories.slug as category_slug","markets.slug as market_slug",'vip.*')->first();
 
-
-		// echo $product->product->uid;
-		// die;
+		$product = Product::with('pictures')
+		->with('market')
+		->with('vip')
+		->with('premium')
+		->with('category')
+		->where('products.active','=',1)
+		->where("products.slug", "=", $request->slug)
+		->first();
 
 		if(Auth::user()){
 			$check = Product::where('slug',"=",$request->slug)->first();
 			if($check){
 				if($check->user_id == Auth::user()->id || Auth::user()->id == 1){
-					$product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("products.slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->leftJoin("categories","products.product_category","categories.id")->select("products.*","markets.*","products.id as pr_id","products.uniqid as pid","markets.name as market","pictures.*","cities.name as city","categories.name as category_name","markets.slug as market_slug")->first();
+					// $product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("products.slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->leftJoin("categories","products.product_category","categories.id")->leftJoin('vip',"products.id","vip.product_id")->select("products.*","markets.*","products.id as pr_id","products.uniqid as pid","markets.name as market","pictures.*","cities.name as city","categories.name as category_name","markets.slug as market_slug","categories.slug as category_slug",'vip.*')->first();
+					$product = Product::with('pictures')
+					->with('market')
+					->with('vip')
+					->with('premium')
+					// ->where('products.active','=',1)
+					->where("products.slug", "=", $request->slug)
+					->first();
 				}
 			}
 		}
@@ -71,9 +83,9 @@ class ProductController extends Controller
 
 		$more_products = Product::with('pictures')->whereHas('pictures',function($q){
 			return $q->where('pictures.cover',"=",1);
-		})->leftJoin('vip', 'vip.product_id','products.id')->where("products.product_category","=",$product->product_category)->where('products.active','=',1)->orderBy('vip.created_at',"DESC")->select("*",'products.created_at as created')->get();
+		})->leftJoin('vip', 'vip.product_id','products.id')->where("products.product_category","=",$product->product_category)->where('products.active','=',1)->orderBy('vip.created_at',"DESC")->select("*",'products.created_at as created')->where('products.id',"!=",$product->id)->get();
 
-		$pictures = Picture::where("uniqid","=",$product->pid)->get();
+		$pictures = Picture::where("uniqid","=",$product->uniqid)->get();
 
 		$favs = FavHelper::getFavs($request);
 		$user = Auth::user() ? Auth::user()->id : $request->cookie('anonim');
@@ -88,14 +100,15 @@ class ProductController extends Controller
 
 		SeenProduct::create([
 			'user_id'=>Auth::user() ? Auth::user()->id : null, 
-			'product_id'=>$product->pr_id,
+			'product_id'=>$product->id,
 			'anonim'=>$request->cookie('anonim') ? $request->cookie('anonim') : null
 		]);
-		
-		$count_seen = SeenProduct::where('product_id',"=",$product->pr_id)->get();
+
+		$count_seen = SeenProduct::where('product_id',"=",$product->id)->get();
 
 		// return view("product", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen->count(), "more_products"=>$more_products,'favs'=>$favs, 'isFav'=>$isFav]);
-		return view("detail", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen->count(), "more_products"=>$more_products,'favs'=>$favs, 'isFav'=>$isFav]);
+		// return view("detail", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen->count(), "more_products"=>$more_products,'favs'=>$favs, 'isFav'=>$isFav]);
+		return view("detail", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen, "more_products"=>$more_products,'favs'=>$favs, 'isFav'=>$isFav]);
     }
 
     public function sell(Request $request)
@@ -236,9 +249,9 @@ class ProductController extends Controller
 				return $q->where('closed_at',">", date('Y-m-d H:i:s'));
 			})->where("product_category","=",$getCat->id)->get();
 
-			$products = Product::with('pictures')->whereHas('pictures', function($q){
-				return $q->where('pictures.cover',"=",1);
-			})->where('products.product_category',"=",$getCat->id)->doesntHave('vip')->get();
+			// $products = Product::with('pictures')->whereHas('pictures', function($q){
+			// 	return $q->where('pictures.cover',"=",1);
+			// })->where('products.product_category',"=",$getCat->id)->doesntHave('vip')->get();
 
 			$products = Product::with('pictures')
 			->whereHas('pictures', function($q){
@@ -252,7 +265,7 @@ class ProductController extends Controller
 
 			$favs = FavHelper::getFavs($request);
 
-			return view('home', ['products'=>$products, 'favs'=>$favs, 'vips'=>$vips, 'categoryName'=>$getCat->name]);
+			return view('byCategory', ['products'=>$products, 'favs'=>$favs, 'vips'=>$vips, 'categoryName'=>$getCat->name]);
 		}else{
 			return redirect('/');
 		}
@@ -276,6 +289,7 @@ class ProductController extends Controller
 	{
 		$take = SettingsHelper::take();
 		$products = ProductHelper::allAktivElanlar($request->p, $take->take);
+		// $products = ProductHelper::PremiumElanlar($request->p, $take->take);
 		return $products;
 	}
 }

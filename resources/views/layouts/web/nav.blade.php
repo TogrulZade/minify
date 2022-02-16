@@ -18,7 +18,26 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-category">
                 {{-- <li><a href="#">Mağazalar</a></li> --}}
-                {{-- <li class="active"><a href="#">Kateqoriyalar</a></li> --}}
+                <li class="navbar-menu">
+                    <a class="active" href="#" style="color: #fff!important;display: flex; align-items: center;">
+                        {{-- <i class="fas fa-bars"></i> --}}
+                        <i class="feather-grid" style="color: #fff; margin-right: 5px"></i>
+                        Kateqoriya
+                    </a>
+                    <ul class="navbar-menu-open">
+                        <div>
+                            <select name="dil" id="dil">
+                                <option value="1">Azərbaycan dili</option>
+                                <option value="2">Rus dili</option>
+                                <option value="3">İngilis dili</option>
+                            </select>
+                        </div>
+                        @foreach ($getCategory as $c)
+                            <li><a href="/c/{{$c->slug}}">{{$c->name}}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+                
             </ul>
             <form class="navbar-form navbar-left" action="/axtar" role="search">
                 <div class="form-group form-search">
@@ -59,6 +78,7 @@
     </div>
 </nav>
 
+
 {{-- <div class="header navbar navbar-fixed-top">
     <div class="navbar-header">
     <button type="button" class="navbar-toggle navbar-toggle-black collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -89,7 +109,7 @@
 </div> --}}
 
 
-<div class="header navbar navbar-fixed-top">
+{{-- <div class="header navbar navbar-fixed-top">
     <div class="navbar-header">
     <button type="button" class="navbar-toggle navbar-toggle-black collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -101,14 +121,14 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <div class="container">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav"> --}}
 
-                <li class="drop-down"><a href="#"><i class="fas fa-bars"></i> Kataloq</a>
+                {{-- <li class="drop-down"><a href="#"><i class="fas fa-bars"></i> Kataloq</a>
                     <div class="subcategory hide">
                         <ul class="ul_subcategory">
                             @foreach ($getCategory as $gc)
                                 <li>
-                                    <a href="#">{{$gc->name}} 
+                                    <a href="/c/{{$gc->slug}}">{{$gc->name}} 
                                         @if ($gc->childrenCategories)
                                         <i class="fas fa-chevron-right"></i>
                                         @endif
@@ -123,10 +143,10 @@
                             
                         </ul>
                     </div>
-                </li>
+                </li> --}}
                 
 
-                <li><a href="/c/elektronika">Elektronika</a></li>
+                {{-- <li><a href="/c/elektronika">Elektronika</a></li>
                 <li><a href="/c/shexsi-esyalar">Şəxsi əşyalar</a></li>
                 <li><a href="/c/xidmetler">Xidmətlər</a></li>
                 <li><a href="/c/hobbi-ve-asude">Hobbi və asudə</a></li>
@@ -136,33 +156,121 @@
             </ul>
         </div>
     </div>
-</div>
+</div> --}}
 
 @if(Request::is('/'))
 <div style="background-color: #f8f9fd; width: 100%; float: left">
-<div class="container" style="margin-top: 100px; margin-bottom: 20px">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="wrap-category">
-                @foreach ($getCategory as $index=>$gc)
-                <div class="category-item" href="/c/{{$gc->slug}}" style="border:1px solid {{$gc->color}}">
-                    <div class="items-wr">
-                    <div class="item-icon">
-                    <i class="fas {{$gc->icon}}" style="color: {{$gc->color}}"></i>
+    <div class="container" style="margin-top: 70px; margin-bottom: 20px">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="wrap-category">
+                    @foreach ($getCategory as $index=>$gc)
+                    <div class="category-item" href="/c/{{$gc->slug}}" style="border:1px solid {{$gc->color}}">
+                        <div class="items-wr">
+                        <div class="item-icon">
+                        <i class="fas {{$gc->icon}}" style="color: {{$gc->color}}"></i>
+                        </div>
+                        <span class="item-name">{{$gc->name}}</span>
+                        </div>
+                        <ul class="subcat">
+                            @foreach ($gc->childrenCategories as $childCategory)
+                                <li><a href="/c/{{$gc->slug}}/{{$childCategory->slug}}">{{$childCategory->name}}</a></li>
+                            @endforeach
+                        </ul>
                     </div>
-                    <span class="item-name">{{$gc->name}}</span>
-                    </div>
-                    <ul class="subcat">
-                        @foreach ($gc->childrenCategories as $childCategory)
-                            <li><a href="">{{$childCategory->name}}</a></li>
-                        @endforeach
-                    </ul>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </div>
     </div>
 </div>
-</div>
+
+{{-- <ul class="vertical-menu">
+	<li class="dropdown-vertical"><a href="">Menu item 1</a>
+		<ul class="dropdown-content">
+			<li class="dropdown-vertical"><a href="">Menu item 11</a>
+				<ul class="dropdown-content">
+					<li class="dropdown-vertical"><a href="">Menu item 111</a>
+						<ul class="dropdown-content">
+							<li class="dropdown-vertical"><a href="">Menu item 1111</a>
+								<ul class="dropdown-content">
+									<li class="dropdown-vertical"><a href="">Menu item 11111</a>
+									</li>
+									<li>
+										<a href="">Menu item 11112</a>
+									</li>
+									<li>
+										<a href="">Menu item 11113</a>
+									</li>
+									<li>
+										<a href="">Menu item 11114</a>
+									</li>
+								</ul>
+							</li>
+							<li class="dropdown-vertical"><a href="">Menu item 1112</a>
+                <ul class="dropdown-content">
+                  <li class="dropdown-vertical"><a href="">Menu item 11121</a>
+                  </li>
+                  <li>
+                    <a href="">Menu item 11122</a>
+                  </li>
+                  <li>
+                    <a href="">Menu item 11123</a>
+                  </li>
+                  <li>
+                    <a href="">Menu item 11124</a>
+                  </li>
+                </ul>                
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="">Menu item 112</a>
+					</li>
+					<li>
+						<a href="">Menu item 113</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="">Menu item 12</a>
+			</li>
+			<li>
+				<a href="">Menu item 13</a>
+			</li>
+			<li>
+				<a href="">Menu item 14</a>
+			</li>
+		</ul>
+	</li>
+  <li><a href="">Menu item 2</a></li>
+  <li class="dropdown-vertical"><a href="">Menu item 3</a>
+  <ul class="dropdown-content">
+	<li class="dropdown-vertical"><a href="">Menu item 31</a>
+		<ul class="dropdown-content">
+			<li class="dropdown-vertical"><a href="">Menu item 311</a>
+				<ul class="dropdown-content">
+					<li class="dropdown-vertical"><a href="">Menu item 3111</a>
+						<ul class="dropdown-content">
+							<li><a href="">Menu item 31111</a></li>
+							<li><a href="">Menu item 31112</a></li>
+							<li><a href="">Menu item 31113</a></li>
+							<li><a href="">Menu item 31114</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li><a href="">Menu item 312</a></li>
+			<li><a href="">Menu item 313</a></li>
+			<li><a href="">Menu item 314</a></li>
+		</ul>
+	</li>
+	<li><a href="">Menu item 32</a></li>
+	<li><a href="">Menu item 33</a></li>
+	<li><a href="">Menu item 34</a></li>
+  </ul>
+  </li>
+  <li><a href="">Menu item 4</a></li>
+</ul> --}}
 
 @endif

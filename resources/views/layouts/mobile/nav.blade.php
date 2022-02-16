@@ -1,5 +1,5 @@
 <div class="full-opacity"></div>
-<div id="nav">
+<div id="nav" class="navbar-fixed-top">
     <div class="drawermenu_button" style="">
         <i class="feather-menu"></i>
     </div>

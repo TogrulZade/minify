@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Minify.Az - Pulsuz elanlar | Alqı-satqı</title>
+    <title>@yield('title') Minify.Az - Pulsuz elanlar | Alqı-satqı</title>
     <meta name="description" content="Pulsuz Elanlar, Alqı-satqı, Elektronika, Geyim, Şəxsi əşyalar, Xidmətlər, Uşaqlar üçün, Oyuncaqlar, Heyvanlar, Nəqliyyat">
     <meta name="robots" content="index, follow">
     
@@ -42,7 +42,7 @@
         </a>
     @endif
 
-    <main style="{{$agent->isMobile() ? 'margin-top: 0;' : 'background-color:#f8f9fd;'}} {{!Request::is('/') ? 'margin-top: 120px;' : ''}}">
+    <main style="{{$agent->isMobile() ? 'margin-top: 0;' : 'background-color:#f8f9fd;'}} {{!Request::is('/') && !$agent->isMobile() ? 'margin-top: 60px;' : ''}}">
         @yield('content')
     </main>
 

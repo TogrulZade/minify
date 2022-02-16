@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ireli extends Model
 {
-    //
+    protected $table='ireli';
 }

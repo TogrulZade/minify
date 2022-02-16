@@ -44,6 +44,13 @@ Route::post("makeMarket", "marketController@create")->middleware('auth');
 Route::get("myMarket", "marketController@myMarket")->middleware('auth');
 Route::get("market/{slug}", "marketController@showMarket");
 Route::get("subGrab", "SubCategoryController@index");
+Route::post("checkVip", "VipController@checkVip");
+Route::post("makeVip", "VipController@makeVip");
+Route::post("checkPremium", "PremiumController@checkPremium");
+Route::post("makePremium", "PremiumController@makePremium");
+Route::get("elanlar/vip", "VipController@all");
+Route::get("elanlar", "HomeController@elanlar");
+Route::post("makeVipWithNumber", "VipController@checkProduct");
 
 
 Auth::routes();

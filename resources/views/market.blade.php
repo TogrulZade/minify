@@ -59,18 +59,38 @@
             
             @php $z = 0;@endphp
             @foreach ($marketItems as $pr)
-            <div class="col-md-3 col-sm-4 col-xs-6">
-                <a href="/product/{{$pr->slug}}" target="_blank" class="{{ $agent->isMobile() ? 'card-mini' : 'card' }}">
-                    <div class="card-img">
-                        @if($pr->market_id)
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                    <a href="/product/{{$pr->slug}}" target="_blank" class="{{ $agent->isMobile() ? 'card-mini' : 'card' }}">
+                        <div class="card-img">
+                            @if($pr->market_id)
                             <div style="position: absolute; bottom: 10px;left: 5px; background-color: #fee500; padding: 2px 14px; border-radius: 5px">
                                 Mağaza
                             </div>
-                        @endif
-                        <img src="{{asset('storage/'.$pr->product_cover)}}" alt="">
+                            @endif
+                            <img src="{{asset('storage/'.$pr->product_cover)}}" alt="">
+                            @if (count($pr->vip)>0 || count($pr->premium)>0)
+                                <div class="icon-group">
+                                    @if(count($pr->premium)>0)
+                                    <div class="vip-icon" style="margin-right: 5px">
+                                        <i class="fas fa-crown"></i>
+                                    </div>
+                                    @endif
+
+                                    @if(count($pr->vip) > 0)
+                                    <div class="vip-icon" style="margin-top: 3px">
+                                        <i class="fas fa-gem"></i>
+                                    </div>
+                                    @endif
+                                </div>
+                            @endif
+                        </div>
+                        <div class="card-title-wrap">    
+                            <div class="card-title">
+                                {{$pr->product_price}} AZN
+                            </div>
                             @foreach ($favs as $fav)
                                 @if ($fav->id == $pr->id)
-                                    @php $z = $pr->id @endphp
+                                @php $z = $pr->id @endphp
                                     <div class="add_favorite" data-product_id="{{$pr->id}}" style="{{$fav->id == $pr->id ? 'color: red' : ''}}">
                                         <i class="fas fa-heart"></i>
                                     </div>
@@ -81,33 +101,18 @@
                                 <i class="fas fa-heart"></i>
                             </div>
                             @endif
+                        </div>
+                        <div class="card-body">
+                            <strong class="mb-0">{{$pr->product_name}}</strong>
+                        </div>
 
-                            @php $v = 0;@endphp
-                            @foreach ($vips as $vip)
-                                @if ($vip->id == $pr->id)
-                                    @php $v = $pr->id @endphp
-                                    <div style="position: absolute; bottom: 5px; right: 5px; font-size: 16px; background-color: #fff;padding: 5px; border-radius: 4px; line-height: 16px; color: red;">
-                                        <i class="fas fa-gem"></i>
-                                    </div>
-                                @endif
-                            @endforeach
+                        <div class="card-footer">
+                            <p>{{$pr->created_at}}</p>
+                        </div>
+                    </a>
+                </div>
 
-
-                    </div>
-                                
-                    <div class="card-title">
-                        {{$pr->product_price}} AZN
-                    </div>
-                    
-                    <div class="card-body">
-                        <strong class="mb-0">{{$pr->product_name}}</strong>
-                    </div>
-    
-                    <div class="card-footer">
-                        <p>{{$pr->created_at}}</p>
-                    </div>
-                </a>
-            </div>
+                {{-- End card --}}
             @endforeach
         </div>
     </div>
