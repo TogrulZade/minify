@@ -78,7 +78,10 @@ class marketController extends Controller
         $slug = $req->slug;
         $market = market::where('slug',"=",$slug)->first();
 
-        $marketItems = Product::where('market_id',"=",$market->id)->get();
+        $marketItems = Product::where('market_id',"=",$market->id)
+        ->with('vip')
+        ->with('premium')
+        ->get();
 
         $favs = FavHelper::getFavs($req);
         $vips = Product::with('pictures')->with('vip')->whereHas('vip',function($q){

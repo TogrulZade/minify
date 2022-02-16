@@ -36,7 +36,7 @@
 							</div>
 							@endif
 
-							<div class="form-group">
+							{{-- <div class="form-group">
 								@if($errors->has("product_category"))
 									<p class="error">{{ $errors->first('product_category') }}</p>
 								@endif
@@ -45,6 +45,21 @@
 										@foreach ($category as $cat)
 											<option {{ old("product_category") == $cat->id ? "selected":"" }} value="{{$cat->id}}">{{$cat->name}}</option>
 										@endforeach
+								</select>
+							</div> --}}
+
+							<div class="form-group">
+								@if($errors->has("product_category"))
+									<p class="error">{{ $errors->first('product_category') }}</p>
+								@endif
+								<select name="product_category" id="">
+									<option disabled selected>Kateqoriya seç</option>
+									@foreach ($getCategory as $cat)
+										<option disabled>{{$cat->name}}</option>
+										@foreach ($cat->childrenCategories as $childe)
+											<option {{ old("product_category") == $childe->id ? "selected":"" }} value="{{$childe->id}}">{{$childe->name}}</option>
+										@endforeach
+									@endforeach
 								</select>
 							</div>
 

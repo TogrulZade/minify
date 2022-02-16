@@ -11,4 +11,9 @@ class SettingsHelper{
         return Setting::where("id","=",1)->first();
     }
 
+    public static function takeVip()
+    {
+        return 80;
+    }
+
 }

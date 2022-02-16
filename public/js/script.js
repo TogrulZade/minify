@@ -38,19 +38,23 @@ $(document).ready(function(){
 		$('.mini-slide-cover').css('visibility','hidden');
 		$('.full-opacity').css('visibility','hidden');
 		$('body').css("overflow","visible");
+		$('.modalBox').hide();
+		$(".promotion-modal.vip").hide();
 	}
 
 	const right = ()=>{
 		index++;
 		if(index > count_photos){index = 0;}
-		const img = $("#mini-gallery div").find('[data-index="'+(index)+'"]').attr('src');
+		if(index == 0) img = $(".cover-photo img").attr('src');
+		else img = $("#mini-gallery div").find('[data-index="'+(index)+'"]').attr('src');
 		$('.mini-slide').find('img').attr('src',img);
 	}
 	
 	const left = ()=>{
 		index--;
 		if(index < 0){index = count_photos;}
-		const img = $("#mini-gallery div").find('[data-index="'+(index)+'"]').attr('src');
+		if(index == 0) img = $(".cover-photo img").attr('src');
+		else img = $("#mini-gallery div").find('[data-index="'+(index)+'"]').attr('src');
 		$('.mini-slide').find('img').attr('src',img);	
 	}
 
@@ -264,81 +268,195 @@ $(document).ready(function(){
 		}
 	});
 
+	$('.navbar-menu a').on("click", function(e){
+		if($('.navbar-menu-open').hasClass('show')){
+			$(".navbar-menu-open").removeClass("show");
+		}else{
+			$(".navbar-menu-open").addClass("show");
+		}
+	});
+
+	$('.navbar-menu-open.show').on("focusout",function(){
+		$(".navbar-menu-open").removeClass("show");
+	});
+
 
 	// 
 	// var current = $(window).position().top;
 	// alert(current);
 
 	// $(window).scroll(function (event) {
-	// 	var top = $("#autoload").offset().top;
+	// 	var top = $("#autoloadPremium").offset().top;
 	// 	var scroll = $(window).scrollTop();
 	// 	var height = $(window).height();
 	// 	$(".pan").text("Scroll: "+scroll+" Autoload: "+(top-height-10));
-	// 	if(scroll == top-height-10){
-	// 		$("#autoload").before('<div class="col-md-3 col-sm-4 col-xs-6"><a href="/product/259-xiaomi-redmi-note-8-64gb" class="card"><div class="card-img"><img src="http://127.0.0.1:8000/storage/products/60bcd3286cf00.png" alt=""><div class="add_favorite" data-product_id="259" style=""><i class="fas fa-heart"></i></div></div><div class="card-title">678 AZN</div><div class="card-body"><strong class="mb-0">Xiaomi Redmi Note 8, 64GB</strong></div><div class="card-footer"><p>2021-06-06 13:52:52</p></div></a></div>');
+	// 	// if(scroll == top-height-10){
+	// 		if(Math.ceil($(window).scrollTop()) 
+	// 	   == Math.ceil(($(document).height() - $(window).height()))){
+	// 		$("#autoloadPremium").before('<div class="col-md-3 col-sm-4 col-xs-6"><a href="/product/259-xiaomi-redmi-note-8-64gb" class="card"><div class="card-img"><img src="http://127.0.0.1:8000/storage/products/60bcd3286cf00.png" alt=""><div class="add_favorite" data-product_id="259" style=""><i class="fas fa-heart"></i></div></div><div class="card-title">678 AZN</div><div class="card-body"><strong class="mb-0">Xiaomi Redmi Note 8, 64GB</strong></div><div class="card-footer"><p>2021-06-06 13:52:52</p></div></a></div>');
+	// 	   }
+	// 	// }
+	// });
+
+	// var p = 1;
+	//    $(window).scroll(function() {
+	// 	if(Math.ceil($(window).scrollTop()) 
+	// 	   == Math.ceil(($(document).height() - $(window).height()))) {
+	// 		$.ajax({
+	// 			url: '/loadProduct',
+	// 			type:'get',
+	// 			data: {_token: csrf, p: p},
+	// 			beforeSend: function() {
+	// 				$("#loading-image").show();
+	// 			 },
+	// 			success: function(res){
+	// 			p = p+1;
+	// 				res.map(data=>{
+	// 					$("#autoload").before('<div class="col-md-3 col-sm-4 col-xs-6"><a target="_blank" href="/product/'+data.slug+'" class="card"><div class="card-img"><img src="/storage/'+data.product_cover+'" alt=""><div class="add_favorite" data-product_id="'+data.id+'" style=""><i class="fas fa-heart"></i></div></div><div class="card-title">'+data.product_price+' AZN</div><div class="card-body"><strong class="mb-0">'+data.product_name+'</strong></div><div class="card-footer"><p>'+data.started_at+'</p></div></a></div>');
+	// 				})
+	// 				$("#loading-image").hide();
+					
+	// 			},
+	// 			error: function(){
+	// 				alert('Error');
+	// 			}
+	// 		})
 	// 	}
 	// });
 
-	var p = 1;
-	   $(window).scroll(function() {
-		if(Math.ceil($(window).scrollTop()) 
-		   == Math.ceil(($(document).height() - $(window).height()))) {
-			$.ajax({
-				url: '/loadProduct',
-				type:'get',
-				data: {_token: csrf, p: p},
-				beforeSend: function() {
-					$("#loading-image").show();
-				 },
-				success: function(res){
-				p = p+1;
-					res.map(data=>{
-						$("#autoload").before('<div class="col-md-3 col-sm-4 col-xs-6"><a target="_blank" href="/product/'+data.slug+'" class="card"><div class="card-img"><img src="/storage/'+data.product_cover+'" alt=""><div class="add_favorite" data-product_id="'+data.id+'" style=""><i class="fas fa-heart"></i></div></div><div class="card-title">'+data.product_price+' AZN</div><div class="card-body"><strong class="mb-0">'+data.product_name+'</strong></div><div class="card-footer"><p>'+data.started_at+'</p></div></a></div>');
-					})
-					$("#loading-image").hide();
-					
-				},
-				error: function(){
-					alert('Error');
-				}
-			})
-		}
+
+
+	$(".ireli-btn").on("click",function(){
+		$('.modal-ireli').show();
+		$(".full-opacity").css('visibility','visible');
 	});
+
+	// $(".vip-btn").on("click",function(){
+	// 	$('.modal-vip').show();
+	// 	$(".full-opacity").css('visibility','visible');
+	// });
+
+	$(".premium-btn").on("click",function(){
+		$('.modal-premium').show();
+		$(".full-opacity").css('visibility','visible');
+	});
+
+	$(".modal-header .fa-times").on("click", function(){
+		mini_close();
+	});
+
+	$(".promo-btn.vip-btn").on("click", function(){
+		vip = $(this).data('vip');
+		$.ajax({
+			url: '/checkVip',
+			type: 'post',
+			data: {id: vip, _token: csrf},
+			success: function(res){
+				$('.modal-vip').show();
+				$(".full-opacity").css('visibility','visible');
+				if(res !==''){
+					date = new Date(res.closed_at);
+					$('.modal-vip .activated').html("<p><small>"+date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear()+" "+date.getHours()+":"+date.getMinutes()+" tarixinə kimi ödənilib</small></p>");
+				}
+			},
+			error: function(error){
+				console.log(error.responseText)
+			}
+		})
+	});
+
+
+	$(".promo-btn.premium-btn").on("click", function(){
+		premium = $(this).data('premium');
+		$.ajax({
+			url: '/checkPremium',
+			type: 'post',
+			data: {id: premium, _token: csrf},
+			success: function(res){
+				$('.modal-premium').show();
+				$(".full-opacity").css('visibility','visible');
+				if(res !==''){
+					date = new Date(res.closed_at);
+					$('.modal-premium .activated').html("<p><small>"+date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear()+" "+date.getHours()+":"+date.getMinutes()+" tarixinə kimi ödənilib</small></p>");
+				}
+			},
+			error: function(error){
+				console.log(error.responseText)
+			}
+		})
+	});
+
+	$(".vip-blank").on('click',function(){
+		$(".full-opacity").css('visibility','visible');
+		$(".promotion-modal.vip").show();
+	});
+
+	$(".promotion-modal.vip .click").on('click', function(){
+		mini_close();
+	});
+
+	$(".vipEt-btn").on("click", function(){
+		elan = parseInt($(".elan").val());
+		if(elan < 0 || isNaN(elan)){
+			alert('Zəhmət olmasa Elan nömrəsini doğruluğunu yoxlayın.')
+			return false
+		}
+
+		$.ajax({
+			url: 'makeVipWithNumber',
+			type: 'POST',
+			data: {id: elan, _token: csrf},
+
+			success: function(res){
+				window.location.href = '/product/'+res.slug+"/#vipModal";
+			},
+			error: function(error){
+				alert(JSON.stringify(error));
+			}
+		})
+		
+	});
+	
+	if(window.location.hash == '#vipModal') {
+		$(".full-opacity").css('visibility','visible');
+		$('.modal-vip').show();
+	}
 
 });
 
-var lastScrollTop = 0;
-	document.addEventListener('scroll',function(event){
-	var st = $(this).scrollTop();
-	if(st > 70){
-		$(".header").css('transition',"all .1s linear");
-		$("nav").css('transition',"all .1s linear");
-		$('nav').css("display",'none');
-		$('.header').css('margin-top',0);
-	}else{
-		$('nav').css("display",'block');
-		$('.header').css('margin-top',"50px");
-	}
-	if (st > lastScrollTop){
-		// downscroll code
-		// $('.navbar-brand').text('Asagi');
-		$(".header").css('transition',"all .15s linear");
-		$("nav").css('transition',"all .15s linear");
-		$('nav').css("display",'none');
-		$('.header').css('margin-top',0);
-		$('.right-sticky').css('top',"50px");
-	} else {
-		// $('.navbar-brand').text('Yuxari');
-		// upscroll code
+// Isleyir. Scroll zamani headeri gizlemek ve gostermek
+// var lastScrollTop = 0;
+// 	document.addEventListener('scroll',function(event){
+// 	var st = $(this).scrollTop();
+// 	if(st > 70){
+// 		$(".header").css('transition',"all .1s linear");
+// 		$("nav").css('transition',"all .1s linear");
+// 		$('nav').css("display",'none');
+// 		$('.header').css('margin-top',0);
+// 	}else{
+// 		$('nav').css("display",'block');
+// 		$('.header').css('margin-top',"50px");
+// 	}
+// 	if (st > lastScrollTop){
+// 		// downscroll code
+// 		// $('.navbar-brand').text('Asagi');
+// 		$(".header").css('transition',"all .15s linear");
+// 		$("nav").css('transition',"all .15s linear");
+// 		$('nav').css("display",'none');
+// 		$('.header').css('margin-top',0);
+// 		$('.right-sticky').css('top',"50px");
+// 	} else {
+// 		// $('.navbar-brand').text('Yuxari');
+// 		// upscroll code
 		
-		$(".header").css('transition',"all .15s linear");
-		$("nav").css('transition',"all .15s linear");
-		$('nav').css("display",'block');
-		$('.header').css('margin-top',"58px");
-		$('.right-sticky').css('top',"58px");
-	}
-	lastScrollTop = st;
-	});
+// 		$(".header").css('transition',"all .15s linear");
+// 		$("nav").css('transition',"all .15s linear");
+// 		$('nav').css("display",'block');
+// 		$('.header').css('margin-top',"58px");
+// 		$('.right-sticky').css('top',"58px");
+// 	}
+// 	lastScrollTop = st;
+// 	});
 
 
 	// Canli izle
@@ -452,4 +570,3 @@ function isNum(evt)
 
 	return true;
 }
-

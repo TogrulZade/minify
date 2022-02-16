@@ -60,53 +60,105 @@ class HomeController extends Controller
 
         $user = Auth::user() ? Auth::user()->id : $request->cookie('anonim');
 
-        $vips = Product::with('pictures')->whereHas('pictures',function($q){
+        $premiums = Product::with('pictures')->whereHas('pictures',function($q){
             return $q->where('pictures.cover',"=",1);
-        })->with('vip')->whereHas('vip',function($q){
+        })->whereHas('premium',function($q){
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
-        })->get();
+        })->with(['vip'=>function($q){
+            return $q->where('closed_at',">", date('Y-m-d H:i:s'));
+        }])->where('active',"=",1)->orderBy('updated_at','DESC')->get();
 
-        // $products = Product::with(['pictures'])->whereHas('pictures', function($q){
-        //     return $q->where('pictures.cover',"=",1);
-        // })->doesntHave('vip')->select('*', 'products.id as id')->get();
 
         $products = ProductHelper::allAktivElanlar(0,$take->take);
-
         $favs = FavHelper::getFavs($request);
+        
+        $vips = Product::with('pictures')->whereHas('pictures',function($q){
+            return $q->where('pictures.cover',"=",1);
+        })->whereHas('vip',function($q){
+            return $q->where('closed_at',">", date('Y-m-d H:i:s'));
+        })->with(['premium'=>function($q){
+            return $q->where('closed_at',">", date('Y-m-d H:i:s'));
+        }])->orderBy('updated_at','DESC')
+        ->limit($take->take)->get();
 
-        return view('home', ["products"=> $products, 'vips'=>$vips, 'favs'=>$favs, 'user'=>$user, 'categoryName'=>'']);
+        return view('home', ["products"=> $products, 'vips'=>$vips, 'premiums'=>$premiums, 'favs'=>$favs, 'user'=>$user, 'categoryName'=>'']);
+    }
+
+    public function elanlar(Request $req)
+    {
+        if($req->page > 3){
+            $req->page = 0;
+            echo $req->page;
+        }
+        $products = Product::with('pictures')->whereHas('pictures',function($q){
+            return $q->where('pictures.cover',"=",1);
+        })->with(['premium'=>function($q){
+            return $q->where('closed_at',">", date('Y-m-d H:i:s'));
+        }])->with(['vip'=>function($q){
+            return $q->where('closed_at',">", date('Y-m-d H:i:s'));
+        }])->where('active',"=",1)->orderBy('started_at','DESC')->paginate(80);
+
+
+        // $count = count($products->get());
+        // if($count>40){
+        //     $products = $products->paginate(20);
+        // }else{
+        //     $products = $products->paginate(4);
+        // }
+
+        $take = SettingsHelper::take();
+
+
+        $favs = FavHelper::getFavs($req);
+        $vips = ProductHelper::vipElanlar(3);
+
+        return view('elanlar', compact('products','vips','favs'));
     }
 
     public function axtar(Request $request)
     {
         $axtar = $request->axtar;
 
-        $vips = Product::with('pictures')->whereHas('pictures',function($q){
+        $vips = Product::with('pictures')
+        ->whereHas('pictures',function($q){
             return $q->where('pictures.cover',"=",1);
-        })->with('vip')->whereHas('vip',function($q){
+        })->with('vip')
+        ->whereHas('vip',function($q){
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
-        })->where('product_name',"like","%".$axtar."%")->get();
+        })->leftJoin('ireli','ireli.product_id','products.id')
+        ->orderBy('ireli.started_at','DESC')
+        ->where('product_name',"like","%".$axtar."%")
+        ->select("*",'products.created_at as created_at','products.id as id')
+        ->get();
+
+        
 
         $products = Product::with('pictures')
         ->whereHas('pictures', function($q){
             return $q->where('pictures.cover',"=",1);
-        })->where('product_name',"like","%".$axtar."%")
+        })->leftJoin('ireli','ireli.product_id','products.id')
+        ->orderBy('ireli.started_at','DESC')
+        ->where('product_name',"like","%".$axtar."%")
         ->where('products.closed_at',">",date('Y-d-m H:i:s'))
         ->where('products.active','=',1)
+        ->select("*",'products.created_at as created_at')
         ->get();
 
         $cats = Product::with('pictures')
         ->with('category')
         ->whereHas('pictures', function($q){
             return $q->where('pictures.cover',"=",1);
-        })->where('product_name',"like","%".$axtar."%")
+        })->leftJoin('ireli','ireli.product_id','products.id')
+        ->orderBy('ireli.started_at','DESC')
+        ->where('product_name',"like","%".$axtar."%")
         ->where('products.closed_at',">",date('Y-d-m H:i:s'))
         ->where('products.active','=',1)
         ->groupBy('product_category')
         ->get();
-        
+
         $categoryName = '';
         $favs = FavHelper::getFavs($request);
+
         return view('axtar',compact('products','vips','categoryName','favs','cats'));
     }
 
