@@ -37,7 +37,7 @@ class Product extends Model
 
     public function ireli()
     {
-        return $this->hasMany(ireli::class, 'product_id',"id")
+        return $this->hasMany(Ireli::class, 'product_id',"id")
         ->where('ireli.closed_at',">",date('Y-m-d H:i:s'))
         ->orderBy("ireli.started_at","DESC");
     }

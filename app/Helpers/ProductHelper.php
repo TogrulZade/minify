@@ -60,6 +60,8 @@ class ProductHelper{
             return $q->where('pictures.cover',"=",1);
         })
         // ->doesntHave('vip')
+
+        
         ->doesntHave('ireli')
         ->where('products.closed_at',">",date('Y-m-d H:i:s'))
         ->where('active',"=",'1')
