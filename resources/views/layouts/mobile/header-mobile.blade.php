@@ -10,7 +10,7 @@
         </div>
         <div class="mobile-category">
             <ul>
-                @foreach ($cat as $c)
+                @foreach ($getCategory as $c)
                     <li><a href="/c/{{$c->slug}}">{{$c->name}}</a></li>
                 @endforeach
             </ul>
