@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use minify\market;
 use minify\Product;
+use minify\SeenProduct;
 use minify\Helpers\FavHelper;
 
 use Auth;
@@ -83,6 +84,10 @@ class marketController extends Controller
         ->with('premium')
         ->get();
 
+        $seen = SeenProduct::with('products')->whereHas('products',function($q) use($market){
+            return $q->where('market_id', $market->id);
+        })->count();
+
         $favs = FavHelper::getFavs($req);
         $vips = Product::with('pictures')->with('vip')->whereHas('vip',function($q){
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
@@ -90,6 +95,6 @@ class marketController extends Controller
 
         // print_r($vips);
         
-        return view('market', compact('market','marketItems','favs','vips'));
+        return view('market', compact('market','marketItems','favs','vips','seen'));
     }
 }

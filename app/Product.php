@@ -56,4 +56,9 @@ class Product extends Model
     {
         return $this->hasMany(Fav::class, 'product_id','id');
     }
+
+    public function seen()
+    {
+        return hasMany(SeenProduct::class,'product_id','id');
+    }
 }

@@ -14,9 +14,9 @@
                 <div class="col-md-9 p-0">
                     <div class="col-md-8" style="border-right: 1px solid #b4b1db">
                         
-                        <h1 class="m-0" style="font-size: 22px; "><strong>{{$market->name}}</strong></h1>
-                        <div class="mt-1">
-                            <i class="fas fa-eye"></i> <span>84 232</span>
+                        <h1 class="m-0" style="color: #009688;font-size: 22px; "><strong>{{$market->name}}</strong></h1>
+                        <div class="mt-1" style="color: #009688">
+                            <i class="fas fa-eye"></i> <span>{{$seen}}</span>
                         </div>
                         <div class="mt-1" style="line-height: 1.25; height: 75px; overflow: hidden">
                             <p>{{$market->about}}</p>
