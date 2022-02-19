@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth']], function () {
 Route::get("/", "HomeController@index");
 Route::get("/logo", "HomeController@logo");
 Route::get("/stores", "HomeController@index");
-Route::get("/product/{slug}", "ProductController@index");
+Route::get("/product/{slug}", "ProductController@index")->name('detail');
 Route::get("/sell", "ProductController@sell")->middleware('auth');
 Route::get("/cv", "HomeController@cv");
 Route::post("/sell", "ProductController@sellAction")->middleware('auth');

@@ -11,6 +11,7 @@
             <a class="navbar-brand" href="/">
                 Minify
                 {{-- <span style="font-size: 22px; font-family: Poppins; font-weight: 600">mini<span style="margin-left: 2px;padding: 5px 8px; background: #222; color: #fff; border-radius: 6px">fy</span></span> --}}
+                {{-- <img src="{{asset('storage/images/Mini.png')}}" alt="" width="36" height="36" style="margin-top: -8px"> --}}
             </a>
         </div>
 

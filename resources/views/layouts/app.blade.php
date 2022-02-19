@@ -12,7 +12,7 @@
     <meta property="og:title" content="Minify.Az - Pulsuz elanlar | Alqı-satqı" />
     <meta property="og:description" content="Pulsuz Elanlar, Alqı-satqı, Elektronika, Geyim, Şəxsi əşyalar, Xidmətlər, Uşaqlar üçün, Oyuncaqlar, Heyvanlar, Nəqliyyat" />
     <meta property="og:title" content="" />
-    <meta property="og:image" content="{{asset('storage/images/logo2.png')}}" />
+    <meta property="og:image" content="{{Request()->segment(1) == 'product' ? asset('storage/'.$screen_image) : asset('storage/images/Minify-5.jpg')}}" />
     <meta property="og:type" content="article" />
     
     <link rel="icon" type="image/png" href="{{asset('storage/images/Mini.png')}}">

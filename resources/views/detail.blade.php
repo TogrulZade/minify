@@ -460,6 +460,13 @@
 										<strong>Elan №: {{$product->id}}</strong>
 									</div>
 								</div>
+
+								<div class="col-md-12 p-0 contact mb-5">
+									<p class="text-center satici">Satıcı | <span>{{$product->product_merchant}}</span></p>
+									<p class="text-center call-number"> <i class="fas fa-phone-volume"></i> 
+										{{$product->merchant_number}}
+									</p>
+								</div>
                                 
                                 <div class="col-xs-12">
 									<div class="promo-btn-group">
@@ -500,15 +507,6 @@
 									</div>
 								</div>
                             </div>
-
-
-
-							{{-- <div class="col-md-12 p-0 contact">
-								<p class="text-center satici">Satıcı | <span>{{$product->product_merchant}}</span></p>
-								<p class="text-center call-number"> <i class="fas fa-phone-volume"></i> 
-									{{$product->merchant_number}}
-								</p>
-							</div> --}}
 
     					</div>
     				</div>
