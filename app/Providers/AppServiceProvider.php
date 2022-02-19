@@ -44,7 +44,6 @@ class AppServiceProvider extends ServiceProvider
             $slug = Request()->segment(2);
             $screen_image = Product::where('slug','=',$slug)->first();
             View::share('screen_image', $screen_image->product_cover);
-
         }
     }
 }
