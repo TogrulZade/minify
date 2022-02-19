@@ -8,7 +8,7 @@
                 <div class="p-0" style="float: left; margin-right: 15px">
                     <img style="width: 162px; height: 162px" src="{{asset('storage/'.$market->picture)}}" alt="">
                     <div style="display: flex; justify-content: center; align-items: center; height: 40px; background-color:#635acc; width: 162px; margin-top: 10px">
-                        <span style="color: #fff">300 elan</span>
+                        <span style="color: #fff">{{count($marketItems)}} elan</span>
                     </div>
                 </div>
                 <div class="col-md-9 p-0">
