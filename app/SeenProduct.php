@@ -15,6 +15,16 @@ class SeenProduct extends Model
     protected $fillable = [
         'user_id', 'product_id','anonim'
     ];
+
+    /**
+     * The products that belong to the SeenProduct
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function products()
+    {
+        return $this->belongsTo(Product::class,'product_id', 'id');
+    }
     
     
 }
