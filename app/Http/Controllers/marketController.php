@@ -82,6 +82,7 @@ class marketController extends Controller
         $marketItems = Product::where('market_id',"=",$market->id)
         ->with('vip')
         ->with('premium')
+        ->orderBy('products.updated_at',"DESC")
         ->get();
 
         $seen = SeenProduct::with('products')->whereHas('products',function($q) use($market){

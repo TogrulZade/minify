@@ -478,6 +478,11 @@
                                         <span>{{$product->delivery == 0 ? 'Yoxdur' : 'Var'}}</span>
                                     </div>
 
+                                    <div class="col-xs-6 p-0 mb-1" style="color: #8d94ad;font-weight: 400">Elan №:</div>
+                                    <div class="col-xs-6 p-0 mb-1">
+                                        <span>{{$product->id}}</span>
+                                    </div>
+
 									<div class="col-xs-12 p-0" style="color: #8d94ad;font-weight: 400">
 										<strong>Elan №: {{$product->id}}</strong>
 									</div>

@@ -14,7 +14,7 @@
                         
                         <div class="card-body">
                             <strong style="display: block; margin-top: 5px" class="mb-0">{{$item->name}}</strong>
-                            <p style="color: #cbced8;font-weight: 300">{{$item->slogan}}</p>
+                            <p style="color: #000;">{{$item->slogan}}</p>
                         </div>
         
                         <div class="card-footer">
