@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="brand mt-5">
-                    <a style="color: #494949;" href="/">Minify.az</a>
+                    <a style="color: #494949!important;" href="/">Minify.az</a>
                 </div>
             </div>
             <div class="col-xs-12">
@@ -24,7 +24,7 @@
 
             <div class="col-xs-12 mt-5">
                 <h1 class="text-center mb-4">Kateqoriyalar</h1>
-                @foreach ($cat as $c)
+                @foreach ($getCategory as $c)
                     <div class="col-sm-3">
                         <a href="/c/{{$c->slug}}" class="box-card">
                             <div class="box-card-body">

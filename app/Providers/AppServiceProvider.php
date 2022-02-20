@@ -43,7 +43,9 @@ class AppServiceProvider extends ServiceProvider
         if(Request()->segment(1) == 'product'){
             $slug = Request()->segment(2);
             $screen_image = Product::where('slug','=',$slug)->first();
-            View::share('screen_image', $screen_image->product_cover);
+            if($screen_image){
+                View::share('screen_image', $screen_image->product_cover);
+            }
         }
     }
 }

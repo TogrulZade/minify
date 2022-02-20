@@ -389,13 +389,13 @@
 								<div class="col-md-12 p-0 mb-2">
 									<div class="shop-company" style="display: flex">
 										{{-- <i class="fas fa-store company-icon"></i> <span>{{$product->market}}</span> --}}
-                                            <div class="stars float-left mr-2">
+                                            {{-- <div class="stars float-left mr-2">
                                                 <i class="fas orange fa-star"></i>
                                                 <i class="fas orange fa-star"></i>
                                                 <i class="fas orange fa-star"></i>
                                                 <i class="fas fa-star"></i>
                                                 <i class="fas fa-star"></i>
-                                            </div>
+                                            </div> --}}
                                             <div class="bought center p-0 float-left mr-2" style="margin-top: 3px;">
                                                 {{-- <i class="fas fa-check-circle"></i> <span>5 nəfər alıb</span> --}}
                                                 <span class=""><i class="far fa-eye"></i> {{count($count_seen)}}</span> 

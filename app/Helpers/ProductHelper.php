@@ -55,28 +55,42 @@ class ProductHelper{
 
         $ireli_count = count($ireli);
 
+        // $products = Product::with(['pictures'])
+        // ->whereHas('pictures', function($q){
+        //     return $q->where('pictures.cover',"=",1);
+        // })
+        // // ->doesntHave('vip')
+        // ->doesntHave('ireli')
+        // ->where('products.closed_at',">",date('Y-m-d H:i:s'))
+        // ->where('active',"=",'1')
+        // ->inRandomOrder()
+        // ->select('*', 'products.id as id','products.created_at as created_at')
+        // ->skip($page*$take)
+        // ->take($take-$ireli_count)
+        // ->orderBy("products.id","DESC")
+        // ->get()->random($take-$ireli_count);
+
         $products = Product::with(['pictures'])
         ->whereHas('pictures', function($q){
             return $q->where('pictures.cover',"=",1);
         })
         // ->doesntHave('vip')
-
-        
         ->doesntHave('ireli')
         ->where('products.closed_at',">",date('Y-m-d H:i:s'))
         ->where('active',"=",'1')
-        ->inRandomOrder()
+        // ->inRandomOrder()
         ->select('*', 'products.id as id','products.created_at as created_at')
         ->skip($page*$take)
-        ->take($take-$ireli_count)
-        ->orderBy("products.id","DESC")
-        ->get()->random($take-$ireli_count);
+        ->take($take)
+        ->orderBy("products.updated_at","DESC")
+        ->get();
         
 
-        $ireli = collect($ireli);
-        $products = collect($products);
-        $merged = $ireli->merge($products);
-        return $merged;
+        // $ireli = collect($ireli);
+        // $products = collect($products);
+        // $merged = $ireli->merge($products);
+        // return $merged;
+        return $products;
     }
 
 
