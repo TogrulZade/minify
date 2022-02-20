@@ -125,19 +125,15 @@ class HomeController extends Controller
         })->with('vip')
         ->whereHas('vip',function($q){
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
-        })->leftJoin('ireli','ireli.product_id','products.id')
-        ->orderBy('ireli.started_at','DESC')
+        })
         ->where('product_name',"like","%".$axtar."%")
         ->select("*",'products.created_at as created_at','products.id as id')
         ->get();
 
-        
-
         $products = Product::with('pictures')
         ->whereHas('pictures', function($q){
             return $q->where('pictures.cover',"=",1);
-        })->leftJoin('ireli','ireli.product_id','products.id')
-        ->orderBy('ireli.started_at','DESC')
+        })
         ->where('product_name',"like","%".$axtar."%")
         ->where('products.closed_at',">",date('Y-d-m H:i:s'))
         ->where('products.active','=',1)
