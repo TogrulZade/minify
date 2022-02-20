@@ -203,7 +203,7 @@ outline: 0;
 
 .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {color: #fff;text-decoration: none;background-color: var(--main-bg-color);}
 
-a.card {cursor: pointer;float: left;box-shadow: 0 17px 34px 0 rgb(44 39 56 / 4%), 0 8px 17px 0 rgb(44 39 56 / 2%);border-radius: 6px;background: #fff;margin-bottom: 20px;border-radius: 6px;width: 100%;height: 280px;color: #333;position: relative;}
+a.card {cursor: pointer;float: left;box-shadow: 0 17px 34px 0 rgb(44 39 56 / 4%), 0 8px 17px 0 rgb(44 39 56 / 2%);border-radius: 6px;background: #fff;margin-bottom: 20px;border-radius: 6px;width: 100%;height: 295px;color: #333;position: relative;}
 
 
 a.card-mini {
@@ -1862,7 +1862,7 @@ a.card-mini:focus {
 .card-mini img, .card img{
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
-	height: 161.25px;
+	height: 180.25px;
 }
 
 .card-mini .card-footer {

@@ -135,10 +135,11 @@ class HomeController extends Controller
             return $q->where('pictures.cover',"=",1);
         })
         ->where('product_name',"like","%".$axtar."%")
-        ->where('products.closed_at',">",date('Y-d-m H:i:s'))
+        ->where('products.closed_at',">",date('Y-m-d H:i:s'))
         ->where('products.active','=',1)
         ->select("*",'products.created_at as created_at')
         ->get();
+
 
         $cats = Product::with('pictures')
         ->with('category')
