@@ -376,6 +376,34 @@
 								@endif
 							</ul>
 						</div>
+
+						<div class="col-xs-12">
+							<div class="promo-btn-group">
+								<div class="promo-btn ireli-btn">
+									<span class="price">1 AZN</span>
+									<span><i class="fas fa-long-arrow-alt-right" style="color: #e51a3a;transform: rotate(-90deg)"></i>İrəli çək</span>
+								</div>
+								<div class="promo-btn vip-btn {{count($product->vip) > 0 ? 'active' : ''}}" data-vip="{{$product->id}}">
+									<span class="price">2 AZN</span>
+									<span><i class="fas fa-gem"></i> VIP</span>
+									
+								</div>
+								<div class="promo-btn premium-btn {{count($product->premium) > 0 ? 'active' : ''}}" data-premium="{{$product->id}}">
+									<span class="price">5 AZN</span>
+									<span>
+										<i class="fas fa-crown"></i> 
+										<span>Premium</span>
+									</span>
+								</div>
+							</div>
+
+							<div class="mt-4">
+								<div class="col-sm-12 pl-0" style="{{$agent->isMobile() ? 'padding-left: 0':''}}">
+								<a class="btn btn-primary2 mb-3 p-3 btn-block" href=""> Mesaj yazın</a>
+								</div>
+								
+							</div>
+						</div>
 					</div>
 					@endif
     			</div>
@@ -461,14 +489,29 @@
 									</div>
 								</div>
 
-								<div class="col-md-12 p-0 contact mb-5">
-									<p class="text-center satici">Satıcı | <span>{{$product->product_merchant}}</span></p>
-									<p class="text-center call-number"> <i class="fas fa-phone-volume"></i> 
-										{{$product->merchant_number}}
-									</p>
+								<div class="col-md-12 p-2 text-center contact mb-5">
+									<span class="text-center satici">Satıcı | <span>{{$product->product_merchant}}</span></span>
+									<span class="text-center call-number"> <i class="fas fa-phone-volume"></i> 
+										<a href="tel:{{$product->merchant_number}}">{{$product->merchant_number}}</a>
+									</span>
+								</div>
+
+								<div class="col-xs-12">
+									<div class="col-sm-12" style="{{!$agent->isMobile() ? 'padding-right: 0':''}}">
+										@php $x = 0; @endphp
+										@foreach ($favs as $f)
+											@if ($f->id == $product->id)
+											@php $x = $product->id @endphp
+												<a class="sevimli btn btn-pink p-3 btn-block" data-product_id="{{$product->id}}" href=""><i class="fas fa-heart" style="{{$f->id == $product->id ? 'background-color: #e51a3a' : ''}};font-size: 18px"></i> Seçilmişlərə əlavə et</a>
+											@endif
+											@endforeach
+											@if ($x != $product->id)
+												<a class="sevimli btn btn-pink-outline p-3 btn-block" data-product_id="{{$product->id}}" href=""><i class="fas fa-heart" style="font-size: 18px"></i> Seçilmişlərə əlavə et</a>
+											@endif
+									</div>
 								</div>
                                 
-                                <div class="col-xs-12">
+                                {{-- <div class="col-xs-12">
 									<div class="promo-btn-group">
 										<div class="promo-btn ireli-btn">
 											<span class="price">1 AZN</span>
@@ -505,7 +548,7 @@
 												@endif
 										</div>
 									</div>
-								</div>
+								</div> --}}
                             </div>
 
     					</div>

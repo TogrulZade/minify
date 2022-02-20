@@ -2,8 +2,8 @@
 var csrf = document.querySelector('meta[name="csrf-token"]').content;
 $(document).ready(function(){
 
-	var h = $('.shop-desc').height();
-	$(".shop-img").css("height",h+31);
+	var h = $('.shop-img').height();
+	$(".shop-desc").css("height",h+20);
 
 
 	$(".unsave").hover(function(){
