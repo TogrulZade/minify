@@ -2466,5 +2466,9 @@ select#dil {
     background-color: #f8f9fd;
     color: #000;
     height: 40px;
-	
+
+}
+
+.absolute {
+    top: 18px;
 }

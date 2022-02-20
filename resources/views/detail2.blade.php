@@ -397,6 +397,12 @@
 								</div>
 							</div>
 
+							<div class="mt-4">
+								<div class="col-sm-12 pl-0" style="{{$agent->isMobile() ? 'padding-left: 0':''}}">
+								<a class="btn btn-primary2 mb-3 p-3 btn-block send-message" href=""> Mesaj yazın</a>
+								</div>
+								
+							</div>
 						</div>
 					</div>
 					@endif
@@ -483,16 +489,27 @@
 									</div>
 								</div>
 
-								<div class="col-md-12 p-2 mb-5">
-									<div class="col-xs-6 p-0 satici">Satıcı: 
-                                        <span>{{$product->product_merchant}}</span>
-                                    </div>
-									<div class="col-xs-6 p-0 call-number"> <i class="fas fa-phone-volume"></i> 
+								<div class="col-md-12 p-2 text-center contact mb-5">
+									<span class="text-center satici">Satıcı | <span>{{$product->product_merchant}}</span></span>
+									<span class="text-center call-number"> <i class="fas fa-phone-volume"></i> 
 										<a href="tel:{{$product->merchant_number}}">{{$product->merchant_number}}</a>
-                                    </div>
+									</span>
 								</div>
 
-							
+								<div class="col-xs-12">
+									<div class="col-sm-12" style="{{!$agent->isMobile() ? 'padding-right: 0':''}}">
+										@php $x = 0; @endphp
+										@foreach ($favs as $f)
+											@if ($f->id == $product->id)
+											@php $x = $product->id @endphp
+												<a class="sevimli btn btn-pink p-3 btn-block" data-product_id="{{$product->id}}" href=""><i class="fas fa-heart" style="{{$f->id == $product->id ? 'background-color: #e51a3a' : ''}};font-size: 18px"></i> Seçilmişlərə əlavə et</a>
+											@endif
+											@endforeach
+											@if ($x != $product->id)
+												<a class="sevimli btn btn-pink-outline p-3 btn-block" data-product_id="{{$product->id}}" href=""><i class="fas fa-heart" style="font-size: 18px"></i> Seçilmişlərə əlavə et</a>
+											@endif
+									</div>
+								</div>
                                 
                                 {{-- <div class="col-xs-12">
 									<div class="promo-btn-group">
@@ -535,28 +552,6 @@
                             </div>
 
     					</div>
-
-                        <div class="col-xs-12">
-                            {{-- <div class="mt-4">
-								<div class="col-sm-12 pl-0" style="{{$agent->isMobile() ? 'padding-left: 0':''}}">
-								<a class="btn btn-primary2 mb-3 p-3 btn-block send-message" href=""> Mesaj yazın</a>
-								</div>
-								
-							</div> --}}
-                            
-                            <div class="col-sm-12" style="{{!$agent->isMobile() ? 'padding-right: 0':''}}">
-                                @php $x = 0; @endphp
-                                @foreach ($favs as $f)
-                                    @if ($f->id == $product->id)
-                                    @php $x = $product->id @endphp
-                                        <a class="sevimli btn btn-pink p-3 btn-block" data-product_id="{{$product->id}}" href=""><i class="fas fa-heart" style="{{$f->id == $product->id ? 'background-color: #e51a3a' : ''}};font-size: 18px"></i> Seçilmişlərə əlavə et</a>
-                                    @endif
-                                    @endforeach
-                                    @if ($x != $product->id)
-                                        <a class="sevimli btn btn-pink-outline p-3 btn-block" data-product_id="{{$product->id}}" href=""><i class="fas fa-heart" style="font-size: 18px"></i> Seçilmişlərə əlavə et</a>
-                                    @endif
-                            </div>
-                        </div>
     				</div>
     			</div>
 
