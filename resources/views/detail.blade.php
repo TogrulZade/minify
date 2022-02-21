@@ -565,22 +565,24 @@
     				</div>
     			</div>
 
-				@if (count($pictures)>1)
-				<div class="col-xs-12 p-0">
-					<div class="bg-white p-3 col-xs-12">
-						<ul id="mini-gallery">
-							@foreach($pictures as $index=>$pic)
-								@if($index>0)
-								<div class="{{$index == 0 ? 'cover-photo col-md-12' : 'mini-photo col-md-3 col-sm-3 col-xs-6 col-xs-12'}}">
-									<li>
-										<img data-index="{{$index}}" src="{{asset("storage/".$pic->url)}}" />
-									</li>
-								</div>
-								@endif
-							@endforeach	
-							</ul>
-					</div>
-				</div>
+                @if(!$agent->isMobile())
+                    @if (count($pictures)>1)
+                    <div class="col-xs-12 p-0">
+                        <div class="bg-white p-3 col-xs-12">
+                            <ul id="mini-gallery">
+                                @foreach($pictures as $index=>$pic)
+                                    @if($index>0)
+                                    <div class="{{$index == 0 ? 'cover-photo col-md-12' : 'mini-photo col-md-3 col-sm-3 col-xs-6 col-xs-12'}}">
+                                        <li>
+                                            <img data-index="{{$index}}" src="{{asset("storage/".$pic->url)}}" />
+                                        </li>
+                                    </div>
+                                    @endif
+                                @endforeach	
+                                </ul>
+                        </div>
+                    </div>
+				    @endif
 				@endif
 
     		</div>
