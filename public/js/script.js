@@ -494,9 +494,9 @@ $(document).ready(function(){
 	  });
 
 	  function fileUpload(index){
-		  console.log(files)
+		//   console.log(files)
 		t = document.querySelector('.t').value;
-		console.log(fileInput);
+		// console.log(fileInput);
 		const {file, el} = files[index];
 		const formData = new FormData();
 		formData.append('image', file);

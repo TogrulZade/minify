@@ -3,48 +3,88 @@
 @section('content')
 <div class="container">
     <div class="row">
-    	<div class="col-md-12 p-0 mt-5 mb-5">
-            <div class="col-xs-12 p-5" style="background-color: #fffede">
+    	<div class="col-xs-12 p-0 mt-5 mb-5" style="{{$agent->isMobile() ? 'margin-top: 80px' : '' }}">
+            <div class="col-xs-12 p-3" style="background-color: #fffede">
                 <div class="p-0" style="float: left; margin-right: 15px">
-                    <img style="width: 162px; height: 162px" src="{{asset('storage/'.$market->picture)}}" alt="">
-                    <div style="display: flex; justify-content: center; align-items: center; height: 40px; background-color:#635acc; width: 162px; margin-top: 10px">
-                        <span style="color: #fff">{{count($marketItems)}} elan</span>
+                    @if($agent->isMobile())
+                    <div class="col-xs-4">
+                        <img style="width: 95px; height: 95px;" src="{{asset('storage/'.$market->picture)}}" alt="">
                     </div>
-                </div>
-                <div class="col-md-9 p-0">
-                    <div class="col-md-8" style="border-right: 1px solid #b4b1db">
-                        
+                    <div class="col-xs-8">
                         <h1 class="m-0" style="color: #009688;font-size: 22px; "><strong>{{$market->name}}</strong></h1>
-                        <div class="mt-1" style="color: #009688">
-                            <i class="fas fa-eye"></i> <span>{{$seen}}</span>
-                        </div>
-                        <div class="mt-1" style="line-height: 1.25; height: 75px; overflow: hidden">
-                            <p>{{$market->about}}</p>
-                        </div>
-
-                        <div style="font-size: 16px; color: #635acc">
-                            <i class="far fa-clock"></i> <span>{{$market->open_at}}-{{$market->close_at}}</span>
-                        </div>
-                        
-                    </div>
-                    
-                    <div class="col-md-4 p-3" style="font-size: 16px">
-                        <div class="mb-3">
-                            <i class="fas fa-phone" style="color: #635acc"></i> <span>{{$market->tel}}</span>
-                        </div>
-                        <div>
-                            <i style="color: #635acc" class="fas fa-thumbtack"></i> <span style="font-size: 14px">{{$market->unvan}}</span>
+                        <i class="fas fa-eye"></i> <span>{{$seen}}</span>
+                        <div style="display: flex; justify-content: center; align-items: center; height: 40px; background-color:#635acc; width: 162px; margin-top: 10px">
+                            <span style="color: #fff">{{count($marketItems)}} elan</span>
                         </div>
                     </div>
 
-                    <div class="col-xs-12" style="height: 40px;background-color: #635acc;width: 100%;margin-top: 21px;color: #fff;line-height: 40px;text-align: center;">
+                    <div class="col-xs-12" style="height: 40px;background-color: #635acc;width: 100%;margin-top: 21px;color: #fff;line-height: 40px;text-align: center;padding: 0 10px">
                         <i style="transform: rotate(-10deg); font-size: 18px;" class="fas fa-star"></i> <span>{{$market->slogan}}</span>
                     </div>
+                    
+                    <div class="col-xs-12 mt-2">
+                        <p>{{$market->about}}</p>
+                    </div>
+                    @else
+                    <div class="col-md-3">
+                        <img style="width: 162px; height: 162px" src="{{asset('storage/'.$market->picture)}}" alt="">
+                        <div style="display: flex; justify-content: center; align-items: center; height: 40px; background-color:#635acc; width: 162px; margin-top: 10px">
+                            <span style="color: #fff">{{count($marketItems)}} elan</span>
+                        </div>
+                    </div>
 
+                        <div class="col-md-9 p-0">
+                            <div class="col-md-8" style="border-right: 1px solid #b4b1db">
+                                
+                                <h1 class="m-0" style="color: #009688;font-size: 22px; "><strong>{{$market->name}}</strong></h1>
+                                <div class="mt-1" style="color: #009688">
+                                    <i class="fas fa-eye"></i> <span>{{$seen}}</span>
+                                </div>
+                                <div class="mt-1" style="line-height: 1.25; height: 75px; overflow: hidden">
+                                    <p>{{$market->about}}</p>
+                                </div>
+        
+                                <div style="font-size: 16px; color: #635acc">
+                                    <i class="far fa-clock"></i> <span>{{$market->open_at}}-{{$market->close_at}}</span>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="col-md-4 p-3" style="font-size: 16px">
+                                <div class="mb-3">
+                                    <i class="fas fa-phone" style="color: #635acc"></i> <span>{{$market->tel}}</span>
+                                </div>
+                                <div>
+                                    <i style="color: #635acc" class="fas fa-thumbtack"></i> <span style="font-size: 14px">{{$market->unvan}}</span>
+                                </div>
+                            </div>
+        
+                            <div class="col-xs-12" style="height: 40px;background-color: #635acc;width: 100%;margin-top: 21px;color: #fff;line-height: 40px;text-align: center;">
+                                <i style="transform: rotate(-10deg); font-size: 18px;" class="fas fa-star"></i> <span>{{$market->slogan}}</span>
+                            </div>
+        
+                        </div>
+                    @endif
+                    
                 </div>
-
-
             </div>
+            {{-- SARI PANELIN SONU --}}
+
+            @if($agent->isMobile())
+            {{-- Nomre --}}
+            <div class="col-xs-12 mt-2 bg-white p-3" style="border-radius: 4px;">
+                <div class="mb-3 bl" style="padding-bottom: 10px">
+                    <i class="fas fa-phone" style="color: #635acc"></i> 
+                    <a href="tel:{{$market->tel}}">{{$market->tel}}</a>
+                </div>
+                <div class="mb-3 bl" style="padding-bottom: 10px">
+                    <i style="color: #635acc" class="fas fa-thumbtack"></i> <span style="font-size: 14px">{{$market->unvan}}</span>
+                </div>
+                <div style="font-size: 16px; color: #635acc">
+                    <i class="far fa-clock"></i> <span>{{$market->open_at}}-{{$market->close_at}}</span>
+                </div>
+            </div>
+            @endif
 
         </div>
     </div>

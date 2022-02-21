@@ -5,7 +5,7 @@
     <div class="row">
     	<div class="col-md-10 col-md-offset-1 p-0">
             <div class="col-md-8 col-md-offset-2 mt-5 mb-5">
-                <form action="makeMarket" method="POST" enctype="multipart/form-data">
+                <form action="makeMarket" class="bg-white" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-card">
                         @if (old("success"))

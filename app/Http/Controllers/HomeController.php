@@ -44,12 +44,6 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        // $up = Product::where('active',"=",1)->get();
-        // foreach($up as $u){
-        // $u->closed_at = date('Y-m-d H:i:s', strtotime("+2 months"));
-        // $u->update();
-        // }
-
         $take = SettingsHelper::take();
         
     	$minutes = 60*24*30*12*100;
