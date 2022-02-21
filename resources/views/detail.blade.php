@@ -488,7 +488,7 @@
 									</div>
 								</div>
 
-								<div class="col-md-12 p-2 mb-5">
+								<div class="col-xs-12 p-2 mb-5">
 									<div class="col-xs-6 p-0 satici">Satıcı: 
                                         <span>{{$product->product_merchant}}</span>
                                     </div>
@@ -541,7 +541,7 @@
 
     					</div>
 
-                        <div class="col-xs-12">
+                        <div class="col-xs-12 p-0">
                             {{-- <div class="mt-4">
 								<div class="col-sm-12 pl-0" style="{{$agent->isMobile() ? 'padding-left: 0':''}}">
 								<a class="btn btn-primary2 mb-3 p-3 btn-block send-message" href=""> Mesaj yazın</a>
