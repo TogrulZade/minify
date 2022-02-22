@@ -433,7 +433,7 @@
 						<div class="col-md-12 p-0 desc-text">
 							<div class="shop-icon">
                             <h2 style="font-weight: 600">{{$product->product_name}}</h2>
-								@if($product->market !='')
+								
 								<div class="col-md-12 p-0 mb-2">
 									<div class="shop-company" style="display: flex">
 										{{-- <i class="fas fa-store company-icon"></i> <span>{{$product->market}}</span> --}}
@@ -448,14 +448,14 @@
                                                 {{-- <i class="fas fa-check-circle"></i> <span>5 nəfər alıb</span> --}}
                                                 <span class=""><i class="far fa-eye"></i> {{count($count_seen)}}</span> 
                                             </div>
-
+											@if($product->market !='')
 											<div style="margin-top: -3px">
 												<a class="merchant-link" href="/market/{{$product->market->slug}}">
 													<i class="fas fa-store company-icon" style="font-size: 14px; margin-right: 2px;"></i>{{$product->market->name}}</a>
 											</div>
+											@endif
 									</div>
 								</div>
-								@endif
 
 							</div>
 
