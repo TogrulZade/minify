@@ -112,6 +112,8 @@ class HomeController extends Controller
     public function axtar(Request $request)
     {
         $axtar = $request->axtar;
+        if($axtar == NULL)
+            return redirect('/');
 
         $vips = Product::with('pictures')
         ->whereHas('pictures',function($q){

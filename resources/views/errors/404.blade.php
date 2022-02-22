@@ -17,7 +17,9 @@
                 </div>
                 <div class="col-sm-6 text-center">
                     <h1 style="color: #494949;font-weight: 600; font-size: 14em; margin-top: 50px;">404</h1>
-                    <input type="text" class="axtar" name="search" placeholder='Əşya və ya xidmət axtarın....' style="width: 60%; padding: 8px 16px; border-radius: 8px; border: 2px solid #c2c2c2;">
+                    <form action="/axtar" method="GET">
+                        <input type="text" class="axtar" name="axtar" placeholder='Əşya və ya xidmət axtarın....' style="width: 60%; padding: 8px 16px; border-radius: 8px; border: 2px solid #c2c2c2;">
+                    </form>
                     {{-- <img src="{{asset('storage/images/404.png')}}" style="width: 100%; height: 430px" alt=""> --}}
                 </div>
             </div>

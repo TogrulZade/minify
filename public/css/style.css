@@ -1,4 +1,4 @@
-body{
+body, html{
 	color: #525252!important;
 	/*background-color: #f2f2f2;*/
 	font-family: "Nunito", sans-serif;
@@ -1027,6 +1027,7 @@ form.navbar-form.navbar-left {
 	display: flex;
 	justify-content: flex-start;
 	font-size: 24px;
+	color: #fff;
 }
 
 #nav .brand {
@@ -1620,7 +1621,7 @@ ul.nav.navbar-nav.navbar-right.xs-p-3.nav-sign {
 
 
 .cabinet-tab li.tab-item a{
-	color: #fff;
+	color: #fff!important;
 	padding: 20px 30px;
 	display: block;
 	border-right: 1px solid #fff;
@@ -2134,8 +2135,8 @@ ul.nav.navbar-nav.navbar-category {
 }
 
 li a.active {
-    margin-top: 5px;
-    border-radius: 29px;
+    /* margin-top: 5px; */
+    /* border-radius: 29px; */
     background: transparent!important;
     color: #000!important;
 }
@@ -2471,4 +2472,22 @@ select#dil {
 
 .absolute {
     top: 18px;
+}
+
+.cabinet-tab.mobile{
+	display: flex;
+	width: 100%;
+	overflow-x: scroll;
+}
+
+.cabinet-tab.mobile li.tab-item a{
+	padding: 10px;
+	width: 160px;
+	text-align: center;
+	background-color: #fff!important;
+	color: #8d94ad!important;
+}
+
+.cabinet-tab.mobile li.tab-item a.active {
+    color: var(--main-color)!important;
 }

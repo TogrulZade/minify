@@ -336,6 +336,11 @@
             </div>
 		@endif --}}
     	<div class="col-md-10 col-md-offset-1 p-0">
+            @if($product->user_id == Auth::id() && $product->active == 0)
+                <div class="alert alert-info" style="margin: 10px 0 0 0">
+                    <i class="fas fa-user-clock" style="font-size: 20px"></i> <span>Məhsulunuz <strong>Minify moderatorları</strong> tərəfindən təsdiq gözləyir</span>
+                </div>
+            @endif
 			@if (!$agent->isMobile())
     		<div class="col-md-12 mb-5 mt-5">
     			<div class="col-md-6 col-sm-6 col-xs-12 h-cover p-0">
@@ -345,11 +350,6 @@
 					</div>
 					@endif
 
-					@if($product->user_id == Auth::id() && $product->active == 0)
-						<div class="alert alert-info" style="">
-							<i class="fas fa-user-clock" style="font-size: 20px"></i> <span>Məhsulunuz <strong>Minify moderatorları</strong> tərəfindən təsdiq gözləyir</span>
-						</div>
-					@endif
 					
 					<div class="shop-img">	
 						<div class="col-xs-12">									
@@ -482,10 +482,7 @@
                                     <div class="col-xs-6 p-0 mb-1">
                                         <span>{{$product->id}}</span>
                                     </div>
-
-									<div class="col-xs-12 p-0" style="color: #8d94ad;font-weight: 400">
-										<strong>Elan №: {{$product->id}}</strong>
-									</div>
+                                    
 								</div>
 
 								<div class="col-xs-12 p-2 mb-5">

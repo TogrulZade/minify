@@ -34,7 +34,11 @@
 </head>
 <body>
     @if($agent->isMobile())
-        @include('layouts.mobile.nav')    
+        @if(Request::is('cabinet'))
+            @include('layouts.mobile.navCabinet')
+        @else
+            @include('layouts.mobile.nav')    
+        @endif
     @else
         @include('layouts.web.nav')
         <a href='/sell' class="addItemButton">
