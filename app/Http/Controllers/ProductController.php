@@ -98,11 +98,25 @@ class ProductController extends Controller
 			\Cookie::queue('anonim', $anonim, $minutes);
         }
 
-		SeenProduct::create([
-			'user_id'=>Auth::user() ? Auth::user()->id : null, 
-			'product_id'=>$product->id,
-			'anonim'=>$request->cookie('anonim') ? $request->cookie('anonim') : null
-		]);
+
+		if(Auth::user()){
+			if($product->user_id != Auth::user()->id){
+				SeenProduct::create([
+					'user_id'=>Auth::user() ? Auth::user()->id : null, 
+					'product_id'=>$product->id,
+					'anonim'=>$request->cookie('anonim') ? $request->cookie('anonim') : null
+				]);
+			}
+		}else{
+			SeenProduct::create([
+				'user_id'=>Auth::user() ? Auth::user()->id : null, 
+				'product_id'=>$product->id,
+				'anonim'=>$request->cookie('anonim') ? $request->cookie('anonim') : null
+			]);
+		}
+		
+
+		
 
 		$count_seen = SeenProduct::where('product_id',"=",$product->id)->get();
 
