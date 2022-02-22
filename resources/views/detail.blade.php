@@ -376,6 +376,7 @@
 								@endif
 							</ul>
 						</div>
+					@endif
 
 						<div class="col-xs-12">
 							<div class="promo-btn-group">
@@ -399,7 +400,6 @@
 
 						</div>
 					</div>
-					@endif
     			</div>
 
     			<div class="col-md-6 col-sm-12 col-xs-12 p-0">
