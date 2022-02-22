@@ -590,7 +590,7 @@
 				<div class="shop-extra">
 
 					@if($product->active == 2 and (Auth::id() == $product->user_id or Auth::id() == 1))
-					<a href="/verifyEdition/{{$product->id}}" class="btn btn btn-success">Düzəlişi təsdiqlə</a>
+					<a href="/verifyEdition/{{$product->uniqid}}" class="btn btn btn-success">Düzəlişi təsdiqlə</a>
 					@endif
 
 					
