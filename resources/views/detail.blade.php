@@ -347,10 +347,10 @@
                     <i class="fas fa-user-clock" style="font-size: 20px"></i> <span>Məhsulunuz <strong>Minify moderatorları</strong> tərəfindən təsdiq gözləyir</span>
                 </div>
             @endif
-			@if (!$agent->isMobile())
     		<div class="col-md-12 mb-5 mt-5">
-    			<div class="col-md-6 col-sm-6 col-xs-12 h-cover p-0">
+				<div class="col-md-6 col-sm-6 col-xs-12 h-cover p-0">
 					
+					@if (!$agent->isMobile())
 					<div class="shop-img">	
 						<div class="col-xs-12">									
 							<ul id="mini-gallery">
@@ -378,6 +378,7 @@
 						</div>
 					@endif
 
+					@if(!$agent->isMobile())
 						<div class="col-xs-12">
 							<div class="promo-btn-group">
 								<div class="promo-btn ireli-btn">
@@ -400,10 +401,35 @@
 
 						</div>
 					</div>
+					@endif
     			</div>
 
     			<div class="col-md-6 col-sm-12 col-xs-12 p-0">
     				<div class="bg-white shop-desc" style="{{$agent->isMobile() ? 'border-radius: 0; border-top: 1px solid #f2f2f2' : ''}}">
+						@if($agent->isMobile())
+						{{-- <div class="col-xs-12"> --}}
+							<div class="promo-btn-group">
+								<div class="promo-btn ireli-btn" style="{{$agent->isMobile() ? 'padding: 7px 30px' : ''}}">
+									<span class="price">1 AZN</span>
+									<span><i class="fas fa-long-arrow-alt-right" style="color: #e51a3a;transform: rotate(-90deg)"></i>İrəli çək</span>
+								</div>
+								<div class="promo-btn vip-btn {{count($product->vip) > 0 ? 'active' : ''}}" data-vip="{{$product->id}}" style="{{$agent->isMobile() ? 'padding: 7px 30px' : ''}}">
+									<span class="price">2 AZN</span>
+									<span><i class="fas fa-gem"></i> VIP</span>
+									
+								</div>
+								<div class="promo-btn premium-btn {{count($product->premium) > 0 ? 'active' : ''}}" data-premium="{{$product->id}}" style="{{$agent->isMobile() ? 'padding: 7px 30px' : ''}}">
+									<span class="price">5 AZN</span>
+									<span>
+										<i class="fas fa-crown"></i> 
+										<span>Premium</span>
+									</span>
+								</div>
+							</div>
+
+						{{-- </div> --}}
+					@endif
+						
 						<div class="col-md-12 p-0 desc-text">
 							<div class="shop-icon">
                             <h2 style="font-weight: 600">{{$product->product_name}}</h2>
