@@ -336,6 +336,12 @@
             </div>
 		@endif --}}
     	<div class="col-md-10 col-md-offset-1 p-0">
+			@if(old('success'))
+				<div class="alert alert-success">
+					{{ old("success") }}
+				</div>
+			@endif
+
             @if($product->user_id == Auth::id() && $product->active == 0)
                 <div class="alert alert-info" style="margin: 10px 0 0 0">
                     <i class="fas fa-user-clock" style="font-size: 20px"></i> <span>Məhsulunuz <strong>Minify moderatorları</strong> tərəfindən təsdiq gözləyir</span>
@@ -344,12 +350,6 @@
 			@if (!$agent->isMobile())
     		<div class="col-md-12 mb-5 mt-5">
     			<div class="col-md-6 col-sm-6 col-xs-12 h-cover p-0">
-					@if(old('success'))
-					<div class="alert alert-success">
-						{{ old("success") }}
-					</div>
-					@endif
-
 					
 					<div class="shop-img">	
 						<div class="col-xs-12">									
@@ -590,7 +590,7 @@
 				<div class="shop-extra">
 
 					@if($product->active == 2 and (Auth::id() == $product->user_id or Auth::id() == 1))
-					<a href="/verifyEdition/{{$product->pid}}" class="btn btn btn-success">Düzəlişi təsdiqlə</a>
+					<a href="/verifyEdition/{{$product->id}}" class="btn btn btn-success">Düzəlişi təsdiqlə</a>
 					@endif
 
 					
