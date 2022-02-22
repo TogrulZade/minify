@@ -1637,7 +1637,7 @@ ul.nav.navbar-nav.navbar-right.xs-p-3.nav-sign {
 .cabinet-body{
 	min-height: 300px;
 	background-color: #f2f2f2;
-	padding: 40px;
+	padding: 10px;
 	display: block;
 	float: left;
 	margin: 0;
@@ -2476,8 +2476,12 @@ select#dil {
 
 .cabinet-tab.mobile{
 	display: flex;
-	width: 100%;
+	/* width: 100%; */
 	overflow-x: scroll;
+	border-bottom: 1px solid #f1f3f7;
+	border-top: 1px solid #f1f3f7;
+	justify-content: space-between;
+	background-color: #fff!important;
 }
 
 .cabinet-tab.mobile li.tab-item a{

@@ -13,10 +13,11 @@
 
            <div class="cabinet-body">
                <div class="tab-body aktiv-body">
-                @if (count($aktivElanlar)>0)
+                   @if (count($aktivElanlar)>0)
+                   @php $z = 0;@endphp
                     @foreach ($aktivElanlar as $aktiv)
-                        <div class="col-md-3 col-sm-4 col-xs-6">
-                            <a href="/product/{{$aktiv->slug}}" class="card-mini">
+                        {{-- <div class="col-md-3 col-sm-4 col-xs-6">
+                            <a href="/product/{{$aktiv->slug}}" class="card">
                                 <div class="card-img">
                                     <img src="{{asset('storage/'.$aktiv->product_cover)}}" alt="">
                                 </div>
@@ -33,7 +34,56 @@
                                     <p>{{$aktiv->created_at}}</p>
                                 </div>
                             </a>
+                        </div> --}}
+
+                        <div class="col-md-3 col-sm-4 col-xs-6">
+                            <a href="/product/{{$aktiv->slug}}" target="_blank" class="{{ $agent->isMobile() ? 'card-mini' : 'card' }}">
+                                <div class="card-img">
+                                    <img src="{{asset('storage/'.$aktiv->product_cover)}}" alt="">
+                                    @if (count($aktiv->premium) >0 || count($aktiv->vip) >0)
+                                    <div class="icon-group">
+                                        @if (count($aktiv->premium) >0)
+                                            <div class="premium-icon" style="margin-right: 5px;">
+                                                <i class="fas fa-crown"></i>
+                                            </div>
+                                        @endif
+                                        @if (count($aktiv->vip) >0)
+                                        <div class="vip-icon">
+                                            <i class="fas fa-gem"></i>
+                                        </div>
+                                        @endif
+                                    </div>
+                                    @endif
+                                </div>
+                                <div class="card-title-wrap">    
+                                    <div class="card-title">
+                                        {{$aktiv->product_price}} AZN
+                                    </div>
+                                    @foreach ($favs as $fav)
+                                        @if ($fav->id == $aktiv->id)
+                                        @php $z = $aktiv->id @endphp
+                                            <div class="add_favorite" data-product_id="{{$aktiv->id}}" style="{{$fav->id == $aktiv->id ? 'color: red' : ''}}">
+                                                <i class="fas fa-heart"></i>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                    @if ($z != $aktiv->id)
+                                    <div class="add_favorite" data-product_id="{{$aktiv->id}}" style="">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    @endif
+                                </div>
+                                <div class="card-body">
+                                    <strong class="mb-0">{{$aktiv->product_name}}</strong>
+                                </div>
+            
+                                <div class="card-footer">
+                                    <p>{{$aktiv->created_at}}</p>
+                                </div>
+                            </a>
                         </div>
+            
+                            {{-- End card --}}
                     @endforeach
                     @else
                     <div class="centered">
