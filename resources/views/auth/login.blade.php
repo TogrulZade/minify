@@ -33,7 +33,6 @@
                     {{-- <div class="form-group"> --}}
                         <input type="hidden" id="remember" name="remember" value="1">
                     {{-- </div> --}}
-                    
                     <div class="form-group">
                         <div>
                             @if (Route::has('password.request'))
