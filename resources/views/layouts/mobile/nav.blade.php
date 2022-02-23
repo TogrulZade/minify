@@ -32,6 +32,8 @@
                     <div class="seperator"></div>
                     <li><a class="favorite" href="/showFavs"><i class="feather-heart"></i> Seçilmişlər</a></li>
                     <li><a class="icon-card"href="#"><i class="feather-credit-card"></i> Balansını artır</a></li>
+                    <div class="seperator"></div>
+                    <li><a class="icon-card"href="/logout"><i class="feather-log-out"></i> Çıxış</a></li>
                 </ul>
                 <ul class="section">
                     {{-- <li><a href="#">Tam versiya</a></li> --}}
