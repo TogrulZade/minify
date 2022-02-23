@@ -1740,7 +1740,7 @@ a.card-mini:focus {
 	width: 100%;
 	background-color: #fff;
 	float: left;
-	border-bottom-left-radius: 20px;
+	/* border-bottom-left-radius: 20px; */
 	position: fixed;
 	z-index: 999;
 	margin-top: 60px;
@@ -1767,7 +1767,7 @@ a.card-mini:focus {
 	background-color: #f8f9fd;
 }
 
-ba {}
+
 .search-bar input:focus{
 	outline: none;
 }

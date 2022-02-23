@@ -29,6 +29,8 @@ Route::get("/cv", "HomeController@cv");
 Route::post("/sell", "ProductController@sellAction")->middleware('auth');
 Route::get("/c/{cat}", "ProductController@getByCategory")
         ->where('cat','^[a-zA-Z0-9-_\/]+$')->name('category');
+Route::get("/c/{cat}/{subcat}", "ProductController@getByCategory")
+        ->where('cat','^[a-zA-Z0-9-_\/]+$')->name('category');
 Route::get("update", "ProductController@update");
 Route::get("axtar", "HomeController@axtar");
 Route::post("addFavs", "FavController@addFavs");
