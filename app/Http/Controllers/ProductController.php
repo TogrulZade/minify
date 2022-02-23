@@ -260,12 +260,14 @@ class ProductController extends Controller
 		$getCat = Category::where('slug',"=",$cat[count($cat)-1])->first();
 
 		if($getCat){
+			
 			$vips = Product::with('pictures')->whereHas('pictures',function($q){
 				return $q->where('pictures.cover',"=",1);
 			})->with('vip')->whereHas('vip',function($q){
 				return $q->where('closed_at',">", date('Y-m-d H:i:s'));
 			})->where("product_category","=",$getCat->id)->get();
 
+			$subCategory = Category::where('parent_id',"=",$getCat->id)->get();
 			// $products = Product::with('pictures')->whereHas('pictures', function($q){
 			// 	return $q->where('pictures.cover',"=",1);
 			// })->where('products.product_category',"=",$getCat->id)->doesntHave('vip')->get();
@@ -282,7 +284,7 @@ class ProductController extends Controller
 
 			$favs = FavHelper::getFavs($request);
 
-			return view('byCategory', ['products'=>$products, 'favs'=>$favs, 'vips'=>$vips, 'categoryName'=>$getCat->name]);
+			return view('byCategory', ['products'=>$products, 'favs'=>$favs, 'vips'=>$vips, 'categoryName'=>$getCat->name,'subCategory'=>$subCategory]);
 		}else{
 			return redirect('/');
 		}

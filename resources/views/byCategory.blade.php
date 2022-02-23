@@ -10,7 +10,7 @@
 @if(!$agent->isMobile())
     @include('partial.sticky')
 @else
-    @include('layouts.mobile.header-mobile')
+    @include('layouts.mobile.header-mobile', ['some'=>'data'])
 @endif
 <div class="{{$agent->isMobile() ? 'container-fluid' : 'container'}}">
     <div class="row">
@@ -22,16 +22,16 @@
             </div> --}}
         @endif
 
-        <div class="col-xs-12 mt-5 mb-2" style="{{$agent->isMobile() ? 'background-color: #f7f6f6; padding: 0 15px;' : ''}} border-radius: 6px">
+        <div class="col-xs-12 mt-5 mb-2 {{$agent->isMobile() ? 'mobile-content' : ''}}" style="{{$agent->isMobile() ? 'padding: 0 15px;' : ''}} border-radius: 6px">
 
-            <nav aria-label="breadcrumb">
+            {{-- <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="elanlar">Bütün kateqoriyalar</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">{{$categoryName}}</li>
                 </ol>
-                </nav>
+                </nav> --}}
                     
         </div>
 

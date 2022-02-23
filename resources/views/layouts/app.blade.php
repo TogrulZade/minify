@@ -37,7 +37,7 @@
         @if(Request::is('cabinet'))
             @include('layouts.mobile.navCabinet')
         @else
-            @include('layouts.mobile.nav')    
+            @include('layouts.mobile.nav') 
         @endif
     @else
         @include('layouts.web.nav')
