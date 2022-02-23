@@ -467,14 +467,14 @@ var lastScrollTop = 0;
 	}
 	if (st > lastScrollTop){
 		// downscroll code
-		$('.brand').text('Asagi');
+		// $('.brand').text('Asagi');
 		$(".header-mobile").css('transition',"all .15s linear");
 		$("nav").css('transition',"all .15s linear");
 		$('nav').css("display",'none');
 		$('.header-mobile').css('margin-top',0);
 		$('.right-sticky').css('top',"50px");
 	} else {
-		$('.brand').text('Yuxari');
+		// $('.brand').text('Yuxari');
 		// upscroll code
 		
 		$(".header-mobile").css('transition',"all .15s linear");
