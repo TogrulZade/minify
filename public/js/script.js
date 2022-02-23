@@ -453,38 +453,38 @@ $(document).ready(function(){
 });
 
 // Isleyir. Scroll zamani headeri gizlemek ve gostermek
-// var lastScrollTop = 0;
-// 	document.addEventListener('scroll',function(event){
-// 	var st = $(this).scrollTop();
-// 	if(st > 70){
-// 		$(".header").css('transition',"all .1s linear");
-// 		$("nav").css('transition',"all .1s linear");
-// 		$('nav').css("display",'none');
-// 		$('.header').css('margin-top',0);
-// 	}else{
-// 		$('nav').css("display",'block');
-// 		$('.header').css('margin-top',"50px");
-// 	}
-// 	if (st > lastScrollTop){
-// 		// downscroll code
-// 		// $('.navbar-brand').text('Asagi');
-// 		$(".header").css('transition',"all .15s linear");
-// 		$("nav").css('transition',"all .15s linear");
-// 		$('nav').css("display",'none');
-// 		$('.header').css('margin-top',0);
-// 		$('.right-sticky').css('top',"50px");
-// 	} else {
-// 		// $('.navbar-brand').text('Yuxari');
-// 		// upscroll code
+var lastScrollTop = 0;
+	document.addEventListener('scroll',function(event){
+	var st = $(this).scrollTop();
+	if(st > 70){
+		$(".header-mobile").css('transition',"all .1s linear");
+		$("nav").css('transition',"all .1s linear");
+		$('nav').css("display",'none');
+		$('.header-mobile').css('margin-top',0);
+	}else{
+		$('nav').css("display",'block');
+		$('.header-mobile').css('margin-top',"50px");
+	}
+	if (st > lastScrollTop){
+		// downscroll code
+		$('.brand').text('Asagi');
+		$(".header-mobile").css('transition',"all .15s linear");
+		$("nav").css('transition',"all .15s linear");
+		$('nav').css("display",'none');
+		$('.header-mobile').css('margin-top',0);
+		$('.right-sticky').css('top',"50px");
+	} else {
+		$('.brand').text('Yuxari');
+		// upscroll code
 		
-// 		$(".header").css('transition',"all .15s linear");
-// 		$("nav").css('transition',"all .15s linear");
-// 		$('nav').css("display",'block');
-// 		$('.header').css('margin-top',"58px");
-// 		$('.right-sticky').css('top',"58px");
-// 	}
-// 	lastScrollTop = st;
-// 	});
+		$(".header-mobile").css('transition',"all .15s linear");
+		$("nav").css('transition',"all .15s linear");
+		$('nav').css("display",'block');
+		$('.header-mobile').css('margin-top',"58px");
+		$('.right-sticky').css('top',"58px");
+	}
+	lastScrollTop = st;
+	});
 
 
 	// Canli izle
