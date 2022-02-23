@@ -1040,11 +1040,11 @@ form.navbar-form.navbar-left {
 
 .add_elan a, .add_elan a:active, .add_elan a:focus{
 	font-size: 20px;
-	width: 30px;
-	height: 30px;
-	background-color: var(--second-bg-color);
+	width: 25px;
+	height: 25px;
+	background-color: #fff;
 	border-radius: 50%;
-	color: #fff;
+	color: #009688;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -1741,11 +1741,15 @@ a.card-mini:focus {
 	background-color: #fff;
 	float: left;
 	border-bottom-left-radius: 20px;
+	position: fixed;
+	z-index: 999;
+	margin-top: 60px;
 }
 
 .header-mobile .header-container{
 	width: 100%;
 	float: left;
+	/* margin-top: 59px; */
 }
 
 .search-bar{
@@ -1760,7 +1764,10 @@ a.card-mini:focus {
 	padding: 10px 10px;
 	border-radius: 10px;
 	border: 1px solid #c2c2c2;
+	background-color: #f8f9fd;
 }
+
+ba {}
 .search-bar input:focus{
 	outline: none;
 }
@@ -1769,7 +1776,7 @@ a.card-mini:focus {
 	float: left;
 	overflow-x: scroll;
 	background-color: #fff;
-	padding: 10px;
+	padding: 8px 10px 0;
 	/* margin-bottom: 20px; */
 	box-shadow: 0 4px 10px 1px rgba(0, 0, 0, 0.2);
 	/* border-bottom-left-radius: 20px; */
@@ -1800,7 +1807,10 @@ a.card-mini:focus {
 	border-radius: 6px;
 	width: -webkit-max-content;
 	width: -moz-max-content;
-    width: max-content;
+	width: max-content;
+	height: 45px;
+	align-items: center;
+	justify-content: center;
 }
 
 .mobile-category ul li a{
@@ -1812,13 +1822,16 @@ a.card-mini:focus {
 .icon-search{
 	position: absolute;
 	top: 12px;
-	right: 13px;
+	right: 20px;
 	font-size: 18px;
 	padding: 6px 10px;
 	border-radius: 6px;
 	color: #494949;
-	background-color: #fff;
+	background-color: #f8f9fd;
 	border: none;
+	border-left: 1px solid #ccc;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
 }
 
 .izle .item{
@@ -2505,4 +2518,36 @@ select#dil {
     margin-top: 3px;
     cursor: pointer;
 	display: none;
+}
+
+.form-search-mobile{
+	padding: 0 8px;
+}
+
+.mobile-content {
+    margin-top: 185px;
+}
+
+a.kataloq {
+    width: 100px;
+}
+
+li.kat {
+    min-width: 50px!important;
+    height: 46px!important;
+    border: none!important;
+    background: #009688;
+}
+
+a.kataloq {
+    width: 50px!important;
+    height: 45px;
+    align-items: center;
+    margin-top: 3px;
+    justify-content: center;
+    border: none!important;
+}
+
+.kat i {
+    color: #ffffff;
 }

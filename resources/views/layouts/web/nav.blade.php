@@ -20,7 +20,7 @@
             <ul class="nav navbar-nav navbar-category">
                 {{-- <li><a href="#">Mağazalar</a></li> --}}
                 <li class="navbar-menu">
-                    <a class="active" href="#" style="color: #fff!important;display: flex; align-items: center;">
+                    <a class="active mt-1" href="#" style="color: #fff!important;display: flex; align-items: center;">
                         {{-- <i class="fas fa-bars"></i> --}}
                         <i class="feather-grid" style="color: #fff; margin-right: 5px"></i>
                         Kateqoriya

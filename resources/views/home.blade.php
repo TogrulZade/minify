@@ -23,7 +23,7 @@
         @endif
 
         @if(!empty($vips))
-        <div class="col-xs-12">
+        <div class="col-xs-12 {{$agent->isMobile() ? 'mobile-content' : ''}}">
         @foreach ($vips as $i=>$vip)
             @if ($vip->id && $i == 0)
             <div class="col-xs-12 section-title">
