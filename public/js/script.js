@@ -90,9 +90,29 @@ $(document).ready(function(){
 		$('.full-opacity').css('visibility','visible');
 	});
 
-	$('#mini-gallery img').hover(function(){
-		$(".make_cover").hide();
-		$(this).next().show();
+	$('.mini-photo li').hover(function(){
+		$(".make_cover").removeClass('show');
+		$(this).find('.make_cover').addClass('show');
+	}, function(){
+		$(".make_cover").removeClass('show');
+	});
+
+	$(".make_cover").on('click', function(){
+		let pic = $(this).data('id');
+
+		$.ajax({
+			url: '/makeCover',
+			type:'post',
+			data: {_token: csrf, pic: pic},
+
+			success: function(res){
+				alert(JSON.stringify(res));
+			},
+			error: function(error){
+				alert(error.responseText);
+			}
+			
+		})
 	});
 
 	$('.mini-close').on("click", function(){

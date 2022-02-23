@@ -369,7 +369,7 @@
 									{{-- <div class="{{$index == 0 ? 'cover-photo col-md-12' : 'mini-photo col-md-3 col-sm-3 col-xs-6 col-xs-12'}}"> --}}
 									<div class="cover-photo col-md-12">
 										<li>
-											<img data-index="" src="{{asset("storage/".$pictures[0]->url)}}" />
+											<img data-index="" src="{{asset("storage/".$cover_photo->url)}}" />
 										</li>
 									</div>
 								{{-- @endforeach --}}
@@ -594,14 +594,14 @@
                         <div class="bg-white p-3 col-xs-12">
                             <ul id="mini-gallery">
                                 @foreach($pictures as $index=>$pic)
-                                    @if($index>0)
-                                    <div class="{{$index == 0 ? 'cover-photo col-md-12' : 'mini-photo col-md-3 col-sm-3 col-xs-6 col-xs-12'}}">
-                                        <li>
+                                    {{-- @if($index>0) --}}
+                                    <div class="{{$index == -1 ? 'cover-photo col-md-12' : 'mini-photo col-md-3 col-sm-3 col-xs-6 col-xs-12'}}">
+                                        <li class="li">
                                             <img data-index="{{$index}}" src="{{asset("storage/".$pic->url)}}" />
-											<div class="make_cover">Əsas şəkil et</div>
+											<div class="make_cover" data-id="{{$pic->id}}">Əsas şəkil et</div>
                                         </li>
                                     </div>
-                                    @endif
+                                    {{-- @endif --}}
                                 @endforeach	
                                 </ul>
                         </div>
@@ -681,7 +681,7 @@
 			</div>
 			@php $z = 0;@endphp
 			@foreach ($more_products as $more)
-			<div class="col-md-3 col-sm-4 col-xs-6">
+			<div class="col-md-3 col-sm-4 col-xs-6 p-4">
 				<a href="/product/{{$more->slug}}" class="card-mini">
 					<div class="card-img">
 						<img src="{{asset('storage/'.$more->product_cover)}}" alt="">

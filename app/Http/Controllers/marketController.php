@@ -71,6 +71,8 @@ class marketController extends Controller
     public function myMarket(Request $req)
     {
         $market = market::where("uid","=",Auth::id())->where('status',"=",1)->get();
+        if(!$market)
+            return redirect('/makeMarket');
         return view('myMarket',compact('market'));
     }
 
@@ -78,7 +80,8 @@ class marketController extends Controller
     {
         $slug = $req->slug;
         $market = market::where('slug',"=",$slug)->first();
-
+        if(!$market)
+            return redirect("/");
         $marketItems = Product::where('market_id',"=",$market->id)
         ->with('vip')
         ->with('premium')
