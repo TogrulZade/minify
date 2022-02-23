@@ -259,7 +259,6 @@ class ProductController extends Controller
 		$cat = explode("/",$request->cat);
 
 		$getCat = Category::where('slug',"=",$cat[count($cat)-1])->first();
-
 		if($getCat){
 			
 			$vips = Product::with('pictures')->whereHas('pictures',function($q){
@@ -282,6 +281,7 @@ class ProductController extends Controller
 			->where('products.active','=',1)
 			->doesntHave('vip')
 			->get();
+			echo print_r($products);
 
 			$favs = FavHelper::getFavs($request);
 
