@@ -53,6 +53,7 @@ Route::post("makePremium", "PremiumController@makePremium");
 Route::get("elanlar/vip", "VipController@all");
 Route::get("elanlar", "HomeController@elanlar");
 Route::post("makeVipWithNumber", "VipController@checkProduct");
+Route::post("makeCover", "PictureController@makeCover")->middleware('auth');
 
 
 Auth::routes();

@@ -62,6 +62,9 @@ class ProductController extends Controller
 			->where("products.slug", "=", $request->slug)
 		->first();
 
+		$cover_photo = Picture::with('product')->where('uniqid',"=",$product->uniqid)->where('cover','=',1)->first();
+		// $cover_photo = DB::table('pictures')->join('products','products.uniqid','pictures.uniqid')->where('pictures.uniq_i');
+
 		if(Auth::user()){
 			$check = Product::where('slug',"=",$request->slug)->first();
 			if($check){
@@ -116,13 +119,11 @@ class ProductController extends Controller
 		}
 		
 
-		
-
 		$count_seen = SeenProduct::where('product_id',"=",$product->id)->get();
 
 		// return view("product", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen->count(), "more_products"=>$more_products,'favs'=>$favs, 'isFav'=>$isFav]);
 		// return view("detail", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen->count(), "more_products"=>$more_products,'favs'=>$favs, 'isFav'=>$isFav]);
-		return view("detail", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen, "more_products"=>$more_products,'favs'=>$favs, 'isFav'=>$isFav]);
+		return view("detail", ["product"=>$product,"pictures"=>$pictures,"count_seen"=>$count_seen, "more_products"=>$more_products,'favs'=>$favs, 'isFav'=>$isFav,'cover_photo'=>$cover_photo]);
     }
 
     public function sell(Request $request)

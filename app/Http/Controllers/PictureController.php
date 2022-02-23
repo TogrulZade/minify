@@ -4,6 +4,7 @@ namespace minify\Http\Controllers;
 
 use Illuminate\Http\Request;
 use minify\Picture;
+use minify\Product;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -44,6 +45,35 @@ class PictureController extends Controller
             // $image_resize->crop(220, 163, 0,0);
             $image_resize->save(public_path($coverUrl));
             Picture::create(["url"=>$imgurl,"cover"=>$cover,'cover_photo'=>$coverCut,"uniqid"=>$t]);   
+        }
+
+        public function makeCover(Request $request)
+        {
+            $find = Picture::where("id","=",$request->pic)->first();
+            if(!$find)
+                return 'not_found_pic';
+            
+            
+            $product = Product::where('uniqid','=',$find->uniqid)->first();
+            if(!$product)
+                return 'not_found_product';
+            
+            
+            $find_cover = Picture::where("uniqid","=",$product->uniqid)
+                          ->where('cover',"=",1)
+                          ->first();
+            // return $find_cover;
+            if($find_cover->id == $find->id)
+                return 'same_choosen';
+
+            $find_cover->cover = 0;
+            $find_cover->update();
+            $find->cover = 1;
+            if($find->update())
+                return 'ok';
+            
+            return 'not_updated';
+            
         }
     }
 // }
