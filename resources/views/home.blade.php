@@ -112,7 +112,7 @@
             </div>
         </div>
         @else
-        <div class="col-xs-12 mt-5 mb-2" style="{{$agent->isMobile() ? 'background-color: #f7f6f6; padding: 0 15px;' : ''}} border-radius: 6px">
+        <div class="col-xs-12 mt-5 mb-2" style="{{$agent->isMobile() ? 'padding: 0 15px;' : ''}} border-radius: 6px">
             <div class="col-xs-12 mb-2">
                 @if($categoryName == '')
                 <div class="col-xs-12 mb-3" style="padding-top: 10px;">
