@@ -175,7 +175,7 @@ class ProductController extends Controller
     	$validator = Validator::make($request->all(), $rules, $messages);
 		
 		if ($validator->fails()) {
-			dd($validator->fails);
+			// dd($validator->fails);
     		return redirect('sell')->withErrors($validator)->withInput();
 		}
 

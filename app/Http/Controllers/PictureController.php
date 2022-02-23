@@ -43,7 +43,7 @@ class PictureController extends Controller
             $image_resize->resize($width, $height);
             // $image_resize->crop(220, 163, 0,0);
             $image_resize->save(public_path($coverUrl));
-        // Picture::create(["url"=>$imgurl,"cover"=>$cover,'cover_photo'=>$coverCut,"uniqid"=>$t]);   
+            Picture::create(["url"=>$imgurl,"cover"=>$cover,'cover_photo'=>$coverCut,"uniqid"=>$t]);   
         }
     }
 // }
