@@ -30,9 +30,9 @@
                         @enderror
                     </div>
 
-                    <div class="form-group">
-                        <input type="checkbox" id="remember" name="remember" value="1"> <label for="remember">Yaddaşda saxla</label>
-                    </div>
+                    {{-- <div class="form-group"> --}}
+                        <input type="hidden" id="remember" name="remember" value="1">
+                    {{-- </div> --}}
                     
                     <div class="form-group">
                         <div>
