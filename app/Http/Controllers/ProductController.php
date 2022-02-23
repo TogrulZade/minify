@@ -281,7 +281,7 @@ class ProductController extends Controller
 			->where('products.active','=',1)
 			->doesntHave('vip')
 			->get();
-			echo print_r($products);
+			// echo print_r($products);
 
 			$favs = FavHelper::getFavs($request);
 
