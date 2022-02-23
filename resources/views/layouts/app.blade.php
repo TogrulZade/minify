@@ -36,8 +36,9 @@
     @if($agent->isMobile())
         @if(Request::is('cabinet'))
             @include('layouts.mobile.navCabinet')
-        @else
-            @include('layouts.mobile.nav') 
+        @endif
+        @if(!Request::is('c/*'))
+            @include('layouts.mobile.nav')   
         @endif
     @else
         @include('layouts.web.nav')

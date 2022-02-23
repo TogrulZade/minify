@@ -255,6 +255,7 @@ class ProductController extends Controller
 
 	public function getByCategory(Request $request)
 	{
+		$isCategoryRoute = request()->routeIs('category');
 		$cat = explode("/",$request->cat);
 
 		$getCat = Category::where('slug',"=",$cat[count($cat)-1])->first();
@@ -284,7 +285,7 @@ class ProductController extends Controller
 
 			$favs = FavHelper::getFavs($request);
 
-			return view('byCategory', ['products'=>$products, 'favs'=>$favs, 'vips'=>$vips, 'categoryName'=>$getCat->name,'subCategory'=>$subCategory]);
+			return view('byCategory', ['products'=>$products, 'favs'=>$favs, 'vips'=>$vips, 'categoryName'=>$getCat->name,'subCategory'=>$subCategory,'isCategoryRoute'=>$isCategoryRoute]);
 		}else{
 			return redirect('/');
 		}
