@@ -58,12 +58,14 @@ class ProductController extends Controller
 			->with('vip')
 			->with('premium')
 			->with('category')
-			->where('products.active','=',1)
+			// ->where('products.active','=',1)
 			->where("products.slug", "=", $request->slug)
 		->first();
 
-		$cover_photo = Picture::with('product')->where('uniqid',"=",$product->uniqid)->where('cover','=',1)->first();
-		// $cover_photo = DB::table('pictures')->join('products','products.uniqid','pictures.uniqid')->where('pictures.uniq_i');
+		$cover_photo = Picture::with('product')
+			->where('uniqid',"=",$product->uniqid)
+			->where('cover','=',1)
+		->first();
 
 		if(Auth::user()){
 			$check = Product::where('slug',"=",$request->slug)->first();
