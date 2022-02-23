@@ -38,6 +38,8 @@ Route::get("cabinet", "CabinetController@index")->middleware('auth');
 Route::get("profile", "ProfileController@index");
 Route::post("uploadImage", "PictureController@uploadImage");
 Route::get("verifyEdition/{uniqid}", "ProductController@verifyEdition")->middleware('auth');
+Route::get("edit/{uniqid}", "ProductController@edit")->middleware('auth');
+Route::post("editAction", "ProductController@editAction")->middleware('auth');
 Route::get("loadProduct", "ProductController@loadProduct");
 Route::get("makeMarket", "marketController@index")->middleware('auth');
 Route::post("makeMarket", "marketController@create")->middleware('auth');

@@ -881,7 +881,7 @@ form.navbar-form.navbar-left {
 
 .mini-photo img{
 	border-radius: 10px;
-	height: 90px;
+	height: 100px;
 }
 
 #mini-gallery{
@@ -938,12 +938,12 @@ form.navbar-form.navbar-left {
 	max-width: 90%;
 }
 
-#mini-gallery div:hover{
-	cursor: zoom-in;
+/* #mini-gallery div:hover{ */
+	/* cursor: zoom-in; */
 	/* transform: scale(1.02); */
 	/* -webkit-transform: scale(1.02); */
-	transition: all .2s linear;
-}
+	/* transition: all .2s linear; */
+/* } */
 
 .left{
 	position: absolute;
@@ -2494,4 +2494,15 @@ select#dil {
 
 .cabinet-tab.mobile li.tab-item a.active {
     color: var(--main-color)!important;
+}
+
+.make_cover {
+    text-align: center;
+    background: #009688;
+    color: #fff;
+    padding: 3px;
+    border-radius: 5px;
+    margin-top: 3px;
+    cursor: pointer;
+	display: none;
 }

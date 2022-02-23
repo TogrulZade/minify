@@ -81,13 +81,18 @@ $(document).ready(function(){
 
 	$(".mini-slide img").css("height",height+"px")
 
-	$('#mini-gallery div').on("click", function(){
-		const image = $(this).find('img').attr('src');
-		index = $(this).find('img').data('index');
+	$('#mini-gallery img').on("click", function(){
+		const image = $(this).attr('src');
+		index = $(this).data('index');
 		$('.mini-slide').find('img').attr('src',image);
 		$('body').css("overflow","hidden");
 		$('.mini-slide-cover').css('visibility','visible');
 		$('.full-opacity').css('visibility','visible');
+	});
+
+	$('#mini-gallery img').hover(function(){
+		$(".make_cover").hide();
+		$(this).next().show();
 	});
 
 	$('.mini-close').on("click", function(){
