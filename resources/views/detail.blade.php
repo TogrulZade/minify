@@ -342,7 +342,7 @@
 				</div>
 			@endif
 
-            @if($product->user_id == Auth::id() && $product->active == 0)
+            @if($product->active == 0)
                 <div class="alert alert-info" style="margin: 10px 0 0 0">
                     <i class="fas fa-user-clock" style="font-size: 20px"></i> <span>Məhsulunuz <strong>Minify moderatorları</strong> tərəfindən təsdiq gözləyir</span>
                 </div>
@@ -598,6 +598,7 @@
                                     <div class="{{$index == 0 ? 'cover-photo col-md-12' : 'mini-photo col-md-3 col-sm-3 col-xs-6 col-xs-12'}}">
                                         <li>
                                             <img data-index="{{$index}}" src="{{asset("storage/".$pic->url)}}" />
+											<div class="make_cover">Əsas şəkil et</div>
                                         </li>
                                     </div>
                                     @endif
@@ -622,7 +623,10 @@
 					
 
 					@if (Auth::id() == 1)
-					<a href="/admin/edit/{{$product->pr_id}}" class="btn btn btn-info mb-4 mt-4">Elana düzəlişi et</a>
+					<a href="/admin/edit/{{$product->id}}" class="btn btn btn-info mb-4 mt-4">Elana düzəliş et</a>
+					@endif
+					@if (Auth::id() == $product->user_id)
+					<a href="/edit/{{$product->uniqid}}" class="btn btn btn-danger mb-4 mt-4">Elana düzəliş et</a>
 					@endif
 
 					<div id="detail" class="col-xs-12 bg-white">

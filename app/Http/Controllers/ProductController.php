@@ -54,12 +54,12 @@ class ProductController extends Controller
 		// $product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("products.slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->where('products.active','=',1)->leftJoin("categories","products.product_category","categories.id")->leftJoin('vip',"products.id","vip.product_id")->select("products.*","markets.*","products.uniqid as pid","products.id as pr_id","markets.name as market","pictures.*","cities.name as city","categories.name as category_name","categories.slug as category_slug","markets.slug as market_slug",'vip.*')->first();
 
 		$product = Product::with('pictures')
-		->with('market')
-		->with('vip')
-		->with('premium')
-		->with('category')
-		->where('products.active','=',1)
-		->where("products.slug", "=", $request->slug)
+			->with('market')
+			->with('vip')
+			->with('premium')
+			->with('category')
+			->where('products.active','=',1)
+			->where("products.slug", "=", $request->slug)
 		->first();
 
 		if(Auth::user()){
@@ -297,6 +297,46 @@ class ProductController extends Controller
 		$find->active = 1;
 		$find->update();
 		return redirect("/product/".$find->slug)->withInput(["success"=>"Elan müvəffəqiyyətlə paylaşıldı."]);
+	}
+
+	public function edit(Request $request)
+	{
+		$uniqid = $request->uniqid;
+		$product = Product::where('uniqid','=',$uniqid)->first();
+		
+		if(!$product)
+			return abort(404);
+		if($product){
+			if($product->user_id != Auth::id()){
+				return abort(404);
+			}
+		}
+		
+		return view('edit',compact('product'));
+	}
+
+	public function editAction(Request $request)
+	{
+		$uniqid = $request->key;
+		$product = Product::where('uniqid','=',$uniqid)->first();
+
+		if(!$product)
+			return abort(404);
+		if($product){
+			if($product->user_id != Auth::id()){
+				return abort(404);
+			}
+		}
+
+        $product->product_name = $request->name;
+        $product->product_description = $request->description;
+        $product->product_price = $request->price;
+        $product->merchant_number = $request->merchant_number;
+        $product->product_category = $request->product_category;
+        $product->active = 0;
+        if($product->update()){
+            return redirect('/product/'.$product->slug)->withInput(["success"=>"Elanınız düzəlişə göndərildi. Minify Moderatorları tərəfindən təsdiq gözləyir."])->withInput();
+        }
 	}
 
 	public function loadProduct(Request $request)

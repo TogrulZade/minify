@@ -67,7 +67,7 @@ class HomeController extends Controller
         $favs = FavHelper::getFavs($request);
         
         $vips = Product::with('pictures')->whereHas('pictures',function($q){
-            return $q->where('pictures.cover',"=",1);
+            return $q->where('pictures.cover',"=",1)->where('active',1);
         })->whereHas('vip',function($q){
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
         })->with(['premium'=>function($q){
