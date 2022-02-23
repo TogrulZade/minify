@@ -10,7 +10,8 @@
 @if(!$agent->isMobile())
     @include('partial.sticky')
 @else
-    @include('layouts.mobile.header-mobile', ['some'=>'data'])
+    @include('layouts.mobile.navCategory',['categoryName'=>$categoryName])
+    @include('layouts.mobile.header-mobile')
 @endif
 <div class="{{$agent->isMobile() ? 'container-fluid' : 'container'}}">
     <div class="row">
