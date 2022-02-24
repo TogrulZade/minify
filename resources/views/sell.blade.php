@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
 		<div class="col-md-6 col-md-offset-3">
-			<div class="sell-content">
+			<div class="sell-content" style="{{$agent->isMobile() ? 'margin-top: 90px;' : ''}}">
 				<div class="sell-header"><h3><span class="shop-span" style="font-weight: 600">minify</span> <span class="weight-3">| Elan yerləşdir</span></h3></div>
 				{{-- <div class="line-bottom"></div> --}}
 				<div class="sell-body">

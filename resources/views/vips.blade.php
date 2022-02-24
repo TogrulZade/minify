@@ -14,7 +14,7 @@
         <div class="col-xs-12">
             @foreach ($vips as $i=>$vip)
                 @if ($vip->id && $i == 0)
-                <div class="col-xs-12 text-center">
+                <div class="col-xs-12 text-center" style="{{$agent->isMobile() ? 'margin-top: 180px;' : ''}}">
                     <h3 class="black mb-5" style="color: #8d94ad; font-size: 18px;font-weight: 700;">Bütün VIP Elanlar</h3>
                 </div>
                 @endif
