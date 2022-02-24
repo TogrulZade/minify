@@ -119,7 +119,7 @@
         </div>
             @foreach($products as $pr_index => $pr)
                 <div class="col-md-3 col-sm-4 col-xs-6">
-                    <a href="/product/{{$pr->slug}}" target="_blank" class="{{ $agent->isMobile() ? 'card-mini' : 'card' }}">
+                    <a href="/product/{{$pr->slug}}" target="_blank" class="{{ $agent->isMobile() ? 'card' : 'card' }}">
                         <div class="card-img">
                             <img src="{{asset('storage/'.$pr->product_cover)}}" alt="">
                         </div>
