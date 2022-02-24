@@ -277,11 +277,10 @@ class ProductController extends Controller
 				return $q->where('pictures.cover',"=",1);
 			})
 			->where('products.product_category',"=",$getCat->id)
-			->where('products.closed_at',">",date('Y-d-m H:i:s'))
+			->where('products.closed_at',">",date('Y-m-d H:i:s'))
 			->where('products.active','=',1)
 			->doesntHave('vip')
 			->get();
-			// echo print_r($products);
 
 			$favs = FavHelper::getFavs($request);
 
