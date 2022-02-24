@@ -40,8 +40,9 @@
         <div class="col-xs-12">
         @foreach ($vips as $i=>$vip)
             @if ($vip->id && $i == 0)
-            <div class="col-xs-12">
+            <div class="col-xs-12 section-title">
                 <h3 class="black mb-5" style="color: #8d94ad; font-size: 16px;font-weight: 700;">VIP Elanlar</h3>
+                <a href="/elanlar/vip">Bütün VİP Elanlar</a>
             </div>
             @endif
 

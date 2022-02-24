@@ -12,6 +12,10 @@
 @else
     @include('layouts.mobile.header-mobile')
 @endif
+{{-- <div class="reklam">
+    <h3>Reklam</h3>
+    <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis sed iusto beatae molestiae perferendis cum, quia ullam hic? In, corporis tempora enim voluptatem assumenda provident quaerat eum exercitationem porro dignissimos.</span>
+</div> --}}
 <div class="{{$agent->isMobile() ? 'container-fluid' : 'container'}}">
     <div class="row">
         @if (!$agent->isMobile())    
