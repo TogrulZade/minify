@@ -267,7 +267,7 @@ class ProductController extends Controller
 				return $q->where('closed_at',">", date('Y-m-d H:i:s'));
 			})->where("product_category","=",$getCat->id)->get();
 
-			$subCategory = Category::where('parent_id',"=",$getCat->id)->first();
+			$subCategory = Category::where('parent_id',"=",$getCat->id)->get();
 			// $products = Product::with('pictures')->whereHas('pictures', function($q){
 			// 	return $q->where('pictures.cover',"=",1);
 			// })->where('products.product_category',"=",$getCat->id)->doesntHave('vip')->get();
@@ -277,7 +277,7 @@ class ProductController extends Controller
 					return $q->where('pictures.cover',"=",1);
 				})
 				->where('products.product_category',"=",$getCat->id)
-				->orWhere('products.product_category','=',$subCategory->id)
+				->orWhereIn('products.product_category',$subCategory)
 				->where('products.closed_at',">",date('Y-m-d H:i:s'))
 				->where('products.active','=',1)
 				->doesntHave('vip')
