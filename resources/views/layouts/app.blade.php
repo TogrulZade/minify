@@ -54,10 +54,10 @@
     {{-- <footer>
         <div class="col-md-4">
             <ul>
-                <li><a href="#">minify nədir?</a></li>
+                <li><a href="#">Minify nədir?</a></li>
                 <li><a href="#">İstifadəçi razılaşması</a></li>
                 <li><a href="#">Saytda reklam</a></li>
-                <li><div class="brand-s">&#169; minify.</div></li>
+                <li><div class="brand-s">&#169; Minify.az</div></li>
             </ul>
         </div>
 

@@ -21,6 +21,7 @@ use minify\Helpers\FavHelper;
 use minify\Helpers\ProductHelper;
 use minify\Helpers\SettingsHelper;
 
+
 class ProductController extends Controller
 {
 	public function update()
@@ -258,46 +259,41 @@ class ProductController extends Controller
 		$isCategoryRoute = request()->routeIs('category');
 		$cat = explode("/",$request->cat);
 
+
 		$getCat = Category::where('slug',"=",$cat[count($cat)-1])->first();
 		if($getCat){
-			
-			$vips = Product::with('pictures')->whereHas('pictures',function($q){
-				return $q->where('pictures.cover',"=",1);
-			})->with('vip')->whereHas('vip',function($q){
-				return $q->where('closed_at',">", date('Y-m-d H:i:s'));
-			})->where("product_category","=",$getCat->id)->get();
-
+			$take = SettingsHelper::take();
 			$subCategory = Category::where('parent_id',"=",$getCat->id)->get();
-			// $products = Product::with('pictures')->whereHas('pictures', function($q){
-			// 	return $q->where('pictures.cover',"=",1);
-			// })->where('products.product_category',"=",$getCat->id)->doesntHave('vip')->get();
-			$array = [];
+
 			$collection = collect([]);
 			foreach($subCategory as $i=>$sc){
 				$collection->push($sc->id);
 			}
+			
+			$vips = Product::with('pictures')
+			->whereHas('pictures',function($q){
+				return $q->where('pictures.cover',"=",1);
+			})
+			->with('vip')
+			->whereHas('vip',function($q){
+				return $q->where('closed_at',">", date('Y-m-d H:i:s'));
+			})
+			->where("product_category","=",$getCat->id)
+			->orwhereIn('products.product_category',$collection->all())
+			->orderBy('updated_at',"DESC")
+			->limit(7)
+			->get();
 
 			if($subCategory){
 				$products = Product::with('pictures')
 				->whereHas('pictures', function($q){
 					return $q->where('pictures.cover',"=",1);
 				})
+				->with('category')
 				->where('products.product_category',"=",$getCat->id)
 				->orwhereIn('products.product_category',$collection->all())
-				->where('products.closed_at',">",date('Y-m-d H:i:s'))
 				->where('products.active','=',1)
 				->orderBy('products.updated_at',"DESC")
-				->doesntHave('vip')
-				->get();
-			}else{
-				$products = Product::with('pictures')
-				->whereHas('pictures', function($q){
-					return $q->where('pictures.cover',"=",1);
-				})
-				->where('products.product_category',"=",$getCat->id)
-				->where('products.closed_at',">",date('Y-m-d H:i:s'))
-				->where('products.active','=',1)
-				->doesntHave('vip')
 				->get();
 			}
 

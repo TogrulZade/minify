@@ -13,14 +13,17 @@ class VipController extends Controller
 
     public function all(Request $req)
     {
-        $vips = Product::with('pictures')->whereHas('pictures',function($q){
+        $vips = Product::with('pictures')
+        ->whereHas('pictures',function($q){
             return $q->where('pictures.cover',"=",1);
         })->whereHas('vip',function($q){
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
         })->withCount('vip')
         ->with(['premium'=>function($q){
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
-        }])->paginate(80);
+        }])
+        ->where('active',"=",1)
+        ->paginate(80);
         
         $favs = FavHelper::getFavs($req);
 

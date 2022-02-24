@@ -1,7 +1,7 @@
 body, html{
 	color: #525252!important;
 	/*background-color: #f2f2f2;*/
-	font-family: "Nunito", sans-serif;
+	/* font-family: "Nunito", sans-serif; */
 }
 
 strong{
@@ -232,7 +232,7 @@ a.card{
 text-decoration: none;
 }
 
-.card-title{padding: 2px 15px;font-size: 18px;/* margin-top: 10px; */font-weight: 600;border-bottom-right-radius: 4px;float: left;color: #fff;background: #009688;}
+.card-title{padding: 2px 15px;font-size: 18px;/* margin-top: 10px; */font-weight: 400;border-bottom-right-radius: 4px;float: left;color: #fff;background: #009688;}
 
 .card-mini .card-body{padding: 0 10px;}
 
@@ -387,13 +387,7 @@ right: 0;
 height: inherit;
 }
 
-footer {
-width: 100%;
-float: left;
-background: #222;
-color: #fff;
-padding: 20px 70px;
-}
+footer {width: 100%;float: left;background: #222;color: #fff;padding: 20px 160px;}
 
 footer ul li{
 list-style: none;
@@ -2565,4 +2559,18 @@ a.goBack {
 
 a.goBack:active, a.goBack:hover,a.goBack:focus{
 	text-decoration: none;
+}
+
+.reklam {
+    width: 13%;
+    position: fixed;
+    padding: 20px 10px;
+    top: 58px;
+    background: #009688;
+    height: 100vh;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
