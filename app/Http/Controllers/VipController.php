@@ -22,6 +22,7 @@ class VipController extends Controller
         ->with(['premium'=>function($q){
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
         }])
+        ->orderBy('products.updated_at','DESC')
         ->where('active',"=",1)
         ->paginate(80);
         
