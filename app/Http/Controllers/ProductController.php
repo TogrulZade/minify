@@ -271,15 +271,25 @@ class ProductController extends Controller
 			// $products = Product::with('pictures')->whereHas('pictures', function($q){
 			// 	return $q->where('pictures.cover',"=",1);
 			// })->where('products.product_category',"=",$getCat->id)->doesntHave('vip')->get();
+			$array = [];
+			$collection = collect([]);
+			foreach($subCategory as $i=>$sc){
+				$collection->push($sc->id);
+			}
+
+			
+
+			print_r($collection->all());
 			if($subCategory){
 				$products = Product::with('pictures')
 				->whereHas('pictures', function($q){
 					return $q->where('pictures.cover',"=",1);
 				})
 				->where('products.product_category',"=",$getCat->id)
-				->orWhereIn('products.product_category',$subCategory)
+				->orwhereIn('products.product_category',$collection->all())
 				->where('products.closed_at',">",date('Y-m-d H:i:s'))
 				->where('products.active','=',1)
+				->orderBy('products.updated_at',"DESC")
 				->doesntHave('vip')
 				->get();
 			}else{
