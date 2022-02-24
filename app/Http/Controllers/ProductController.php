@@ -277,9 +277,6 @@ class ProductController extends Controller
 				$collection->push($sc->id);
 			}
 
-			
-
-			print_r($collection->all());
 			if($subCategory){
 				$products = Product::with('pictures')
 				->whereHas('pictures', function($q){
