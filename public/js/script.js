@@ -458,19 +458,19 @@ var lastScrollTop = 0;
 	var st = $(this).scrollTop();
 	if(st > 70){
 		$(".header-mobile").css('transition',"all .1s linear");
-		$("nav").css('transition',"all .1s linear");
-		$('nav').css("display",'none');
+		// $("nav").css('transition',"all .1s linear");
+		// $('nav').css("display",'none');
 		$('.header-mobile').css('margin-top',0);
 	}else{
-		$('nav').css("display",'block');
+		// $('nav').css("display",'block');
 		$('.header-mobile').css('margin-top',"50px");
 	}
 	if (st > lastScrollTop){
 		// downscroll code
 		// $('.brand').text('Asagi');
 		$(".header-mobile").css('transition',"all .15s linear");
-		$("nav").css('transition',"all .15s linear");
-		$('nav').css("display",'none');
+		// $("nav").css('transition',"all .15s linear");
+		// $('nav').css("display",'none');
 		$('.header-mobile').css('margin-top',0);
 		$('.right-sticky').css('top',"50px");
 	} else {
@@ -478,8 +478,8 @@ var lastScrollTop = 0;
 		// upscroll code
 		
 		$(".header-mobile").css('transition',"all .15s linear");
-		$("nav").css('transition',"all .15s linear");
-		$('nav').css("display",'block');
+		// $("nav").css('transition',"all .15s linear");
+		// $('nav').css("display",'block');
 		$('.header-mobile').css('margin-top',"58px");
 		$('.right-sticky').css('top',"58px");
 	}
