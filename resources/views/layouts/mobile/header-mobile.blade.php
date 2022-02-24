@@ -28,7 +28,7 @@
                         <a href="#" class="kataloq"><i class="feather-grid"></i></a>
                     </li>
                     @foreach ($getCategory as $c)
-                        <li><a href="/c/{{$c->slug}}"><i class="fas {{$c->icon}}" style="color: {{$c->color}}; font-size: 18px"></i> {{$c->name}}</a></li>
+                        <li><a href="/c/{{$c->slug}}/"><i class="fas {{$c->icon}}" style="color: {{$c->color}}; font-size: 18px"></i> {{$c->name}}</a></li>
                     @endforeach
                 </ul>
             </div>

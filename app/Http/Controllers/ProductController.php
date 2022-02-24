@@ -262,6 +262,7 @@ class ProductController extends Controller
 
 		$getCat = Category::where('slug',"=",$cat[count($cat)-1])->first();
 		if($getCat){
+			$parent_category = Category::where('id',"=",$getCat->parent_id)->first();
 			$take = SettingsHelper::take();
 			$subCategory = Category::where('parent_id',"=",$getCat->id)->get();
 
@@ -299,7 +300,7 @@ class ProductController extends Controller
 
 			$favs = FavHelper::getFavs($request);
 
-			return view('byCategory', ['products'=>$products, 'favs'=>$favs, 'vips'=>$vips, 'categoryName'=>$getCat->name,'subCategory'=>$subCategory,'isCategoryRoute'=>$isCategoryRoute]);
+			return view('byCategory', ['products'=>$products, 'favs'=>$favs, 'vips'=>$vips, 'categoryName'=>$getCat->name,'subCategory'=>$subCategory,'isCategoryRoute'=>$isCategoryRoute,'parent_category'=>$parent_category]);
 		}else{
 			return redirect('/');
 		}

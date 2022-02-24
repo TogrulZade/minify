@@ -1,7 +1,7 @@
 <div class="full-opacity"></div>
 <div id="nav" class="navbar-fixed-top" style="{{$agent->isMobile() && isset($isCategoryRoute) && $isCategoryRoute ? 'background-color: #fff; box-shadow: none' : ''}}">
     @if($agent->isMobile() && isset($isCategoryRoute) && $isCategoryRoute)
-        <a href="/" class="goBack"><i class="feather-chevron-left"></i></a>
+        <a href="{{$parent_category ? $parent_category->slug : '/' }}" class="goBack"><i class="feather-chevron-left"></i></a>
     @else
     <div class="drawermenu_button" style="{{$agent->isMobile() && isset($isCategoryRoute) && $isCategoryRoute ? 'color: #444' : ''}}">
         <i class="feather-menu"></i>
