@@ -54,6 +54,7 @@ Route::get("elanlar/vip", "VipController@all");
 Route::get("elanlar", "HomeController@elanlar");
 Route::post("makeVipWithNumber", "VipController@checkProduct");
 Route::post("makeCover", "PictureController@makeCover")->middleware('auth');
+Route::get("searching", "ProductController@searching");
 
 
 Auth::routes();

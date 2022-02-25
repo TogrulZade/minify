@@ -450,6 +450,34 @@ $(document).ready(function(){
 		$('.modal-vip').show();
 	}
 
+	$(".form-search-mobile input").on('input',function(){
+		let search = $(this).val();
+
+		$.ajax({
+			url: 'searching',
+			type: 'GET',
+			data: {search: search},
+
+			success: function(res){
+				var array = [];
+				if(res != 'empty'){
+					$.each(res, function( i, item ) {
+						array.push("<div class='result-item'>" + item.product_name + "</div>");
+					});
+					$('.box-result').show();
+				}else{
+					console.log('cleared')
+					array.splice(0, array.length)
+					$('.box-result').hide();
+				}
+				$( ".result" ).html( array );
+			},
+			error: function(error){
+				alert(error.responseText);
+			}
+		})
+	})
+
 });
 
 // Isleyir. Scroll zamani headeri gizlemek ve gostermek

@@ -360,6 +360,26 @@ class ProductController extends Controller
         }
 	}
 
+	public function searching(Request $request)
+	{
+		$search = $request->search;
+		if($search == '')
+			return 'empty';
+		
+		$products = Product::where('product_name',"like","%".$search."%")
+		->with('pictures')
+		->whereHas('pictures',function($q){
+			return $q->where('cover',"=",1);
+		})
+		->where('products.closed_at',">",date('Y-m-d H:i:s'))
+		->where('products.active',1)
+		->orderby('products.updated_at','DESC')
+		->limit(3)
+		->get();
+
+		return $products;
+	}
+
 	public function loadProduct(Request $request)
 	{
 		$take = SettingsHelper::take();
