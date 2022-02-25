@@ -2576,10 +2576,10 @@ a.goBack:active, a.goBack:hover,a.goBack:focus{
 }
 
 .box-result {
+	display: none;
     position: absolute;
     width: 91%;
     background: #ffffff;
-    /* height: 40px; */
     box-shadow: 0 0 1px 1px rgba(0,0,0,.1);
     border-radius: 6px;
     top: 50px;
