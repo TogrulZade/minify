@@ -374,6 +374,7 @@ class ProductController extends Controller
 		->where('products.closed_at',">",date('Y-m-d H:i:s'))
 		->where('products.active',1)
 		->orderby('products.updated_at','DESC')
+		->groupBy('products.product_name')
 		->limit(3)
 		->get();
 
