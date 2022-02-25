@@ -1,10 +1,14 @@
 <div class="header-mobile">
     <div class="header-container">
         <div class="search-bar">
-            <form action="/axtar" method="GET" class="form-search-mobile">
+            <form action="/axtar" method="GET" class="form-search-mobile" autocomplete="off">
                 <input type="text" name="axtar" placeholder="Əşya və ya xidmət axtarışı">
                 <button type="submit" class="icon-search">
                     <i class="feather-search"></i>
+                </button>
+                <div class="box-result">
+                    <div class="result"></div>
+                </div>
             </form>
             </div>
         </div>
