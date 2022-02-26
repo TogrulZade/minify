@@ -2601,6 +2601,6 @@ a.goBack:active, a.goBack:hover,a.goBack:focus{
 }
 
 .result {
-    height: 162px;
+    max-height: 162px;
     overflow-y: scroll;
 }
