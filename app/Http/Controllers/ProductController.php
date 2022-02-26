@@ -63,6 +63,9 @@ class ProductController extends Controller
 			->where("products.slug", "=", $request->slug)
 		->first();
 
+		if(!$product)
+			return abort(404);
+
 		$cover_photo = Picture::with('product')
 			->where('uniqid',"=",$product->uniqid)
 			->where('cover','=',1)
