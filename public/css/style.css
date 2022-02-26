@@ -502,7 +502,7 @@ height: 440px;
 
 .bg-white{background-color: white}
 
-.shop-desc{padding: 15px;border-radius: 0 10px 10px 0;color: #333;float: left;width: 100%;}
+.shop-desc{padding: 0 15px 20px;border-radius: 0 10px 10px 0;color: #333;float: left;width: 100%;}
 
 .shop-desc .desc-text{
 font-size: 16px;
@@ -816,7 +816,7 @@ background: #ffebdd;
 
 .p-1{padding: .25rem!important}
 .p-2{padding: .5rem!important}
-.p-3{padding:1rem!important}
+.p-3{padding:1rem!important;}
 .p-4{padding: 1.5rem!important;}
 .p-5{padding: 3rem!important;}
 
@@ -857,7 +857,7 @@ form.navbar-form.navbar-left {
 .cover-photo{
 	max-height: 440px;
 	float: left;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .mini-photo{
@@ -870,7 +870,7 @@ form.navbar-form.navbar-left {
 
 .cover-photo img{
 	border-radius: 20px;
-	height: 365px;
+	height: 415px;
 }
 
 .mini-photo img{

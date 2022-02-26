@@ -347,11 +347,11 @@
                     <i class="fas fa-user-clock" style="font-size: 20px"></i> <span>Məhsulunuz <strong>Minify moderatorları</strong> tərəfindən təsdiq gözləyir</span>
                 </div>
             @endif
-    		<div class="col-md-12 mb-5 mt-5">
+    		<div class="col-md-12 mb-5 mt-5 bg-white">
 				<div class="col-md-6 col-sm-6 col-xs-12 h-cover p-0">
 					
 					@if (!$agent->isMobile())
-					<div class="shop-img">	
+					<div class="shop-img" style="height: 511px">	
 						<div class="col-xs-12">									
 							<ul id="mini-gallery">
 								@if(count($pictures) < 1)
@@ -471,8 +471,8 @@
                                 </div>
                                 <div class="col-xs-12 p-0" style="margin-bottom: 20px">
 									@if($product->city)
-										<div class="col-xs-6 p-0 mb-1" style="color: #8d94ad;font-weight: 400">Şəhər</div>
-										<div class="col-xs-6 p-0 mb-1">
+										<div class="col-xs-4 p-0 mb-1" style="color: #8d94ad;font-weight: 400">Şəhər</div>
+										<div class="col-xs-8 p-0 mb-1">
 											<span class="">
 												{{$product->city->name}}
 											</span>
@@ -485,8 +485,8 @@
 										</div>
 									@endif --}}
 									@if($product->category->id)
-									<div class="col-xs-6 p-0 mb-1" style="color: #8d94ad;font-weight: 400">Malın növü</div>
-									<div class="col-xs-6 p-0 mb-1">
+									<div class="col-xs-4 p-0 mb-1" style="color: #8d94ad;font-weight: 400">Malın növü</div>
+									<div class="col-xs-8 p-0 mb-1">
 										<a class="product-category" style="color: #1a8bff" href="/c/{{$product->category->slug}}">{{$product->category->name}}</a>
 									</div>
 									@endif
@@ -494,31 +494,33 @@
 										<div class="col-xs-4 p-0 mb-1" style="color: #8d94ad;font-weight: 400">Model</div>
 										<div class="col-xs-8 p-0 mb-1"><span class="pull-right"><strong>Digər</strong></span></div>
 									@endif
-									<div class="col-xs-6 p-0 mb-1" style="color: #8d94ad;font-weight: 400">Yeni</div>
-									<div class="col-xs-6 p-0 mb-1">
+									<div class="col-xs-4 p-0 mb-1" style="color: #8d94ad;font-weight: 400">Yeni</div>
+									<div class="col-xs-8 p-0 mb-1">
 										<span>{{$product->new == 0 ? 'Köhnə' : 'Yenidir'}}</span>
 									</div>
 
-                                    <div class="col-xs-6 p-0 mb-1" style="color: #8d94ad;font-weight: 400">Çatdırılma</div>
-                                    <div class="col-xs-6 p-0 mb-1">
+                                    <div class="col-xs-4 p-0 mb-1" style="color: #8d94ad;font-weight: 400">Çatdırılma</div>
+                                    <div class="col-xs-8 p-0 mb-1">
                                         <span>{{$product->delivery == 0 ? 'Yoxdur' : 'Var'}}</span>
                                     </div>
 
-                                    <div class="col-xs-6 p-0 mb-1" style="color: #8d94ad;font-weight: 400">Elan №:</div>
-                                    <div class="col-xs-6 p-0 mb-1">
+                                    <div class="col-xs-4 p-0 mb-1" style="color: #8d94ad;font-weight: 400">Elan №:</div>
+                                    <div class="col-xs-8 p-0 mb-1">
                                         <span>{{$product->id}}</span>
+                                    </div>
+
+									<div class="col-xs-4 p-0 satici">Satıcı: 
+                                        <span>{{$product->product_merchant}}</span>
+                                    </div>
+									<div class="col-xs-8 p-0 call-number"> <i class="fas fa-phone-volume"></i> 
+										<a href="tel:{{$product->merchant_number}}">{{$product->merchant_number}}</a>
                                     </div>
                                     
 								</div>
 
-								<div class="col-xs-12 p-2 mb-5">
-									<div class="col-xs-6 p-0 satici">Satıcı: 
-                                        <span>{{$product->product_merchant}}</span>
-                                    </div>
-									<div class="col-xs-6 p-0 call-number"> <i class="fas fa-phone-volume"></i> 
-										<a href="tel:{{$product->merchant_number}}">{{$product->merchant_number}}</a>
-                                    </div>
-								</div>
+
+									
+
 
 							
                                 
@@ -572,7 +574,7 @@
 								
 							</div> --}}
                             
-                            <div class="col-sm-12" style="{{!$agent->isMobile() ? 'padding-right: 0':''}}">
+                            <div class="col-sm-12" style="{{!$agent->isMobile() ? 'padding-right: 0; margin-top: 33px':''}}">
                                 @php $x = 0; @endphp
                                 @foreach ($favs as $f)
                                     @if ($f->id == $product->id)
