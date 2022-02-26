@@ -347,7 +347,7 @@
                     <i class="fas fa-user-clock" style="font-size: 20px"></i> <span>Məhsulunuz <strong>Minify moderatorları</strong> tərəfindən təsdiq gözləyir</span>
                 </div>
             @endif
-    		<div class="col-md-12 mb-5 mt-5 bg-white">
+    		<div class="col-md-12 mb-5 mt-5 bg-white" style="border-radius: 8px">
 				<div class="col-md-6 col-sm-6 col-xs-12 h-cover p-0">
 					
 					@if (!$agent->isMobile())
