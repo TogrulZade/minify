@@ -2593,3 +2593,14 @@ a.goBack:active, a.goBack:hover,a.goBack:focus{
 .result-item:hover {
     background: #f8f9fd;
 }
+
+.result-title {
+    padding: 10px 12px;
+    font-weight: 600;
+    background-color: #f8f9fd;
+}
+
+.result {
+    height: 162px;
+    overflow-y: scroll;
+}

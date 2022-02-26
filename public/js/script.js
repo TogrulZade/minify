@@ -452,30 +452,46 @@ $(document).ready(function(){
 
 	$(".form-search-mobile input").on('input',function(){
 		let search = $(this).val();
+		if(search !='' || search.length > 1){
+			$.ajax({
+				url: 'searching',
+				type: 'GET',
+				data: {search: search},
 
-		$.ajax({
-			url: 'searching',
-			type: 'GET',
-			data: {search: search},
-
-			success: function(res){
-				var array = [];
-				if(res != 'empty'){
-					$.each(res, function( i, item ) {
-						array.push("<div class='result-item'>" + item.product_name + "</div>");
-					});
-					$('.box-result').show();
-				}else{
-					console.log('cleared')
-					array.splice(0, array.length)
-					$('.box-result').hide();
+				
+				success: function(res){
+					console.log(JSON.stringify(res));
+					var products = [];
+					var categories = [];
+					var array = [];
+					if(res != 'empty'){
+						if(res.products.length > 0){
+							products.push("<div class='result-title'>Məhsul və xidmətlər</div>");
+							$.each(res.products, function( i, item ) {
+								products.push("<div class='result-item'>" + item.product_name + "</div>");
+							});
+						}
+						if(res.categories.length > 0){
+							categories.push("<div class='result-title'>Kateqoriyalar</div>");
+							
+							$.each(res.categories, function( i, item ) {
+								categories.push("<div class='result-item'><i class='fas "+item.icon+"' style='color: "+item.color+"' font-size: 18px></i> " + item.name + "</div>");
+							});
+						}
+						$.merge(array, $.merge(products,categories))
+						$('.box-result').show();
+					}else{
+						console.log('cleared')
+						array.splice(0, array.length)
+						$('.box-result').hide();
+					}
+					$( ".result" ).html( array );
+				},
+				error: function(error){
+					console.log(error.responseText);
 				}
-				$( ".result" ).html( array );
-			},
-			error: function(error){
-				alert(error.responseText);
-			}
-		})
+			})
+		}
 	})
 
 });
