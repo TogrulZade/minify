@@ -2607,3 +2607,21 @@ a.goBack:active, a.goBack:hover,a.goBack:focus{
     max-height: 162px;
     overflow-y: scroll;
 }
+
+@media (max-width: 720px){
+	
+.promotion-modal {
+	display: none;
+	position: fixed;
+	top: 50%;
+	margin-top:-100px;
+	z-index: 9999;
+	width: 80%;
+	background: #fff;
+	height: 260px;
+	border-radius: 10px;
+	padding: 20px;
+	left: 10%;
+	box-shadow: 0 0 20px 4px rgba(0,0,0,.1);
+}
+}
