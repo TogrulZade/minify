@@ -378,7 +378,9 @@ class ProductController extends Controller
 		->limit(3)
 		->get();
 
-		return $products;
+		$categories = Category::where('name',"like","%".$search."%")->get();
+
+		return compact('products','categories');
 	}
 
 	public function loadProduct(Request $request)
