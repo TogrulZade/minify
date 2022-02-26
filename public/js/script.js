@@ -468,14 +468,14 @@ $(document).ready(function(){
 						if(res.products.length > 0){
 							products.push("<div class='result-title'>Məhsul və xidmətlər</div>");
 							$.each(res.products, function( i, item ) {
-								products.push("<div class='result-item'>" + item.product_name + "</div>");
+								products.push("<a href='product/"+item.slug+"' class='result-item'>" + item.product_name + "</div>");
 							});
 						}
 						if(res.categories.length > 0){
 							categories.push("<div class='result-title'>Kateqoriyalar</div>");
 							
 							$.each(res.categories, function( i, item ) {
-								categories.push("<div class='result-item'><i class='fas "+item.icon+"' style='color: "+item.color+"' font-size: 18px></i> " + item.name + "</div>");
+								categories.push("<a href='/c/"+item.slug+"/' class='result-item'><i class='fas "+item.icon+"' style='color: "+item.color+"' font-size: 18px></i> " + item.name + "</div>");
 							});
 						}
 						$.merge(array, $.merge(products,categories))

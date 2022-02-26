@@ -992,7 +992,8 @@ form.navbar-form.navbar-left {
   .swipe-wrap {
 	overflow: hidden;
 	position: relative;
-  }
+	margin-top: 50px;
+	}
   .swipe-wrap > img {
 	float: left;
 	width: 100%;
@@ -2588,6 +2589,8 @@ a.goBack:active, a.goBack:hover,a.goBack:focus{
 .result-item {
     border-bottom: 1px solid #f2f2f2;
     padding: 10px 12px;
+    display: block;
+    color: #000;
 }
 
 .result-item:hover {
