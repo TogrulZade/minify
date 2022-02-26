@@ -452,7 +452,8 @@ $(document).ready(function(){
 
 	$(".form-search-mobile input").on('input',function(){
 		let search = $(this).val();
-		if(search !='' || search.length > 1){
+		var array = [];
+		if(search.length > 1){
 			$.ajax({
 				url: 'searching',
 				type: 'GET',
@@ -463,7 +464,7 @@ $(document).ready(function(){
 					console.log(JSON.stringify(res));
 					var products = [];
 					var categories = [];
-					var array = [];
+					
 					if(res != 'empty'){
 						if(res.products.length > 0){
 							products.push("<div class='result-title'>Məhsul və xidmətlər</div>");
@@ -480,10 +481,6 @@ $(document).ready(function(){
 						}
 						$.merge(array, $.merge(products,categories))
 						$('.box-result').show();
-					}else{
-						console.log('cleared')
-						array.splice(0, array.length)
-						$('.box-result').hide();
 					}
 					$( ".result" ).html( array );
 				},
@@ -491,6 +488,10 @@ $(document).ready(function(){
 					console.log(error.responseText);
 				}
 			})
+		}else{
+			console.log('cleared')
+			array.splice(0, array.length)
+			$('.box-result').hide();
 		}
 	})
 
