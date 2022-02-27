@@ -597,7 +597,6 @@ var lastScrollTop = 0;
 		const request = new XMLHttpRequest();
 
 		 request.addEventListener('load', function(){
-			 $('.sell-share').attr('disabled',true)
 			if (index + 1 < files.length){
 				fileUpload(index+1);
 			}else{
@@ -632,6 +631,7 @@ const fileInput = document.querySelector('#file') ? document.querySelector('#fil
 
 	if(fileInput){
 	fileInput.addEventListener('change', function(){
+		$('.sell-share').attr('disabled',true);
 		// alert('Changed');
 		[...this.files].map((file, index)=>{
 			if(file.name.match(/\.jpe?g|png|gif/)){
