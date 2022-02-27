@@ -26,25 +26,25 @@ class PictureController extends Controller
         $url = "public/products/".uniqid().".".$ex;
         $image = Storage::put($url, file_get_contents($file));
         $imgurl = substr($url, 7);
-            $coverUrl = "storage/products/cover/000-".uniqid().".".$ex;
+            $coverUrl = "storage/products/cover/".uniqid().".".$ex;
             $coverCut = substr($coverUrl, 8);
             $image_resize = Image::make($file->getRealPath());          
             
-            list($width, $height,$type) = getimagesize($file);
-            $ratio = $width/$height;
+            // list($width, $height,$type) = getimagesize($file);
+            // $ratio = $width/$height;
             
-            $width = 220;
-            $wr = $width/220;
-            if($wr < 1){    
-                $height = $height*$wr;
-            }else{
-                $height = $height/$wr;
-            }
+            // $width = 220;
+            // $wr = $width/220;
+            // if($wr < 1){    
+            //     $height = $height*$wr;
+            // }else{
+            //     $height = $height/$wr;
+            // }
 
-            $image_resize->resize($width, $height);
-            // $image_resize->crop(220, 163, 0,0);
+            // $image_resize->resize($width, $height);
+            // // $image_resize->crop(220, 163, 0,0);
             $image_resize->save(public_path($coverUrl));
-            Picture::create(["url"=>$imgurl,"cover"=>$cover,'cover_photo'=>$coverCut,"uniqid"=>$t]);   
+            Picture::create(["url"=>$imgurl,"cover"=>$cover,'cover_photo'=>$coverCut,"uniqid"=>$t]);
         }
 
         public function makeCover(Request $request)
