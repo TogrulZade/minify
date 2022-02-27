@@ -494,6 +494,28 @@ $(document).ready(function(){
 		}
 	})
 
+
+	// Yeni elan sell
+	var category;
+
+	$('select[name="product_category"]').on('change',function(){
+		category = $(this).val();
+		// alert(category);
+		if(category == 32){
+			$('.update_detail').html(
+				"<select name='marka'><option value='0'>Marka</option><option value='1'>Apple iPhone</option></select><select name='model'><option value='0'>Model seç</option><option name='1'>11</option><option name='2'>12 Pro max</option></select><select name='reng'><option name='0'>Rəng seç</option><option value='1'>Qara</option></select><select name='yaddas'><option name='0'>Yaddaş seç</option><option value='1'>64 GB</option></select><select name='ram'><option name='0'>Ram seç</option><option value='1'>4</option></select>"
+			);
+		}else if(category == 51){
+			$('.update_detail').html(
+				"<select name='home_type'><option value='0'>Elanın tipi</option><option value='1'>Satılır</option><option value='2'>Kiryayə verilir</option></select>"
+			);
+		}else{
+			$('.update_detail').html('');
+		}
+	});
+
+
+
 });
 
 // Isleyir. Scroll zamani headeri gizlemek ve gostermek
@@ -563,7 +585,7 @@ var lastScrollTop = 0;
 	  });
 
 	  function fileUpload(index){
-		//   console.log(files)
+		// console.log(files);
 		t = document.querySelector('.t').value;
 		// console.log(fileInput);
 		const {file, el} = files[index];
@@ -575,27 +597,30 @@ var lastScrollTop = 0;
 		const request = new XMLHttpRequest();
 
 		 request.addEventListener('load', function(){
+			 $('.sell-share').attr('disabled',true)
 			if (index + 1 < files.length){
 				fileUpload(index+1);
 			}else{
 				files = [];
+				$('.sell-share').attr('disabled',false)
 				console.log('Yükləmə bitdi');
 			}
 		 });
 
 		 request.upload.addEventListener('progress', function(e){
 			let faiz = (e.loaded / e.total) * 100;
+			$('.progress-box').html('<div class="progress"><div class="progress-bar" role="progressbar" style="width: '+faiz+'%" aria-valuenow="'+faiz+'" aria-valuemin="0" aria-valuemax="100"></div></div>');
 		 });
 
 
-
+		 
 		 request.open("POST", '/uploadImage');
 		 request.send(formData);
-		 request.onreadystatechange = function() {
+		 request.onreadystatechange = function(e) {
 			if (this.readyState == 4 && this.status == 200) {
 				console.log(this.responseText);
 			}else{
-				console.log(this.responseText);
+				console.log(this.responseText, JSON.stringify(e));
 			}
 		}
 	}

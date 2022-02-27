@@ -36,24 +36,12 @@
 							</div>
 							@endif
 
-							{{-- <div class="form-group">
+							<div class="form-group kateqoriya">
 								@if($errors->has("product_category"))
 									<p class="error">{{ $errors->first('product_category') }}</p>
 								@endif
 								<select name="product_category" id="">
-										<option disabled selected>Kateqoriya seç</option>
-										@foreach ($category as $cat)
-											<option {{ old("product_category") == $cat->id ? "selected":"" }} value="{{$cat->id}}">{{$cat->name}}</option>
-										@endforeach
-								</select>
-							</div> --}}
-
-							<div class="form-group">
-								@if($errors->has("product_category"))
-									<p class="error">{{ $errors->first('product_category') }}</p>
-								@endif
-								<select name="product_category" id="">
-									<option disabled selected>Kateqoriya seç</option>
+									<option selected value='0'>Kateqoriya seç</option>
 									@foreach ($getCategory as $cat)
 										<option disabled>{{$cat->name}}</option>
 										@foreach ($cat->childrenCategories as $childe)
@@ -62,6 +50,8 @@
 									@endforeach
 								</select>
 							</div>
+
+							<div class="update_detail"></div>
 
 							<div class="form-group">
 								@if($errors->has("product_name"))
@@ -88,10 +78,11 @@
 							</div> --}}
 
 							<div class="form-group">
-								<input type="file" name="image" id="file" multiple accept="image/*">
+								<input type="file" name="image[]" id="file" multiple accept="image/*">
 								<div class="izle col-md-12">
 
 								</div>
+								<div class="col-xs-12 progress-box"></div>
 							</div>
 							
 
