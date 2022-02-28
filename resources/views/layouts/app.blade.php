@@ -21,6 +21,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="{{asset('css/all.css')}}" rel="stylesheet">
+    <link href="{{asset('css/image-uploader.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/fontawesome.min.css')}}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,500,600,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
@@ -86,6 +87,7 @@
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/swipe.js') }}"></script>
+    <script src="{{ asset('js/image-uploader.min.js') }}"></script>
     <script src="{{ asset('js/script.js?r=') }}<?php echo rand(0,99999)?>"></script>
 
     <script>

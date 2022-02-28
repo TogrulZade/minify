@@ -84,6 +84,11 @@
 								</div>
 								<div class="col-xs-12 progress-box"></div>
 							</div>
+
+							{{-- <div class="input-field form-group">
+								<label class="active">Photos</label>
+								<div class="input-images-1" style="padding-top: .5rem;"></div>
+							</div> --}}
 							
 
 							<div class="form-group">

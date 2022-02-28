@@ -514,9 +514,10 @@ $(document).ready(function(){
 		}
 	});
 
-
+	// $('.input-images-1').imageUploader();
 
 });
+
 
 // Isleyir. Scroll zamani headeri gizlemek ve gostermek
 var lastScrollTop = 0;
@@ -586,53 +587,100 @@ var lastScrollTop = 0;
 
 	  function fileUpload(index){
 		// console.log(files);
-		t = document.querySelector('.t').value;
 		// console.log(fileInput);
-		const {file, el} = files[index];
-		const formData = new FormData();
-		formData.append('image', file);
-		formData.append('_token',csrf);
-		formData.append('t',t);
 		
-		const request = new XMLHttpRequest();
+		
+		// $.each( files, function( key, value ){
+			// 	console.log("Key:"+JSON.stringify(value));
+			// 	formData.append( key, value );
+			// });
+			
+			t = document.querySelector('.t').value;
+			var formData = new FormData();
+			// alert(files.length);
 
-		 request.addEventListener('load', function(){
-			if (index + 1 < files.length){
-				fileUpload(index+1);
-			}else{
-				files = [];
-				$('.sell-share').attr('disabled',false)
-				console.log('Yükləmə bitdi');
+			// for (let i = 0; i < files.length; i++) {
+			// 	const {file, el} = files[i];
+			// 	alert(JSON.stringify(file));
+			// 	formData.append('image', file);
+			// 	alert("i-"+i);
+			// }
+
+			for(const file of files){
+				alert(JSON.stringify(file.file));
+				formData.append('image', file.file);
+				formData.append('_token',csrf);
+				formData.append('t',t);
+				const request = new XMLHttpRequest();
+				request.open("POST", '/uploadImage');
+				
+				request.send(formData);
+				request.onreadystatechange = function(e) {
+					if (this.status == 200) {
+						// alert(this.responseText);
+						console.log(this.status);
+						console.log(this.responseText);
+					}else{
+						console.log(this.status);
+					}
+					$('.sell-share').attr('disabled',false);
+				}
+				// alert(JSON.file);
 			}
-		 });
+			files = [];
 
-		 request.upload.addEventListener('progress', function(e){
-			let faiz = (e.loaded / e.total) * 100;
-			$('.progress-box').html('<div class="progress"><div class="progress-bar" role="progressbar" style="width: '+faiz+'%" aria-valuenow="'+faiz+'" aria-valuemin="0" aria-valuemax="100"></div></div>');
-		 });
+			// formData.append('image', file);
 
+		// var readers = new FileReader();
+		// readers.readAsDataURL(this.files[0]['image']);
 
-		 
-		 request.open("POST", '/uploadImage');
-		 request.send(formData);
-		 request.onreadystatechange = function(e) {
-			if (this.readyState == 4 && this.status == 200) {
-				console.log(this.responseText);
-			}else{
-				console.log(this.responseText, JSON.stringify(e));
-			}
-		}
+			// $.ajax({
+			// 	url: "/uploadImage",
+			// 	type: 'POST',
+			// 	data: formData,
+			// 	cache: false,
+			// 	dataType: 'html',
+			// 	processData: false,
+			// 	contentType: false,
+
+			// 	success: function( res, textStatus, jqXHR ){
+			// 		alert(res);
+			// 		$('.sell-share').attr('disabled',false)
+			// 	},
+
+			// 	error: function(error){
+			// 		alert(error.responseText);
+			// 	}
+			// });
+		
+		
+
+		//  request.addEventListener('load', function(){
+		// 	if (index + 1 < files.length){
+		// 		fileUpload(index+1);
+		// 	}else{
+		// 		files = [];
+		// 		$('.sell-share').attr('disabled',false)
+		// 		console.log('Yükləmə bitdi');
+		// 	}
+		//  });
+
+		//  request.upload.addEventListener('progress', function(e){
+		// 	let faiz = (e.loaded / e.total) * 100;
+		// 	$('.progress-box').html('<div class="progress"><div class="progress-bar" role="progressbar" style="width: '+faiz+'%" aria-valuenow="'+faiz+'" aria-valuemin="0" aria-valuemax="100"></div></div>');
+		//  });
 	}
   
-const fileInput = document.querySelector('#file') ? document.querySelector('#file') : null,
-	  result = document.querySelector('.izle');
+	const fileInput = document.querySelector('#file') ? 
+	      document.querySelector('#file') : null,
+	      result = document.querySelector('.izle');
 	
-	  files = [];
+	var files = [];
+	var filecount;
 
 	if(fileInput){
 	fileInput.addEventListener('change', function(){
 		$('.sell-share').attr('disabled',true);
-		// alert('Changed');
 		[...this.files].map((file, index)=>{
 			if(file.name.match(/\.jpe?g|png|gif/)){
 				const reader = new FileReader();
@@ -649,13 +697,14 @@ const fileInput = document.querySelector('#file') ? document.querySelector('#fil
 				files.push({
 					file,
 				});
+				
+				reader.readAsDataURL(file);
 
-					reader.readAsDataURL(file);
 			}else{
 				alert('error');
 			}
-		})
-	
+		});
+		filecount = files.length;
 		fileUpload(0);
 	});
 }
