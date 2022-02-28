@@ -14,10 +14,10 @@ class PictureController extends Controller
     public function uploadImage(Request $request)
     {
         $file = $request->file('image');
+        // return $_FILES['image'];
         $t = $request->t;
         $imageName = [];
         $coverCut = '';
-
 
         $check = Picture::where('uniqid',"=",$t)->get();
         if(count($check) < 1){$cover = 1;}else{$cover = 0;}
@@ -44,7 +44,7 @@ class PictureController extends Controller
             // $image_resize->resize($width, $height);
             // // $image_resize->crop(220, 163, 0,0);
             $image_resize->save(public_path($coverUrl));
-            Picture::create(["url"=>$imgurl,"cover"=>$cover,'cover_photo'=>$coverCut,"uniqid"=>$t]);
+            return Picture::create(["url"=>$imgurl,"cover"=>$cover,'cover_photo'=>$coverCut,"uniqid"=>$t]);
         }
 
         public function makeCover(Request $request)

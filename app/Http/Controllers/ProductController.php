@@ -186,7 +186,7 @@ class ProductController extends Controller
     		return redirect('sell')->withErrors($validator)->withInput();
 		}
 
-        $picture = new Picture();
+        // $picture = new Picture();
 
 		$lastId = Product::orderBy("id","DESC")->first();
 		if(empty($lastId)){
