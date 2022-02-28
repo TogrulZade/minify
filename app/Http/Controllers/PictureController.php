@@ -69,6 +69,8 @@ class PictureController extends Controller
             $find_cover->cover = 0;
             $find_cover->update();
             $find->cover = 1;
+            $product->product_cover = $find->url;
+            $product->update();
             if($find->update())
                 return 'ok';
             

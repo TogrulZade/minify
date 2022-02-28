@@ -106,10 +106,10 @@ $(document).ready(function(){
 			data: {_token: csrf, pic: pic},
 
 			success: function(res){
-				alert(JSON.stringify(res));
+				console.log(JSON.stringify(res));
 			},
 			error: function(error){
-				alert(error.responseText);
+				console.log(error.responseText);
 			}
 			
 		})
@@ -607,7 +607,7 @@ var lastScrollTop = 0;
 			// }
 
 			for(const file of files){
-				alert(JSON.stringify(file.file));
+				// alert(JSON.stringify(file.file));
 				formData.append('image', file.file);
 				formData.append('_token',csrf);
 				formData.append('t',t);
@@ -701,7 +701,7 @@ var lastScrollTop = 0;
 				reader.readAsDataURL(file);
 
 			}else{
-				alert('error');
+				console.log('error');
 			}
 		});
 		filecount = files.length;
