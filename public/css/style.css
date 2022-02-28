@@ -2615,3 +2615,16 @@ a.goBack:active, a.goBack:hover,a.goBack:focus{
     color: #000!important;
     font-size: 15px;
 }
+
+.mini-photo img:hover {
+    border: 2px solid #009688;
+}
+
+.cover-pic {
+    text-align: center;
+    border: #009688 1px solid;
+    color: #009688;
+    padding: 3px;
+    border-radius: 4px;
+    margin-top: 3px;
+}
