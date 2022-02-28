@@ -66,14 +66,17 @@ class HomeController extends Controller
         $products = ProductHelper::allAktivElanlar(0,$take->take);
         $favs = FavHelper::getFavs($request);
         
-        $vips = Product::with('pictures')->whereHas('pictures',function($q){
+        $vips = Product::with('pictures')
+        ->whereHas('pictures',function($q){
             return $q->where('pictures.cover',"=",1)->where('active',1);
         })->whereHas('vip',function($q){
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
         })->with(['premium'=>function($q){
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
         }])->orderBy('updated_at','DESC')
-        ->limit($take->take)->get();
+        ->limit($take->take)
+        ->get();
+
 
         return view('home', ["products"=> $products, 'vips'=>$vips, 'premiums'=>$premiums, 'favs'=>$favs, 'user'=>$user, 'categoryName'=>'']);
     }
