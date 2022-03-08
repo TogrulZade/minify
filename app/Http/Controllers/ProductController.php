@@ -162,6 +162,7 @@ class ProductController extends Controller
     		'new' 	=> "required",
             "image.*"           => 'mimes:jpeg,jpg,png|required',
 			"image"=>'required',
+			'nov'=>'integer'
     	];
 
     	$messages = [
@@ -176,6 +177,7 @@ class ProductController extends Controller
     		'new.required' => 'Yeni və ya köhnə olduğunu qeyd etmədiniz',
             'image.*.mimes'=> "Yalnız jpeg,jpg,png formatlı şəkil yükləyə bilərsiniz",
             'image.required'=> "Elanın ən az bir şəklini yerləşdirməlisiniz",
+			'nov'=>'Növ düzgün formatda deyil. Rəqəm olmalıdır.'
 			// 'files.required'=>'Elanın ən az bir şəklini yerləşdirməlisiniz'
     	];
 
@@ -186,8 +188,6 @@ class ProductController extends Controller
     		return redirect('sell')->withErrors($validator)->withInput();
 		}
 
-        // $picture = new Picture();
-
 		$lastId = Product::orderBy("id","DESC")->first();
 		if(empty($lastId)){
 			$addId = 1;
@@ -196,9 +196,11 @@ class ProductController extends Controller
 		}
 
 		if($request->market == 0)$request->market = '';
+		// $nov = $request->nov ? '"nov"=>'.$request->nov : "";
+		// return $nov;
 
 		if(Auth::user()){
-			$prNumber = Product::create(["product_name"=>$request->product_name,"product_category"=>$request->product_category,"product_price"=>$request->product_price,"product_description"=>$request->product_description,"merchant_number"=>$request->merchant_number,
+			$prNumber = Product::create(["product_name"=>$request->product_name,"product_category"=>$request->nov ? $request->nov : $request->product_category,"product_price"=>$request->product_price,"product_description"=>$request->product_description,"merchant_number"=>$request->merchant_number,
 			"user_id" => Auth::user()->id,
 			"product_merchant"=>$request->product_merchant,
 			"closed_at"=>date('Y-m-d H:i:s', strtotime('+30 days')),
@@ -209,10 +211,11 @@ class ProductController extends Controller
 			"slug"=>Str::slug($addId."-".$request->product_name, '-')])->id;
 		}else{
 			// User olmadiqda .. hazirda bu funksiya islemir
-			$prNumber = Product::create(["product_name"=>$request->product_name,"product_category"=>$request->product_category,"product_price"=>$request->product_price,"product_description"=>$request->product_description,"merchant_number"=>$request->merchant_number,"product_merchant"=>$request->product_merchant,
+			$prNumber = Product::create(["product_name"=>$request->product_name,"product_category"=>$request->nov ? $request->nov : $request->product_category,"product_price"=>$request->product_price,"product_description"=>$request->product_description,"merchant_number"=>$request->merchant_number,"product_merchant"=>$request->product_merchant,
 			"closed_at"=>date('Y-m-d H:i:s', strtotime('+30 days')),
 			'new'=>$request->new,
 			'delivery'=>$request->delivery,
+			$nov,
 			"slug"=>Str::slug($addId."-".$request->product_name, '-')])->id;
 		}
 
@@ -273,6 +276,7 @@ class ProductController extends Controller
 			foreach($subCategory as $i=>$sc){
 				$collection->push($sc->id);
 			}
+			$collection->push($getCat->id);
 			
 			$vips = Product::with('pictures')
 			->whereHas('pictures',function($q){
@@ -283,8 +287,8 @@ class ProductController extends Controller
 				return $q->where('closed_at',">", date('Y-m-d H:i:s'));
 			})
 			->where('products.active',"=",1)
-			->where("product_category","=",$getCat->id)
-			->orwhereIn('products.product_category',$collection->all())
+			// ->where("product_category","=",$getCat->id)
+			->whereIn('products.product_category',$collection->all())
 			->orderBy('updated_at',"DESC")
 			->limit(7)
 			->get();
@@ -295,8 +299,8 @@ class ProductController extends Controller
 					return $q->where('pictures.cover',"=",1);
 				})
 				->with('category')
-				->where('products.product_category',"=",$getCat->id)
-				->orwhereIn('products.product_category',$collection->all())
+				// ->where('products.product_category',"=",$getCat->id)
+				->whereIn('products.product_category',$collection->all())
 				->where('products.active','=',1)
 				->orderBy('products.updated_at',"DESC")
 				->get();
@@ -385,6 +389,17 @@ class ProductController extends Controller
 		$categories = Category::where('name',"like","%".$search."%")->get();
 
 		return compact('products','categories');
+	}
+
+	public function checkCategory(Request $request)
+	{
+		$category = $request->category;
+		if(intval($category) != 0){
+			$subCategory = Category::where('parent_id',"=",$category)->get();
+			return $subCategory;
+		}else{
+			return 'no';
+		}
 	}
 
 	public function loadProduct(Request $request)

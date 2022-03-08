@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use minify\Helpers\ProductHelper;
 use minify\Helpers\GeneralHelper;
 use minify\Product;
+use minify\Category;
 
 class AdminController extends Controller
 {
@@ -71,5 +72,14 @@ class AdminController extends Controller
             return redirect('/admin/edit/'.$pid)->withInput(["success"=>"Məhsul elave edidi"])->withInput();
         }
 
+    }
+
+    public function categoryEdit(Request $request)
+    {
+
+        // $category = Category::where('parent_id',0)->get();
+        // $childe = Category::with('category')->where('parent_id',">",0)->get();
+        // return view('admin.categoryEdit', compact('category','childe'));
+        return view('admin.categoryEdit');
     }
 }

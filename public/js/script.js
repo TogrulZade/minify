@@ -495,25 +495,6 @@ $(document).ready(function(){
 	})
 
 
-	// Yeni elan sell
-	var category;
-
-	$('select[name="product_category"]').on('change',function(){
-		category = $(this).val();
-		// alert(category);
-		if(category == 32){
-			$('.update_detail').html(
-				"<select name='marka'><option value='0'>Marka</option><option value='1'>Apple iPhone</option></select><select name='model'><option value='0'>Model seç</option><option name='1'>11</option><option name='2'>12 Pro max</option></select><select name='reng'><option name='0'>Rəng seç</option><option value='1'>Qara</option></select><select name='yaddas'><option name='0'>Yaddaş seç</option><option value='1'>64 GB</option></select><select name='ram'><option name='0'>Ram seç</option><option value='1'>4</option></select>"
-			);
-		}else if(category == 51){
-			$('.update_detail').html(
-				"<select name='home_type'><option value='0'>Elanın tipi</option><option value='1'>Satılır</option><option value='2'>Kiryayə verilir</option></select>"
-			);
-		}else{
-			$('.update_detail').html('');
-		}
-	});
-
 	// $('.input-images-1').imageUploader();
 
 });
