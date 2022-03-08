@@ -369,7 +369,7 @@
 									{{-- <div class="{{$index == 0 ? 'cover-photo col-md-12' : 'mini-photo col-md-3 col-sm-3 col-xs-6 col-xs-12'}}"> --}}
 									<div class="cover-photo col-md-12">
 										<li>
-											<img data-index="" src="{{asset("storage/".$cover_photo->url)}}" />
+											<img data-index="" src="{{asset("storage/".$product->product_cover)}}" />
 										</li>
 									</div>
 								{{-- @endforeach --}}

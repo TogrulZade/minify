@@ -41,7 +41,7 @@
 									<p class="error">{{ $errors->first('product_category') }}</p>
 								@endif
 								<select name="product_category" id="">
-									<option selected value='0'>Kateqoriya seç</option>
+									<option selected>Kateqoriya seç</option>
 									@foreach ($getCategory as $cat)
 										<option disabled>{{$cat->name}}</option>
 										@foreach ($cat->childrenCategories as $childe)
@@ -173,3 +173,6 @@
 </div>
 
 @endsection
+@push('sell')
+<script src="{{ asset('js/sell.js?r=') }}<?php echo rand(0,99999)?>"></script>
+@endpush

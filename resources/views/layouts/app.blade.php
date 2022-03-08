@@ -82,6 +82,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-4"></div>
     </footer> --}}
+
 </body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
@@ -89,6 +90,7 @@
     <script src="{{ asset('js/swipe.js') }}"></script>
     <script src="{{ asset('js/image-uploader.min.js') }}"></script>
     <script src="{{ asset('js/script.js?r=') }}<?php echo rand(0,99999)?>"></script>
+    @stack('sell')
 
     <script>
         // window.mySwipe = new Swipe(document.getElementById('slider'));
