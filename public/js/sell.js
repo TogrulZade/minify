@@ -4,36 +4,36 @@ $(function() {
     var csrf = document.querySelector('meta[name="csrf-token"]').content;
 	var category;
 
-	$('select[name="product_category"]').on('change',function(){
-		category = $(this).val();
-        $.ajax({
-            url: 'checkCategory',
-            type: 'POST',
-            data: {category: category, _token: csrf},
+	// $('select[name="product_category"]').on('change',function(){
+	// 	category = $(this).val();
+    //     $.ajax({
+    //         url: 'checkCategory',
+    //         type: 'POST',
+    //         data: {category: category, _token: csrf},
 
-            success: function(res){
-                if(res){
-                    $('.update_detail').html(
-                        `<select name='marka'>
-                            <option value='0'>Marka</option>
-                        `
-                    );
-                        res.map(item=>{
-                            $('select[name="marka"]').append(`
-                                <option value="`+item.id+`">`+item.name+`</option>
-                            `);
-                        });
+    //         success: function(res){
+    //             if(res){
+    //                 $('.update_detail').html(
+    //                     `<select name='marka'>
+    //                         <option value='0'>Marka</option>
+    //                     `
+    //                 );
+    //                     res.map(item=>{
+    //                         $('select[name="marka"]').append(`
+    //                             <option value="`+item.id+`">`+item.name+`</option>
+    //                         `);
+    //                     });
 
-                        $('.update_detail').append(`
-                            </select>
-                        `);
-                }
-            },
-            error: function(error){
-                alert(error.responseText);
-            }
-        })
-	});
+    //                     $('.update_detail').append(`
+    //                         </select>
+    //                     `);
+    //             }
+    //         },
+    //         error: function(error){
+    //             alert(error.responseText);
+    //         }
+    //     })
+	// });
 
 
     $('select[name="product_category"]').on('change',function(){
