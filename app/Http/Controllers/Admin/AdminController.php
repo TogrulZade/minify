@@ -10,9 +10,16 @@ use minify\Helpers\GeneralHelper;
 use minify\Product;
 use minify\Category;
 use minify\LogRegister;
+use minify\User;
 
 class AdminController extends Controller
 {
+    public function __construct(){
+        // if(\Auth::user()->name !='Togrul'){
+            // return redirect('/');
+        // }
+        echo \Auth::user();
+    }
     public function index()
     {
         $products = ProductHelper::waiting();

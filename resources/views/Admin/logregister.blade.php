@@ -9,6 +9,7 @@
         <div> <b>IP ADRESS</b> {{$log->ip_address}}</div>
         {{$log->fbclid ? 'FBCLID: '. $log->fbclid.'' : ''}}
         {{$log->utm_source ? 'utm_source: '. $log->utm_source.'' : ''}}
+        
         <hr>
     @endforeach
 </div>
