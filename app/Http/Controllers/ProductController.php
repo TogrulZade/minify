@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use minify\Product;
 use minify\Picture;
 use minify\market;
+use minify\LogRegister;
+
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -51,6 +53,23 @@ class ProductController extends Controller
     public function index(Request $request)
     {
 		$user = Auth::user() ? Auth::user()->id : $request->cookie('anonim');
+		$log = new LogRegister();
+        $log->user_agent = $_SERVER['HTTP_USER_AGENT'];
+        $log->ip_address = isset($_SERVER['HTTP_CLIENT_IP']) 
+        ? $_SERVER['HTTP_CLIENT_IP'] 
+        : (isset($_SERVER['HTTP_X_FORWARDED_FOR']) 
+          ? $_SERVER['HTTP_X_FORWARDED_FOR'] 
+          : $_SERVER['REMOTE_ADDR']);
+
+        $log->fbclid = request()->fbclid ? request()->fbclid : '';
+          
+        $log->save();
+
+        $minutes = 60*24*30*12*100;
+
+        if(request()->fbclid){
+			\Cookie::queue('FBCLID', request()->fbclid, $minutes);
+        }
 
 		// $product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("products.slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->where('products.active','=',1)->leftJoin("categories","products.product_category","categories.id")->leftJoin('vip',"products.id","vip.product_id")->select("products.*","markets.*","products.uniqid as pid","products.id as pr_id","markets.name as market","pictures.*","cities.name as city","categories.name as category_name","categories.slug as category_slug","markets.slug as market_slug",'vip.*')->first();
 
