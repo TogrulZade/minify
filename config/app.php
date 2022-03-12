@@ -177,7 +177,7 @@ return [
         minify\Providers\RouteServiceProvider::class,
         minify\Providers\AgentServiceProvider::class,
         minify\Providers\FavServiceProvider::class,
-        minify\Providers\LogServiceProvider::class,
+        // minify\Providers\LogServiceProvider::class,
 
     ],
 
@@ -231,7 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Fav' => minify\Providers\FavServiceProvider::class,
-        'LogRegister' => minify\Providers\LogServiceProvider::class,
+        // 'LogRegister' => minify\Providers\LogServiceProvider::class,
     ],
 
 ];
