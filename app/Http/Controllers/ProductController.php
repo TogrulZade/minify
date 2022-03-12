@@ -64,6 +64,11 @@ class ProductController extends Controller
 		
 		  $log->utm_source = request()->utm_source ? request()->utm_source : '';
 		  $log->fbclid = request()->fbclid ? request()->fbclid : '';  
+		  $params = '';
+			foreach($_GET as $key => $value){
+				$params .= $key . "=" . $value . "&";
+			}
+		  $log->params = $params;
 		  $log->save();
 
         $minutes = 60*24*30*12*100;
