@@ -19,6 +19,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin/edit/{pid}', 'Admin\AdminController@edit');
     Route::post('admin/edit/action', 'Admin\AdminController@editAction');
     Route::get('admin/categoryEdit', 'Admin\AdminController@categoryEdit');
+    Route::get('admin/logregister', 'Admin\AdminController@logregister');
 });
 
 Route::get("/", "HomeController@index");

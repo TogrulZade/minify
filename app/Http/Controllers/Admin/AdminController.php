@@ -9,6 +9,7 @@ use minify\Helpers\ProductHelper;
 use minify\Helpers\GeneralHelper;
 use minify\Product;
 use minify\Category;
+use minify\LogRegister;
 
 class AdminController extends Controller
 {
@@ -81,5 +82,11 @@ class AdminController extends Controller
         // $childe = Category::with('category')->where('parent_id',">",0)->get();
         // return view('admin.categoryEdit', compact('category','childe'));
         return view('admin.categoryEdit');
+    }
+
+    public function logregister(Request $request)
+    {
+        $logregister = LogRegister::orderBy('id',"DESC")->get();
+        return view('admin.logregister', compact('logregister'));
     }
 }
