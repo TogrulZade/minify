@@ -53,8 +53,8 @@ class HomeController extends Controller
           ? $_SERVER['HTTP_X_FORWARDED_FOR'] 
           : $_SERVER['REMOTE_ADDR']);
 
-        $log->fbclid = request()->fbclid ? request()->fbclid : '';
-          
+        $log->utm_source = request()->utm_source ? request()->utm_source : '';
+        $log->fbclid = request()->fbclid ? request()->fbclid : '';  
         $log->save();
 
         $minutes = 60*24*30*12*100;
