@@ -600,10 +600,12 @@
                                     <div class="{{$index == -1 ? 'cover-photo col-md-12' : 'mini-photo col-md-3 col-sm-3 col-xs-6 col-xs-12'}}">
                                         <li class="li">
                                             <img data-index="{{$index}}" src="{{asset("storage/".$pic->url)}}" />
-											@if($pic->cover == 0)
+											@if (Auth::id() == $product->user_id)
+												@if($pic->cover == 0)
 												<div class="make_cover" data-id="{{$pic->id}}">Əsas şəkil et</div>
-											@else
+												@else
 												<div class="cover-pic" data-id="{{$pic->id}}">Əsas şəkil</div>
+												@endif
 											@endif
                                         </li>
                                     </div>

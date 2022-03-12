@@ -97,8 +97,11 @@ $(document).ready(function(){
 		$(".make_cover").removeClass('show');
 	});
 
-	$(".make_cover").on('click', function(){
+	$(".make_cover").on('click',function(){
 		let pic = $(this).data('id');
+		let that = $(this);
+		let cover_id = $(".cover-pic").data('id');
+		alert('s');
 
 		$.ajax({
 			url: '/makeCover',
@@ -106,7 +109,10 @@ $(document).ready(function(){
 			data: {_token: csrf, pic: pic},
 
 			success: function(res){
-				console.log(JSON.stringify(res));
+				$(".cover-pic").hide();
+				$(".cover-pic").after('<div class="make_cover" data-id="'+cover_id+'">Əsas şəkil et</div>');
+				that.after('<div class="cover-pic" data-id="">Əsas şəkil</div>');
+				that.remove();
 			},
 			error: function(error){
 				console.log(error.responseText);

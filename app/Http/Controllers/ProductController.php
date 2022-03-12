@@ -271,12 +271,18 @@ class ProductController extends Controller
 			$parent_category = Category::where('id',"=",$getCat->parent_id)->first();
 			$take = SettingsHelper::take();
 			$subCategory = Category::where('parent_id',"=",$getCat->id)->get();
-
 			$collection = collect([]);
 			foreach($subCategory as $i=>$sc){
 				$collection->push($sc->id);
 			}
+
+			$sub2 = Category::where('parent_id',"=",$collection->all())->get();
+			foreach($sub2 as $s2){
+				$collection->push($s2->id);
+			}
 			$collection->push($getCat->id);
+			// dd($collection->all());
+
 			
 			$vips = Product::with('pictures')
 			->whereHas('pictures',function($q){
