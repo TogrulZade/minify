@@ -62,11 +62,9 @@ class ProductController extends Controller
           : $_SERVER['REMOTE_ADDR']);
 
 		
-		$utm = request()->utm_source ? request()->utm_source : '';
-
-        $log->fbclid = request()->fbclid ? request()->fbclid : $utm;
-          
-        $log->save();
+		  $log->utm_source = request()->utm_source ? request()->utm_source : '';
+		  $log->fbclid = request()->fbclid ? request()->fbclid : '';  
+		  $log->save();
 
         $minutes = 60*24*30*12*100;
 
