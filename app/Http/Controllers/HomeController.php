@@ -52,8 +52,16 @@ class HomeController extends Controller
         : (isset($_SERVER['HTTP_X_FORWARDED_FOR']) 
           ? $_SERVER['HTTP_X_FORWARDED_FOR'] 
           : $_SERVER['REMOTE_ADDR']);
+
+        $log->fbclid = request()->fbclid ? request()->fbclid : '';
           
         $log->save();
+
+        $minutes = 60*24*30*12*100;
+
+        if(request()->fbclid){
+			\Cookie::queue('FBCLID', request()->fbclid, $minutes);
+        }
 
         $take = SettingsHelper::take();
         

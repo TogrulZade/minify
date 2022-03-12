@@ -13,7 +13,7 @@ class LogRegisterMigration extends Migration
      */
     public function up()
     {
-        Schema::create('LogRegister', function (Blueprint $table) {
+        Schema::create('logregister', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('fbclid');
             $table->timestamps();
