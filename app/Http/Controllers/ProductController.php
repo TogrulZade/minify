@@ -61,7 +61,10 @@ class ProductController extends Controller
           ? $_SERVER['HTTP_X_FORWARDED_FOR'] 
           : $_SERVER['REMOTE_ADDR']);
 
-        $log->fbclid = request()->fbclid ? request()->fbclid : '';
+		
+		$utm = request()->utm_source ? request()->utm_source : '';
+
+        $log->fbclid = request()->fbclid ? request()->fbclid : $utm;
           
         $log->save();
 
