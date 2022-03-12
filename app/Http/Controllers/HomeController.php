@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use minify\Product;
 use minify\Fav;
+use minify\LogRegister;
 use Auth;
 
 use minify\Traits\FavTrait;
@@ -44,6 +45,16 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $log = new LogRegister();
+        $log->user_agent = $_SERVER['HTTP_USER_AGENT'];
+        $log->ip_address = isset($_SERVER['HTTP_CLIENT_IP']) 
+        ? $_SERVER['HTTP_CLIENT_IP'] 
+        : (isset($_SERVER['HTTP_X_FORWARDED_FOR']) 
+          ? $_SERVER['HTTP_X_FORWARDED_FOR'] 
+          : $_SERVER['REMOTE_ADDR']);
+          
+        $log->save();
+
         $take = SettingsHelper::take();
         
     	$minutes = 60*24*30*12*100;
