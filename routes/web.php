@@ -11,7 +11,7 @@
 |
 */
   
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth','admin']], function () {
     Route::get('admin/', 'Admin\AdminController@index');
     Route::get('admin/showTesdiq', 'Admin\AdminController@showTesdiq');
     Route::post('admin/product/tesdiqle', 'Admin\AdminController@elantesdiqle');
