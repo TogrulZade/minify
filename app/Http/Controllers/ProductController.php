@@ -301,9 +301,12 @@ class ProductController extends Controller
 				$collection->push($sc->id);
 			}
 
-			$sub2 = Category::where('parent_id',"=",$collection->all())->get();
-			foreach($sub2 as $s2){
-				$collection->push($s2->id);
+			if($collection->all()){
+				$sub2 = Category::where('parent_id',"=",$collection->all())->get();
+
+				foreach($sub2 as $s2){
+					$collection->push($s2->id);
+				}
 			}
 			$collection->push($getCat->id);
 			// dd($collection->all());

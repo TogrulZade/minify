@@ -10,9 +10,9 @@
         </div>
         @foreach($products as $pr_index => $pr)
         <div class="col-md-3 col-sm-4 col-xs-6">
-            <a href="/product/{{$pr->slug}}" class="card-mini">
+            <a href="/product/{{$pr->slug}}" class="card">
                 <div class="card-img">
-                    <img src="{{asset('storage/'.$pr->product_cover)}}" alt="">
+                    <img src="{{asset('storage/'.$pr->product_cover)}}" style="height: 140px" alt="">
                 </div>
 
                     <div class="col-xs-6">
@@ -20,20 +20,24 @@
                     </div>
 
                     <div class="col-xs-6 mt-1">
-                        <div onclick="window.location.href='/admin/edit/{{$pr->id}}'; return false" class="btn btn-sm btn-block btn-warning" data-product_id='{{$pr->id}}'>Düzəliş et</div>
+                        <div onclick="window.location.href='/admin/edit/{{$pr->id}}'; return false" class="btn btn-sm btn-block btn-info" data-product_id='{{$pr->id}}'>Düzəliş et</div>
                     </div>
-                
-                <div class="card-title">
-                    {{$pr->product_price}} AZN
+
+                    <div class="col-xs-12 mb-1">
+                        <div onclick="window.location.href='/admin/delete/{{$pr->id}}'; return false" class="btn btn-danger btn-block delete-link">Remove</div>
+                    </div>
+                <div class="card-title-wrap">
+                    <div class="card-title">
+                        {{$pr->product_price}} AZN
+                    </div>
                 </div>
-                
                 <div class="card-body">
                     <strong class="mb-0">{{$pr->product_name}}</strong>
                 </div>
 
-                <div class="card-footer">
+                {{-- <div class="card-footer">
                     <p>{{$pr->created_at}}</p>
-                </div>
+                </div> --}}
             </a>
         </div>
 
