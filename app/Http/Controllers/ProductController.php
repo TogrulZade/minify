@@ -309,7 +309,6 @@ class ProductController extends Controller
 				}
 			}
 			$collection->push($getCat->id);
-			// dd($collection->all());
 
 			
 			$vips = Product::with('pictures')
