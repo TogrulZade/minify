@@ -301,6 +301,7 @@ class ProductController extends Controller
 				$collection->push($sc->id);
 			}
 
+			
 			if($collection->all()){
 				$sub2 = Category::where('parent_id',"=",$collection->all())->get();
 
