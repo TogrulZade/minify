@@ -14,12 +14,7 @@ use minify\User;
 
 class AdminController extends Controller
 {
-    public function __construct(){
-        // if(\Auth::user()->name !='Togrul'){
-            // return redirect('/');
-        // }
-        echo \Auth::user();
-    }
+
     public function index()
     {
         $products = ProductHelper::waiting();
@@ -95,5 +90,16 @@ class AdminController extends Controller
     {
         $logregister = LogRegister::orderBy('id',"DESC")->get();
         return view('admin.logregister', compact('logregister'));
+    }
+
+    public function delete(Request $request)
+    {
+        $product = Product::where("id","=",$request->pid)->first();
+        if($product == null){
+            return 'Tapilmadi';
+        }
+
+            $product->delete();
+            return redirect()->back()->withInput(['success'=>'Müvəffəqiyyətlə silindi']);
     }
 }

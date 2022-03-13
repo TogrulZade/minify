@@ -17,6 +17,7 @@ Route::group(['middleware' => ['auth','admin']], function () {
     Route::post('admin/product/tesdiqle', 'Admin\AdminController@elantesdiqle');
     Route::get('admin/showDuzelis', 'Admin\AdminController@showDuzelis');
     Route::get('admin/edit/{pid}', 'Admin\AdminController@edit');
+    Route::get('admin/delete/{pid}', 'Admin\AdminController@delete');
     Route::post('admin/edit/action', 'Admin\AdminController@editAction');
     Route::get('admin/categoryEdit', 'Admin\AdminController@categoryEdit');
     Route::get('admin/logregister', 'Admin\AdminController@logregister');
