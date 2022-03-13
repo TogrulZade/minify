@@ -24,8 +24,7 @@
                     </div>
 
                     <div class="col-xs-12 mb-1">
-                        <div onclick="window.location.href='/admin/delete/{{$pr->id}}'; return false" class="btn btn-danger btn-block delete-link">Remove</div>
-                        
+                        <div onclick="window.location.href='/admin/delete/{{$pr->id}}'; return false" class="btn btn-xs btn-danger btn-block delete-link">Remove</div>
                     </div>
                 <div class="card-title-wrap">
                     <div class="card-title">
