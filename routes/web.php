@@ -23,6 +23,9 @@ Route::group(['middleware' => ['auth','admin']], function () {
     Route::get('admin/logregister', 'Admin\AdminController@logregister');
 });
 
+Route::group(['prefix'=>''],function () {
+
+
 Route::get("/", "HomeController@index");
 Route::get("/logo", "HomeController@logo");
 Route::get("/stores", "HomeController@index");
@@ -59,7 +62,7 @@ Route::post("makeVipWithNumber", "VipController@checkProduct");
 Route::post("makeCover", "PictureController@makeCover")->middleware('auth');
 Route::get("searching", "ProductController@searching");
 Route::post("checkCategory", "ProductController@checkCategory");
-
+});
 
 Auth::routes();
 Route::get('/logout', '\minify\Http\Controllers\Auth\LoginController@logout');

@@ -301,7 +301,6 @@ class ProductController extends Controller
 				$collection->push($sc->id);
 			}
 
-			
 			if($collection->all()){
 				$sub2 = Category::where('parent_id',"=",$collection->all())->get();
 
@@ -310,7 +309,6 @@ class ProductController extends Controller
 				}
 			}
 			$collection->push($getCat->id);
-			// dd($collection->all());
 
 			
 			$vips = Product::with('pictures')
