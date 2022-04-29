@@ -119,7 +119,7 @@ class HomeController extends Controller
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
         }])->with(['vip'=>function($q){
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
-        }])->where('active',"=",1)->orderBy('started_at','DESC')->paginate(80);
+        }])->where('active',"=",1)->where('closed_at',">", date('Y-m-d H:i:s'))->orderBy('started_at','DESC')->paginate(80);
 
 
         // $count = count($products->get());

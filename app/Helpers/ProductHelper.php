@@ -157,7 +157,7 @@ class ProductHelper{
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
         })->with(['premium'=>function($q){
             return $q->where('closed_at',">", date('Y-m-d H:i:s'));
-        }])->take($take)
+        }])->where('active',1)->take($take)
         ->inRandomOrder()
         ->get();
 

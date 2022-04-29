@@ -32,8 +32,8 @@
 
 <div class="{{$agent->isMobile() ? 'container-fluid' : 'container'}}">
     <div class="row">
-        @if(!empty($vips))
         <div class="col-xs-12">
+        @if(!empty($vips))
             @foreach ($vips as $i=>$vip)
                 @if ($vip->id && $i == 0)
                 <div class="col-xs-12 section-title">
@@ -90,6 +90,7 @@
                     </a>
                 </div>
             @endforeach
+        @endif
 
             <div class="col-md-3 col-sm-4 col-xs-6">
                 <a href="#" class="card vip-blank">
@@ -134,14 +135,14 @@
                             </div>
                             @php $z = 0;@endphp
                             @foreach ($favs as $fav)
-                                @if ($fav->id == $vip->id)
-                                @php $z = $vip->id @endphp
+                                @if ($fav->id == $product->id)
+                                @php $z = $product->id @endphp
                                     <div class="add_favorite" data-product_id="{{$product->id}}" style="{{$fav->id == $product->id ? 'color: red' : ''}}">
                                         <i class="fas fa-heart"></i>
                                     </div>
                                 @endif
                             @endforeach
-                            @if ($z != $vip->id)
+                            @if ($z != $product->id)
                             <div class="add_favorite" data-product_id="{{$product->id}}" style="">
                                 <i class="fas fa-heart"></i>
                             </div>
@@ -159,7 +160,7 @@
                 </div>
             @endforeach            
         </div>
-        @endif
+        
 
         @if (count($products) == 0)
             <div class="col-xs-12">
