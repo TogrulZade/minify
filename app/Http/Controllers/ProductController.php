@@ -289,6 +289,9 @@ class ProductController extends Controller
 	{
 		$isCategoryRoute = request()->routeIs('category');
 		$cat = explode("/",$request->cat);
+		$current_cat = $request->cat;
+		$cc = explode("/",$request->cat);
+		$ccc = Category::whereIn("slug",$cc)->get();
 
 
 		$getCat = Category::where('slug',"=",$cat[count($cat)-1])->first();
@@ -322,6 +325,7 @@ class ProductController extends Controller
 			->where('products.active',"=",1)
 			// ->where("product_category","=",$getCat->id)
 			->whereIn('products.product_category',$collection->all())
+			->where('closed_at',">", date('Y-m-d H:i:s'))
 			->orderBy('updated_at',"DESC")
 			->limit(7)
 			->get();
@@ -335,13 +339,14 @@ class ProductController extends Controller
 				// ->where('products.product_category',"=",$getCat->id)
 				->whereIn('products.product_category',$collection->all())
 				->where('products.active','=',1)
+				->where('closed_at',">", date('Y-m-d H:i:s'))
 				->orderBy('products.updated_at',"DESC")
 				->get();
 			}
 
 			$favs = FavHelper::getFavs($request);
 
-			return view('byCategory', ['products'=>$products, 'favs'=>$favs, 'vips'=>$vips, 'categoryName'=>$getCat->name,'subCategory'=>$subCategory,'isCategoryRoute'=>$isCategoryRoute,'parent_category'=>$parent_category]);
+			return view('byCategory', ['products'=>$products, 'favs'=>$favs, 'vips'=>$vips, 'categoryName'=>$getCat->name,'subCategory'=>$subCategory,'isCategoryRoute'=>$isCategoryRoute,'parent_category'=>$parent_category,'current_cat'=>$ccc]);
 		}else{
 			return redirect('/');
 		}

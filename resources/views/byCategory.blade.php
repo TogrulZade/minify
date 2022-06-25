@@ -25,14 +25,21 @@
 
         <div class="col-xs-12 mt-5 mb-2 {{$agent->isMobile() ? 'mobile-content' : ''}}" style="{{$agent->isMobile() ? 'padding: 0 15px;' : ''}} border-radius: 6px">
 
-            {{-- <nav aria-label="breadcrumb">
+            <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="elanlar">Bütün kateqoriyalar</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">{{$categoryName}}</li>
+                    @foreach ($current_cat as $n=>$cc)
+                    <li class="breadcrumb-item active" aria-current="page">
+                        @if ($n !=count($current_cat)-1)
+                            <a href="/c/{{$cc->slug}}">{{$cc->name}}</a></li>
+                        @else
+                            {{$cc->name}}
+                        @endif
+                    @endforeach
                 </ol>
-                </nav> --}}
+                </nav>
                     
         </div>
 
