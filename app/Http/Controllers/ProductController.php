@@ -107,6 +107,7 @@ class ProductController extends Controller
 					->with('premium')
 					// ->where('products.active','=',1)
 					->where("products.slug", "=", $request->slug)
+					->where('products.active', "=",1)
 					->first();
 				}
 			}

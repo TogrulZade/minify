@@ -1,10 +1,8 @@
 @extends('layouts.app')
 
 @section('title')
-{{$title ?? $categoryName ?? null}}
+    {{$title ?? $categoryName ?? null}}
 @endsection
-
-
 
 @section('content')
 @if(!$agent->isMobile())
@@ -15,12 +13,8 @@
 @endif
 <div class="{{$agent->isMobile() ? 'container-fluid' : 'container'}}">
     <div class="row">
-        @if (!$agent->isMobile())    
-            {{-- <div class="col-xs-12">
-                <div class="banner">
-                    <h4 class="text-center">Sizin Reklamınız Burada</h4>
-                </div>
-            </div> --}}
+        @if (!$agent->isMobile())
+
         @endif
 
         <div class="col-xs-12 mt-5 mb-2 {{$agent->isMobile() ? 'mobile-content' : ''}}" style="{{$agent->isMobile() ? 'padding: 0 15px;' : ''}} border-radius: 6px">

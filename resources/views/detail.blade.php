@@ -342,10 +342,12 @@
 				</div>
 			@endif
 
-            @if($product->active == 0)
-                <div class="alert alert-info" style="margin: 10px 0 0 0">
-                    <i class="fas fa-user-clock" style="font-size: 20px"></i> <span>Məhsulunuz <strong>Minify moderatorları</strong> tərəfindən təsdiq gözləyir</span>
-                </div>
+			@if(Auth::user())
+				@if($product->active == 0 && Auth::user()->id == $product->user_id)
+					<div class="alert alert-info" style="margin: 10px 0 0 0">
+						<i class="fas fa-user-clock" style="font-size: 20px"></i> <span>Məhsulunuz <strong>Minify moderatorları</strong> tərəfindən təsdiq gözləyir</span>
+					</div>
+				@endif
             @endif
     		<div class="col-md-12 mb-5 mt-5 bg-white" style="border-radius: 8px">
 				<div class="col-md-6 col-sm-6 col-xs-12 h-cover p-0">
@@ -484,7 +486,7 @@
 											<strong>Smartfon</strong></span>
 										</div>
 									@endif --}}
-									@if($product->category->id)
+									@if($product->category && $product->category->id)
 									<div class="col-xs-4 p-0 mb-1" style="color: #8d94ad;font-weight: 400">Malın növü</div>
 									<div class="col-xs-8 p-0 mb-1">
 										<a class="product-category" style="color: #1a8bff" href="/c/{{$product->category->slug}}">{{$product->category->name}}</a>
