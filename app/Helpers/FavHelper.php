@@ -18,8 +18,8 @@ class FavHelper{
             // ->whereHas('pictures', function($q){
             //     return $q->where('pictures.cover',"=",1);
             // })
-            // ->where('products.closed_at',">",date('Y-m-d H:i:s'))
-            // ->where('products.active',"=",'1')
+            ->where('products.closed_at',">",date('Y-m-d H:i:s'))
+            ->where('products.active',"=",'1')
             ->select('*', 'products.id as id')->get();
 
             return $favs;
