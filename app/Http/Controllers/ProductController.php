@@ -101,14 +101,22 @@ class ProductController extends Controller
 			if($check){
 				if($check->user_id == Auth::user()->id || Auth::user()->id == 1){
 					// $product = DB::table("products")->leftjoin("pictures","products.id","=","product_id")->leftJoin('markets','markets.id','products.market_id')->where("products.slug", "=", $request->slug)->leftJoin('cities','cities.id','products.city_id')->leftJoin("categories","products.product_category","categories.id")->leftJoin('vip',"products.id","vip.product_id")->select("products.*","markets.*","products.id as pr_id","products.uniqid as pid","markets.name as market","pictures.*","cities.name as city","categories.name as category_name","markets.slug as market_slug","categories.slug as category_slug",'vip.*')->first();
-					$product = Product::with('pictures')
-					->with('market')
-					->with('vip')
-					->with('premium')
-					// ->where('products.active','=',1)
-					->where("products.slug", "=", $request->slug)
-					->where('products.active', "=",1)
-					->first();
+					if(Auth::user()->id == $check->user_id){
+						$product = Product::with('pictures')
+						->with('market')
+						->with('vip')
+						->with('premium')
+						->where("products.slug", "=", $request->slug)
+						->first();
+					}else{
+						$product = Product::with('pictures')
+						->with('market')
+						->with('vip')
+						->with('premium')
+						->where("products.slug", "=", $request->slug)
+						->where('products.active','=',1)
+						->first();
+					}
 				}
 			}
 		}
