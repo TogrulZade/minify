@@ -30,7 +30,7 @@
 </div>
 
 
-<div class="{{$agent->isMobile() ? 'container-fluid' : 'container'}}">
+<div class="{{$agent->isMobile() ? 'container-fluid' : 'container'}}" style="margin-top: 70;">
     <div class="row">
         <div class="col-xs-12">
         @if(!empty($vips))
