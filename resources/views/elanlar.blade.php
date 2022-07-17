@@ -31,7 +31,7 @@
 
 
 <div class="{{$agent->isMobile() ? 'container-fluid' : 'container'}}">
-    <div class="row" style="margin-top: 180px">
+    <div class="row" style="{{$agent->isMobile() ? 'margin-top: 180px' : 0}}">
         <div class="col-xs-12">
         @if(!empty($vips))
             @foreach ($vips as $i=>$vip)
