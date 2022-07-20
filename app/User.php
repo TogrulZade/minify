@@ -40,6 +40,6 @@ class User extends Authenticatable
     
     public function market()
     {
-        return $this->hasMany(Market::class, 'uid', 'id');
+        return $this->hasMany(market::class, 'uid', 'id');
     }
 }
