@@ -101,7 +101,6 @@ $(document).ready(function(){
 		let pic = $(this).data('id');
 		let that = $(this);
 		let cover_id = $(".cover-pic").data('id');
-		alert('s');
 
 		$.ajax({
 			url: '/makeCover',
