@@ -1,4 +1,5 @@
 <?php
+use GuzzleHttp\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,35 @@ Route::post("makeVipWithNumber", "VipController@checkProduct");
 Route::post("makeCover", "PictureController@makeCover")->middleware('auth');
 Route::get("searching", "ProductController@searching");
 Route::post("checkCategory", "ProductController@checkCategory");
+});
+Route::get("grab", "GrabController@index");
+Route::get('test', function(){
+    $url = "https://graph.facebook.com/v13.0/100681546069592/messages";
+
+$curl = curl_init($url);
+curl_setopt($curl, CURLOPT_URL, $url);
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+$headers = array(
+   "X-Custom-Header: value",
+   "Content-Type: application/json",
+   "Authorization: Bearer EAALFxiC2zIkBAEZAW6VRapoSFNb1ImolwP0ppBtsfpZCZBM5OxXYnh663jOC4ly5xkbPuIZB34cENIKeuZCfrctkvVrXChAm3ZCKGvQx9zlMcnJyTGJkC66PohnngtZCPKIn26t6hVgXo9yBzEW1C8sqDxVsJy3YXT5NgWqu9ZAad9m5SBayIGNzbAQupcNZCpBRiRXDkpZA0wHTGTZCXD1vZA9ZCzZBTLRqgVbm8ZD",
+);
+curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+$data = '{ "messaging_product": "whatsapp", "to": "994708827974", "type": "template", "template": { "name": "hello_world", "language": { "code": "en_US" } } }';
+
+curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+
+//for debug only!
+curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+$resp = curl_exec($curl);
+curl_close($curl);
+var_dump($resp);
+    
 });
 
 Auth::routes();

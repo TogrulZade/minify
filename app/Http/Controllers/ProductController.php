@@ -243,6 +243,7 @@ class ProductController extends Controller
 			'new'=>$request->new,
 			'delivery'=>$request->delivery,
 			"slug"=>Str::slug($addId."-".$request->product_name, '-')])->id;
+			
 		}else{
 			// User olmadiqda .. hazirda bu funksiya islemir
 			$prNumber = Product::create(["product_name"=>$request->product_name,"product_category"=>$request->nov ? $request->nov : $request->product_category,"product_price"=>$request->product_price,"product_description"=>$request->product_description,"merchant_number"=>$request->merchant_number,"product_merchant"=>$request->product_merchant,
