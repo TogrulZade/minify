@@ -7,14 +7,14 @@
     <div class="col-sm-6">
         <div class="form-group">
             <label for="my-input">Tarix</label>
-            <input id="my-input" name="from" class="form-control" value="{{$from ? $from : $today}}" type="date" name="">
+            <input id="my-input" name="from" class="form-control" value="{{isset($from) ? $from : $today}}" type="date" name="">
         </div>
     </div>
 
     <div class="col-sm-6">
         <div class="form-group">
             <label for="my-input">Tarix</label>
-            <input id="my-input" name="to" class="form-control" value="{{$to ? $to : $today}}" type="date" name="">
+            <input id="my-input" name="to" class="form-control" value="{{isset($to) ? $to : $today}}" type="date" name="">
             <hr/>
         </div>
     </div>
