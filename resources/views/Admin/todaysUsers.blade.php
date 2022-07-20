@@ -31,6 +31,7 @@
         <tr style="font-size: 18px">
             <td>{{$i+1}}) </td>
             <td> {{$user->name}}</td>
+            <td> {{$user->created_at}}</td>
         </tr>
 
         @endforeach
