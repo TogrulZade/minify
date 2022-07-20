@@ -24,13 +24,34 @@
     </form>
 </div>
 
-<div class="col-xs-12 col-xs-offset-3">
+<div class="col-xs-8 col-xs-offset-3 mt-5">
     @if (isset($users))
-    <table>
-        @foreach ($users as $i=>$user)
+    <table class="table">
+    <thead class="thead-dark">
+        <tr class="active">
+        <td>#</td>
+        <td>ID</td>
+        <td>Adı</td>
+        <td>Email</td>
+        <td>Mobile</td>
+        <td>Mağaza</td>
+        <td>Tarix</td>
+        </tr>
+    </thead>
+    @foreach ($users as $i=>$user)
         <tr style="font-size: 18px">
             <td>{{$i+1}}) </td>
+            <td> {{$user->id}}</td>
             <td> {{$user->name}}</td>
+            <td> {{$user->email}}</td>
+            <td> {{$user->phone}}</td>
+            <td> 
+                @isset($user->market)
+                    @foreach ($user->market as $market)
+                        <a href="/market/{{$market->slug}}">{{$market->name}}</a>
+                    @endforeach
+                @endisset
+            </td>
             <td> {{$user->created_at}}</td>
         </tr>
 

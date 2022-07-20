@@ -115,8 +115,9 @@ class AdminController extends Controller
         $from = $request->from;
         $to = $request->to;
         $today = date("Y-m-d");
-        $users = User::whereBetween('created_at', [$from ? $from : $today,$to ? $to : $today])->get();
+        $users = User::whereBetween('created_at', [$from ? $from : $today,$to ? $to : $today])->with('market')->get();
         // echo $from;
+        // print_r($users);
         return view('admin.todaysUsers', compact('users','today','from','to'));
     }
 }
