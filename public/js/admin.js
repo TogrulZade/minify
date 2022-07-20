@@ -6,7 +6,7 @@ $(document).ready(function(){
         const product_id = $(this).data('product_id');
         $.ajax({
             type: 'POST',
-            url: 'admin/product/tesdiqle',
+            url: '/admin/product/tesdiqle',
             data: {id: product_id, _token: csrf},
             success: function(res){
                 if(res == 'updated'){
