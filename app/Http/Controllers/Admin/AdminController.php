@@ -102,4 +102,21 @@ class AdminController extends Controller
             $product->delete();
             return redirect()->back()->withInput(['success'=>'Müvəffəqiyyətlə silindi']);
     }
+
+    public function todaysUsers(Request $request)
+    {
+        $today = date("Y-m-d");
+        return view('admin.todaysUsers', compact('today'));
+    }
+
+
+    public function todaysUsersAction(Request $request)
+    {
+        $from = $request->from;
+        $to = $request->to;
+        $today = date("Y-m-d");
+        $users = User::whereBetween('created_at', [$from ? $from : $today,$to ? $to : $today])->get();
+        // echo $from;
+        return view('admin.todaysUsers', compact('users','today','from','to'));
+    }
 }

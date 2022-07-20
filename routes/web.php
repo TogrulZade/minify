@@ -22,6 +22,8 @@ Route::group(['middleware' => ['auth','admin']], function () {
     Route::post('admin/edit/action', 'Admin\AdminController@editAction');
     Route::get('admin/categoryEdit', 'Admin\AdminController@categoryEdit');
     Route::get('admin/logregister', 'Admin\AdminController@logregister');
+    Route::get('admin/todaysusers', 'Admin\AdminController@todaysUsers');
+    Route::post('admin/todaysusers', 'Admin\AdminController@todaysUsersAction');
 });
 
 Route::group(['prefix'=>''],function () {
