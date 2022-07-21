@@ -300,7 +300,11 @@ class ProductController extends Controller
 				$subject = $request->product_name." - Minify.az-a əlavə edildi<br/>";
 				$txt = "Title: ".$request->product_name."<br/>Description: ".$request->product_description."<br/> Market:".$request->merchant_number."<br/> User: ".Auth::user()->id."<br/>Price: ".$request->product_price."<br/>";
 				$headers = "From: togrulzade@gmail.com" . "\r\n";
-				mail($to,$subject,$txt,$headers);
+				if(mail($to,$subject,$txt,$headers)){
+					echo "Mail sent";
+				}else{
+					echo "error";
+				}
 			// error_reporting($errLevel);  // restore old error levels
 			
 			
