@@ -296,12 +296,12 @@ class ProductController extends Controller
 			
 
 			$errLevel = error_reporting(E_ALL ^ E_NOTICE);  // suppress NOTICEs
-				$to = "togrul.zade@yandex.ru";
+				$to = "togrulzade@gmail.com";
 				$subject = $request->product_name." - Minify.az-a əlavə edildi<br/>";
 				$txt = "Title: ".$request->product_name."<br/>Description: ".$request->product_description."<br/> Market:".$request->merchant_number."<br/> User: ".Auth::user()->id."<br/>Price: ".$request->product_price."<br/>";
 				$headers = "From: togrulzade@gmail.com" . "\r\n";
 				mail($to,$subject,$txt,$headers);
-			error_reporting($errLevel);  // restore old error levels
+			// error_reporting($errLevel);  // restore old error levels
 			
 			
 		// return redirect("/product/".$sl->slug)->withInput(["success"=>"Məhsulunuz müvəffəqiyyətlə əlavə edildi."]);
