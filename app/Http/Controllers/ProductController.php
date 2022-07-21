@@ -244,12 +244,6 @@ class ProductController extends Controller
 			'delivery'=>$request->delivery,
 			"slug"=>Str::slug($addId."-".$request->product_name, '-')])->id;
 			
-			$to = "togrulzade@gmail.com";
-			$subject = $request->product_name." - Minify.az-a əlavə edildi";
-			$txt = "Title: ".$request->product_name."<br/>Description: ".$request->product_description."<br/> Market:".$request->merchant_number."<br/> User: ".Auth::user()->id."<br/>Price: ".$request->product_price;
-			$headers = "From: info@minify.az" . "\r\n";
-
-			mail($to,$subject,$txt,$headers);
 		}else{
 			// User olmadiqda .. hazirda bu funksiya islemir
 			$prNumber = Product::create(["product_name"=>$request->product_name,"product_category"=>$request->nov ? $request->nov : $request->product_category,"product_price"=>$request->product_price,"product_description"=>$request->product_description,"merchant_number"=>$request->merchant_number,"product_merchant"=>$request->product_merchant,
@@ -298,7 +292,20 @@ class ProductController extends Controller
 		$sl = Product::where("id","=",$prNumber)->first();
 
 		// return redirect("sell")->withInput(["success"=>"Məhsulunuz müvəffəqiyyətlə əlavə edildi."]);
-		return redirect("/product/".$sl->slug)->withInput(["success"=>"Məhsulunuz müvəffəqiyyətlə əlavə edildi."]);
+
+			$to = "togrulzade@gmail.com";
+			$subject = $request->product_name." - Minify.az-a əlavə edildi<br/>";
+			$txt = "Title: ".$request->product_name."<br/>Description: ".$request->product_description."<br/> Market:".$request->merchant_number."<br/> User: ".Auth::user()->id."<br/>Price: ".$request->product_price."<br/>";
+			$headers = "From: togrulzade@gmail.com" . "\r\n";
+
+			if(mail($to,$subject,$txt,$headers)){
+				echo $subject;
+				echo $txt;
+				echo $headers;
+			}else{
+				echo "Mail fail";
+			}
+		// return redirect("/product/".$sl->slug)->withInput(["success"=>"Məhsulunuz müvəffəqiyyətlə əlavə edildi."]);
     }
 
 	public function getByCategory(Request $request)
