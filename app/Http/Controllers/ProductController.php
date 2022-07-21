@@ -293,18 +293,20 @@ class ProductController extends Controller
 
 		// return redirect("sell")->withInput(["success"=>"Məhsulunuz müvəffəqiyyətlə əlavə edildi."]);
 
-			$to = "togrulzade@gmail.com";
-			$subject = $request->product_name." - Minify.az-a əlavə edildi<br/>";
-			$txt = "Title: ".$request->product_name."<br/>Description: ".$request->product_description."<br/> Market:".$request->merchant_number."<br/> User: ".Auth::user()->id."<br/>Price: ".$request->product_price."<br/>";
-			$headers = "From: togrulzade@gmail.com" . "\r\n";
+			
 
-			if(mail($to,$subject,$txt,$headers)){
-				echo $subject;
-				echo $txt;
-				echo $headers;
-			}else{
-				echo "Mail fail";
+			try {
+				$to = "togrulzade@gmail.com";
+				$subject = $request->product_name." - Minify.az-a əlavə edildi<br/>";
+				$txt = "Title: ".$request->product_name."<br/>Description: ".$request->product_description."<br/> Market:".$request->merchant_number."<br/> User: ".Auth::user()->id."<br/>Price: ".$request->product_price."<br/>";
+				$headers = "From: togrulzade@gmail.com" . "\r\n";
+				mail($to,$subject,$txt,$headers);
+
+				echo "Mail getdi";
+			} catch (Exception $e) {
+				echo 'Message: ' .$e->getMessage();
 			}
+			
 		// return redirect("/product/".$sl->slug)->withInput(["success"=>"Məhsulunuz müvəffəqiyyətlə əlavə edildi."]);
     }
 
