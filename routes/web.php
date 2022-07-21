@@ -67,6 +67,7 @@ Route::get("searching", "ProductController@searching");
 Route::post("checkCategory", "ProductController@checkCategory");
 });
 Route::get("grab", "GrabController@index");
+Route::get("mail", "mailController@send");
 Route::get('test', function(){
     $url = "https://graph.facebook.com/v13.0/100681546069592/messages";
 
